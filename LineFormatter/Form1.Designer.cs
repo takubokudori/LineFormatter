@@ -1,0 +1,164 @@
+﻿namespace LineFormatter
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// 必要なデザイナー変数です。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージド リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows フォーム デザイナーで生成されたコード
+
+        /// <summary>
+        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
+        /// コード エディターで変更しないでください。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.BeforeBox = new System.Windows.Forms.TextBox();
+            this.AfterBox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TitleLbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.isAutoFormat = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // BeforeBox
+            // 
+            this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
+            this.BeforeBox.MaxLength = 0;
+            this.BeforeBox.Multiline = true;
+            this.BeforeBox.Name = "BeforeBox";
+            this.BeforeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.BeforeBox.Size = new System.Drawing.Size(390, 553);
+            this.BeforeBox.TabIndex = 0;
+            this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
+            // 
+            // AfterBox
+            // 
+            this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AfterBox.Location = new System.Drawing.Point(487, 3);
+            this.AfterBox.MaxLength = 0;
+            this.AfterBox.Multiline = true;
+            this.AfterBox.Name = "AfterBox";
+            this.AfterBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.AfterBox.Size = new System.Drawing.Size(390, 553);
+            this.AfterBox.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 92);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 559);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // TitleLbl
+            // 
+            this.TitleLbl.AutoSize = true;
+            this.TitleLbl.Location = new System.Drawing.Point(12, 27);
+            this.TitleLbl.Name = "TitleLbl";
+            this.TitleLbl.Size = new System.Drawing.Size(150, 24);
+            this.TitleLbl.TabIndex = 2;
+            this.TitleLbl.Text = "LineFormatter";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(670, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 47);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "整形";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // isAutoFormat
+            // 
+            this.isAutoFormat.AutoSize = true;
+            this.isAutoFormat.Checked = true;
+            this.isAutoFormat.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.isAutoFormat.Location = new System.Drawing.Point(514, 23);
+            this.isAutoFormat.Name = "isAutoFormat";
+            this.isAutoFormat.Size = new System.Drawing.Size(138, 28);
+            this.isAutoFormat.TabIndex = 4;
+            this.isAutoFormat.Text = "自動整形";
+            this.isAutoFormat.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::LineFormatter.Resource1.arrow;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(399, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(82, 553);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(904, 663);
+            this.Controls.Add(this.isAutoFormat);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.TitleLbl);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TextBox BeforeBox;
+        private System.Windows.Forms.TextBox AfterBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label TitleLbl;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox isAutoFormat;
+        private System.Windows.Forms.PictureBox pictureBox1;
+    }
+}
+
