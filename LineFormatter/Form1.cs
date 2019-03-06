@@ -30,7 +30,7 @@ namespace LineFormatter
         private void Formatting()
         {
             string a = BeforeBox.Text.Replace("\r", "").Replace("\n", " ").Replace("  ", " ");
-            AfterBox.Text = a.Replace(".", ".\r\n");
+            AfterBox.Text = a.Replace(". ", ".\r\n").Replace(".\n", ".\r\n").Replace(".\t", ".\r\n");
         }
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
