@@ -125,7 +125,7 @@
             this.isAutoFormat.AutoSize = true;
             this.isAutoFormat.Checked = true;
             this.isAutoFormat.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.isAutoFormat.Location = new System.Drawing.Point(514, 23);
+            this.isAutoFormat.Location = new System.Drawing.Point(490, 13);
             this.isAutoFormat.Name = "isAutoFormat";
             this.isAutoFormat.Size = new System.Drawing.Size(138, 28);
             this.isAutoFormat.TabIndex = 4;
@@ -137,7 +137,7 @@
             this.isAutoTranslation.AutoSize = true;
             this.isAutoTranslation.Checked = true;
             this.isAutoTranslation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.isAutoTranslation.Location = new System.Drawing.Point(514, 57);
+            this.isAutoTranslation.Location = new System.Drawing.Point(490, 58);
             this.isAutoTranslation.Name = "isAutoTranslation";
             this.isAutoTranslation.Size = new System.Drawing.Size(138, 28);
             this.isAutoTranslation.TabIndex = 5;

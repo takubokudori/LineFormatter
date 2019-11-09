@@ -41,7 +41,7 @@ namespace LineFormatter
         {
             string text = System.Web.HttpUtility.UrlEncode(AfterBox.Text);
             string url = "https://translate.googleapis.com/translate_a/single";
-            WebClient wc = new WebClient
+            var wc = new WebClient
             {
                 Encoding = Encoding.UTF8
             };
@@ -96,6 +96,7 @@ namespace LineFormatter
             Translate();
         }
     }
+
     public class ModelTracking
     {
         public string checkpoint_md5 { get; set; }
