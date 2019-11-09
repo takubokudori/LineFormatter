@@ -31,10 +31,12 @@
             this.BeforeBox = new System.Windows.Forms.TextBox();
             this.AfterBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.isAutoTranslation = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +87,20 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 559);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::LineFormatter.Resource1.arrow;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(399, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(82, 553);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // TitleLbl
             // 
             this.TitleLbl.AutoSize = true;
@@ -96,7 +112,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(670, 13);
+            this.button1.Location = new System.Drawing.Point(658, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 47);
             this.button1.TabIndex = 3;
@@ -116,25 +132,34 @@
             this.isAutoFormat.Text = "自動整形";
             this.isAutoFormat.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // isAutoTranslation
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::LineFormatter.Resource1.arrow;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(399, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 553);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.isAutoTranslation.AutoSize = true;
+            this.isAutoTranslation.Checked = true;
+            this.isAutoTranslation.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.isAutoTranslation.Location = new System.Drawing.Point(514, 57);
+            this.isAutoTranslation.Name = "isAutoTranslation";
+            this.isAutoTranslation.Size = new System.Drawing.Size(138, 28);
+            this.isAutoTranslation.TabIndex = 5;
+            this.isAutoTranslation.Text = "自動翻訳";
+            this.isAutoTranslation.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(781, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(117, 47);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "翻訳";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 663);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.isAutoTranslation);
             this.Controls.Add(this.isAutoFormat);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.TitleLbl);
@@ -159,6 +184,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox isAutoFormat;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox isAutoTranslation;
+        private System.Windows.Forms.Button button2;
     }
 }
 
