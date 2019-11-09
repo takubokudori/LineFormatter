@@ -8,30 +8,6 @@ using System.Runtime.Serialization.Json;
 
 namespace LineFormatter
 {
-    public class ModelTracking
-    {
-        public string checkpoint_md5 { get; set; }
-        public string launch_doc { get; set; }
-    }
-
-    public class TranslationEngineDebugInfo
-    {
-        public ModelTracking model_tracking { get; set; }
-    }
-
-    public class Sentence
-    {
-        public string trans { get; set; }
-        public string orig { get; set; }
-        public int backend { get; set; }
-        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
-    }
-
-    public class Translation
-    {
-        public List<Sentence> sentences { get; set; }
-        public string src { get; set; }
-    }
 
     public partial class Form1 : Form
     {
@@ -89,7 +65,7 @@ namespace LineFormatter
                             "&otf=2" +
                             "&q=" + text));
             }
-            catch (WebException e)
+            catch (WebException)
             {
                 MessageBox.Show(@"Failed to google");
             }
@@ -100,7 +76,7 @@ namespace LineFormatter
             Translation res;
             var serializer =
                 new DataContractJsonSerializer(typeof(Translation));
-            using (var ms = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(e.Result)))
+            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(e.Result)))
             {
                 res = (Translation) serializer.ReadObject(ms);
             }
@@ -120,5 +96,28 @@ namespace LineFormatter
             Translate();
         }
     }
-}
+    public class ModelTracking
+    {
+        public string checkpoint_md5 { get; set; }
+        public string launch_doc { get; set; }
+    }
 
+    public class TranslationEngineDebugInfo
+    {
+        public ModelTracking model_tracking { get; set; }
+    }
+
+    public class Sentence
+    {
+        public string trans { get; set; }
+        public string orig { get; set; }
+        public int backend { get; set; }
+        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
+    }
+
+    public class Translation
+    {
+        public List<Sentence> sentences { get; set; }
+        public string src { get; set; }
+    }
+}
