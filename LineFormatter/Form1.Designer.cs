@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BeforeBox = new System.Windows.Forms.TextBox();
             this.AfterBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -37,6 +38,7 @@
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
             this.isAutoTranslation = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.TranslationTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -154,6 +156,11 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // TranslationTimer
+            // 
+            this.TranslationTimer.Interval = 2000;
+            this.TranslationTimer.Tick += new System.EventHandler(this.TranslationTimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -187,6 +194,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox isAutoTranslation;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer TranslationTimer;
     }
 }
 
