@@ -51,6 +51,7 @@ namespace LineFormatter
         private void Translate()
         {
             string text = System.Web.HttpUtility.UrlEncode(AfterBox.Text);
+            if (text == "") return;
             string url = "https://translate.googleapis.com/translate_a/single";
             var wc = new WebClient
             {
