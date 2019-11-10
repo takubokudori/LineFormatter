@@ -11,6 +11,7 @@ namespace LineFormatter
 
     public partial class Form1 : Form
     {
+        const string url = "https://translate.googleapis.com/translate_a/single";
         public Form1()
         {
             InitializeComponent();
@@ -42,17 +43,17 @@ namespace LineFormatter
             if (isAutoFormat.Checked) Formatting();
             if (isAutoTranslation.Checked)
             {
+                TranslationTimer.Stop();
                 TranslationTimer.Enabled = true;
-                TranslationTimer.Interval = 2000;
+                TranslationTimer.Interval = 500;
                 TranslationTimer.Start();
             }
         }
 
         private void Translate()
         {
-            string text = System.Web.HttpUtility.UrlEncode(AfterBox.Text);
+            var text = System.Web.HttpUtility.UrlEncode(AfterBox.Text);
             if (text == "") return;
-            string url = "https://translate.googleapis.com/translate_a/single";
             var wc = new WebClient
             {
                 Encoding = Encoding.UTF8
