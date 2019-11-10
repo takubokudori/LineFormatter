@@ -11,7 +11,7 @@ namespace LineFormatter
 
     public partial class Form1 : Form
     {
-        const string url = "https://translate.googleapis.com/translate_a/single";
+        const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public Form1()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace LineFormatter
             {
                 wc.DownloadStringCompleted += CompleteDownloadProc1;
                 wc.DownloadStringAsync(
-                    new Uri(url +
+                    new Uri(TranslationUrl +
                             "?client=it" +
                             "&sl=en" +
                             "&tl=ja" +
