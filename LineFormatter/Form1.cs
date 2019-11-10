@@ -27,8 +27,14 @@ namespace LineFormatter
 
         private void Formatting()
         {
-            var a = BeforeBox.Text.Replace("\r", "").Replace("\n", " ").Replace("  ", " ");
-            AfterBox.Text = a.Replace(". ", ".\r\n").Replace(".\n", ".\r\n").Replace(".\t", ".\r\n");
+            AfterBox.Text = BeforeBox.Text
+            .Replace("\r", "")
+            .Replace("\n", " ")
+            .Replace("  ", " ")
+            .Replace(". ", ".\r\n")
+            .Replace(".\n", ".\r\n")
+            .Replace(".\t", ".\r\n")
+            .Replace("et al.\r\n", "et al. ");
         }
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
@@ -78,7 +84,7 @@ namespace LineFormatter
                 new DataContractJsonSerializer(typeof(Translation));
             using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(e.Result)))
             {
-                res = (Translation) serializer.ReadObject(ms);
+                res = (Translation)serializer.ReadObject(ms);
             }
 
             AfterBox.Text = "";
