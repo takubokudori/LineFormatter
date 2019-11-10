@@ -40,7 +40,12 @@ namespace LineFormatter
         private void BeforeBox_TextChanged(object sender, EventArgs e)
         {
             if (isAutoFormat.Checked) Formatting();
-            if (isAutoTranslation.Checked) Translate();
+            if (isAutoTranslation.Checked)
+            {
+                TranslationTimer.Enabled = true;
+                TranslationTimer.Interval = 2000;
+                TranslationTimer.Start();
+            }
         }
 
         private void Translate()
@@ -98,6 +103,11 @@ namespace LineFormatter
 
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            Translate();
+        }
+
+        private void TranslationTimer_Tick(object sender, EventArgs e)
         {
             Translate();
         }
