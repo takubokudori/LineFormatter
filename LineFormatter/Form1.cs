@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Json;
@@ -12,6 +14,7 @@ namespace LineFormatter
     public partial class Form1 : Form
     {
         const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
+        private ProxyForm _proxyForm = new ProxyForm();
         public Form1()
         {
             InitializeComponent();
@@ -63,6 +66,16 @@ namespace LineFormatter
                 "GoogleTranslate/5.9.59004 (iPhone; iOS 10.2; ja; iPhone9,1)");
             wc.Headers.Add("Accept", "*/*");
             wc.Headers.Add("Accept-Language", "ja-JP,en-US,*");
+            if (_proxyForm.Url != "")
+            {
+                var proxy = new WebProxy(_proxyForm.Url);
+                if (_proxyForm.Username != "")
+                {
+                    proxy.Credentials = new NetworkCredential(_proxyForm.Username, _proxyForm.Password);
+                    wc.Proxy = proxy;
+                }
+            }
+
             try
             {
                 wc.DownloadStringCompleted += CompleteDownloadProc1;
@@ -81,6 +94,14 @@ namespace LineFormatter
             catch (WebException)
             {
                 MessageBox.Show(@"Failed to google");
+            }
+            catch (SocketException)
+            {
+                MessageBox.Show(@"エラーが発生しました");
+            }
+            catch (TargetInvocationException e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -113,6 +134,11 @@ namespace LineFormatter
         {
             Translate();
             TranslationTimer.Enabled = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _proxyForm.Show();
         }
     }
 
