@@ -112,6 +112,7 @@ namespace LineFormatter
         private void TranslationTimer_Tick(object sender, EventArgs e)
         {
             Translate();
+            TranslationTimer.Enabled = false;
         }
     }
 
