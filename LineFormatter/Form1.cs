@@ -32,13 +32,15 @@ namespace LineFormatter
         private void Formatting()
         {
             AfterBox.Text = BeforeBox.Text
-            .Replace("\r", "")
+            .Replace("\r", "") // CRLF
             .Replace("\n", " ")
-            .Replace("  ", " ")
+            .Replace("  ", " ") // 冗長な空白
             .Replace(". ", ".\r\n")
             .Replace(".\n", ".\r\n")
             .Replace(".\t", ".\r\n")
-            .Replace("et al.\r\n", "et al. ");
+            .Replace("Fig.\r\n", "Fig. ") // 図
+            .Replace("et al.\r\n", "et al. ") // 著者ら
+            .Replace("et al,.\r\n", "et al. ");
         }
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
