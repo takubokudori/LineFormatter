@@ -78,33 +78,18 @@ namespace LineFormatter
                 }
             }
 
-            try
-            {
-                wc.DownloadStringCompleted += CompleteDownloadProc1;
-                wc.DownloadStringAsync(
-                    new Uri(TranslationUrl +
-                            "?client=it" +
-                            "&sl=en" +
-                            "&tl=ja" +
-                            "&dt=t" +
-                            "&ie=UTF-8" +
-                            "&oe=UTF-8" +
-                            "&dj=1" +
-                            "&otf=2" +
-                            "&q=" + text));
-            }
-            catch (WebException)
-            {
-                MessageBox.Show(@"Failed to google");
-            }
-            catch (SocketException)
-            {
-                MessageBox.Show(@"エラーが発生しました");
-            }
-            catch (TargetInvocationException e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            wc.DownloadStringCompleted += CompleteDownloadProc1;
+            wc.DownloadStringAsync(
+                new Uri(TranslationUrl +
+                        "?client=it" +
+                        "&sl=en" +
+                        "&tl=ja" +
+                        "&dt=t" +
+                        "&ie=UTF-8" +
+                        "&oe=UTF-8" +
+                        "&dj=1" +
+                        "&otf=2" +
+                        "&q=" + text));
         }
 
         public void CompleteDownloadProc1(Object sender, DownloadStringCompletedEventArgs e)

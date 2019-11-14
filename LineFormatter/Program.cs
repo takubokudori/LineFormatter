@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,9 +15,15 @@ namespace LineFormatter
         [STAThread]
         static void Main()
         {
+            Application.ThreadException += ApplicationThreadExceptionHandler;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+        }
+
+        private static void ApplicationThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show($@"エラーが発生しました: {e.Exception.Message}");
         }
     }
 }
