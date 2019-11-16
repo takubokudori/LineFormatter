@@ -56,7 +56,7 @@
             this.BeforeBox.Multiline = true;
             this.BeforeBox.Name = "BeforeBox";
             this.BeforeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.BeforeBox.Size = new System.Drawing.Size(390, 553);
+            this.BeforeBox.Size = new System.Drawing.Size(390, 564);
             this.BeforeBox.TabIndex = 0;
             this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
             // 
@@ -70,7 +70,7 @@
             this.AfterBox.Multiline = true;
             this.AfterBox.Name = "AfterBox";
             this.AfterBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.AfterBox.Size = new System.Drawing.Size(390, 553);
+            this.AfterBox.Size = new System.Drawing.Size(390, 564);
             this.AfterBox.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -85,11 +85,11 @@
             this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 92);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 120);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 559);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 570);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // pictureBox1
@@ -101,7 +101,7 @@
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(399, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 553);
+            this.pictureBox1.Size = new System.Drawing.Size(82, 564);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -176,7 +176,7 @@
             // 
             // Lbtn
             // 
-            this.Lbtn.Location = new System.Drawing.Point(230, 48);
+            this.Lbtn.Location = new System.Drawing.Point(357, 76);
             this.Lbtn.Name = "Lbtn";
             this.Lbtn.Size = new System.Drawing.Size(37, 38);
             this.Lbtn.TabIndex = 8;
@@ -186,7 +186,7 @@
             // 
             // Rbtn
             // 
-            this.Rbtn.Location = new System.Drawing.Point(296, 48);
+            this.Rbtn.Location = new System.Drawing.Point(437, 76);
             this.Rbtn.Name = "Rbtn";
             this.Rbtn.Size = new System.Drawing.Size(37, 38);
             this.Rbtn.TabIndex = 9;
@@ -198,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 663);
+            this.ClientSize = new System.Drawing.Size(904, 702);
             this.Controls.Add(this.Rbtn);
             this.Controls.Add(this.Lbtn);
             this.Controls.Add(this.button3);
