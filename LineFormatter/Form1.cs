@@ -135,12 +135,14 @@ namespace LineFormatter
 
         private void Lbtn_Click(object sender, EventArgs e)
         {
+            if (tableLayoutPanel1.ColumnStyles[0].Width <= 5) return;
             tableLayoutPanel1.ColumnStyles[0].Width -= 5;
             tableLayoutPanel1.ColumnStyles[2].Width += 5;
         }
 
         private void Rbtn_Click(object sender, EventArgs e)
         {
+            if (tableLayoutPanel1.ColumnStyles[2].Width <= 5) return;
             tableLayoutPanel1.ColumnStyles[0].Width += 5;
             tableLayoutPanel1.ColumnStyles[2].Width -= 5;
         }
