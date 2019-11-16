@@ -12,7 +12,7 @@ namespace LineFormatter
     public partial class Form1 : Form
     {
         private List<Trans> _tlist = new List<Trans>();
-        const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
+        private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         private ProxyForm _proxyForm = new ProxyForm();
 
         public Form1()
@@ -150,12 +150,12 @@ namespace LineFormatter
         // 指定位置の対を取得
         public string GetOrig(int pos)
         {
-            int l = 0;
-            int r = _tlist.Count;
+            var l = 0;
+            var r = _tlist.Count;
             if (r == 0) return "";
             while (l <= r)
             {
-                int m = (l + r) / 2;
+                var m = (l + r) / 2;
                 if (_tlist[m].pos <= pos)
                 {
                     if (_tlist.Count <= m + 1 || pos < _tlist[m + 1].pos)
