@@ -113,9 +113,9 @@
             this.TitleLbl.AutoSize = true;
             this.TitleLbl.Location = new System.Drawing.Point(12, 27);
             this.TitleLbl.Name = "TitleLbl";
-            this.TitleLbl.Size = new System.Drawing.Size(150, 24);
+            this.TitleLbl.Size = new System.Drawing.Size(197, 24);
             this.TitleLbl.TabIndex = 2;
-            this.TitleLbl.Text = "LineFormatter";
+            this.TitleLbl.Text = "LineFormatter v1.0";
             // 
             // button1
             // 
