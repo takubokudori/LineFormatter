@@ -40,6 +40,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.TranslationTimer = new System.Windows.Forms.Timer(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.Lbtn = new System.Windows.Forms.Button();
+            this.Rbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -164,7 +166,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(343, 16);
+            this.button3.Location = new System.Drawing.Point(357, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 47);
             this.button3.TabIndex = 7;
@@ -172,11 +174,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // Lbtn
+            // 
+            this.Lbtn.Location = new System.Drawing.Point(230, 48);
+            this.Lbtn.Name = "Lbtn";
+            this.Lbtn.Size = new System.Drawing.Size(37, 38);
+            this.Lbtn.TabIndex = 8;
+            this.Lbtn.Text = "←";
+            this.Lbtn.UseVisualStyleBackColor = true;
+            this.Lbtn.Click += new System.EventHandler(this.Lbtn_Click);
+            // 
+            // Rbtn
+            // 
+            this.Rbtn.Location = new System.Drawing.Point(296, 48);
+            this.Rbtn.Name = "Rbtn";
+            this.Rbtn.Size = new System.Drawing.Size(37, 38);
+            this.Rbtn.TabIndex = 9;
+            this.Rbtn.Text = "→";
+            this.Rbtn.UseVisualStyleBackColor = true;
+            this.Rbtn.Click += new System.EventHandler(this.Rbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 663);
+            this.Controls.Add(this.Rbtn);
+            this.Controls.Add(this.Lbtn);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.isAutoTranslation);
@@ -208,6 +232,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer TranslationTimer;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Lbtn;
+        private System.Windows.Forms.Button Rbtn;
     }
 }
 
