@@ -198,6 +198,8 @@
             // 
             // origTextBox
             // 
+            this.origTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.origTextBox.Location = new System.Drawing.Point(16, 138);
             this.origTextBox.Multiline = true;
             this.origTextBox.Name = "origTextBox";
