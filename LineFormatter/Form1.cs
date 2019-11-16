@@ -11,8 +11,10 @@ namespace LineFormatter
 
     public partial class Form1 : Form
     {
+        private List<Trans> _tlist = new List<Trans>();
         const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         private ProxyForm _proxyForm = new ProxyForm();
+
         public Form1()
         {
             InitializeComponent();
@@ -101,10 +103,15 @@ namespace LineFormatter
             }
 
             AfterBox.Text = "";
+            _tlist.Clear();
+            int pos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
                 AfterBox.Text += sentence.trans;
+                _tlist.Add(new Trans(pos, sentence.orig, sentence.trans));
+                pos += sentence.trans.Length;
+
             }
 
         }
@@ -136,7 +143,38 @@ namespace LineFormatter
         {
             tableLayoutPanel1.ColumnStyles[0].Width += 5;
             tableLayoutPanel1.ColumnStyles[2].Width -= 5;
+        }
 
+        // 指定位置の対を取得
+        public string GetOrig(int pos)
+        {
+            int l = 0;
+            int r = _tlist.Count;
+            if (r == 0) return "";
+            while (l <= r)
+            {
+                int m = (l + r) / 2;
+                if (_tlist[m].pos <= pos)
+                {
+                    if (_tlist.Count <= m + 1 || pos < _tlist[m + 1].pos)
+                    {
+                        return _tlist[m].orig;
+                    }
+
+                    l = m;
+                }
+                else
+                {
+                    r = m;
+                }
+            }
+
+            return "";
+        }
+
+        private void AfterBox_Click(object sender, EventArgs e)
+        {
+            origTextBox.Text = GetOrig(AfterBox.SelectionStart);
         }
     }
 
@@ -164,4 +202,19 @@ namespace LineFormatter
         public List<Sentence> sentences { get; set; }
         public string src { get; set; }
     }
+
+    public class Trans
+    {
+        public int pos;
+        public string orig;
+        public string sentence;
+        public Trans(int pos, string orig, string sentence)
+        {
+            this.pos = pos;
+            this.orig = orig;
+            this.sentence = sentence;
+        }
+
+    }
+
 }
