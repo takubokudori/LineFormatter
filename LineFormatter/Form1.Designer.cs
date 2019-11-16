@@ -43,6 +43,10 @@
             this.Lbtn = new System.Windows.Forms.Button();
             this.Rbtn = new System.Windows.Forms.Button();
             this.origTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MinusBtn = new System.Windows.Forms.Button();
+            this.PlusBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +70,7 @@
             this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AfterBox.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.AfterBox.Location = new System.Drawing.Point(487, 3);
             this.AfterBox.MaxLength = 0;
             this.AfterBox.Multiline = true;
@@ -144,7 +149,7 @@
             this.isAutoTranslation.AutoSize = true;
             this.isAutoTranslation.Checked = true;
             this.isAutoTranslation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.isAutoTranslation.Location = new System.Drawing.Point(490, 58);
+            this.isAutoTranslation.Location = new System.Drawing.Point(490, 47);
             this.isAutoTranslation.Name = "isAutoTranslation";
             this.isAutoTranslation.Size = new System.Drawing.Size(138, 28);
             this.isAutoTranslation.TabIndex = 5;
@@ -207,11 +212,53 @@
             this.origTextBox.Size = new System.Drawing.Size(873, 58);
             this.origTextBox.TabIndex = 10;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(268, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 24);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "比率:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(639, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 24);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "文字サイズ:";
+            // 
+            // MinusBtn
+            // 
+            this.MinusBtn.Location = new System.Drawing.Point(781, 76);
+            this.MinusBtn.Name = "MinusBtn";
+            this.MinusBtn.Size = new System.Drawing.Size(37, 38);
+            this.MinusBtn.TabIndex = 13;
+            this.MinusBtn.Text = "-";
+            this.MinusBtn.UseVisualStyleBackColor = true;
+            this.MinusBtn.Click += new System.EventHandler(this.MinusBtn_Click);
+            // 
+            // PlusBtn
+            // 
+            this.PlusBtn.Location = new System.Drawing.Point(861, 76);
+            this.PlusBtn.Name = "PlusBtn";
+            this.PlusBtn.Size = new System.Drawing.Size(37, 38);
+            this.PlusBtn.TabIndex = 14;
+            this.PlusBtn.Text = "+";
+            this.PlusBtn.UseVisualStyleBackColor = true;
+            this.PlusBtn.Click += new System.EventHandler(this.PlusBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 702);
+            this.Controls.Add(this.PlusBtn);
+            this.Controls.Add(this.MinusBtn);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.origTextBox);
             this.Controls.Add(this.Rbtn);
             this.Controls.Add(this.Lbtn);
@@ -249,6 +296,10 @@
         private System.Windows.Forms.Button Lbtn;
         private System.Windows.Forms.Button Rbtn;
         private System.Windows.Forms.TextBox origTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button MinusBtn;
+        private System.Windows.Forms.Button PlusBtn;
     }
 }
 
