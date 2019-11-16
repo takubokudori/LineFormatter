@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -177,6 +178,20 @@ namespace LineFormatter
         private void AfterBox_Click(object sender, EventArgs e)
         {
             origTextBox.Text = GetOrig(AfterBox.SelectionStart);
+        }
+
+        private void PlusBtn_Click(object sender, EventArgs e)
+        {
+            var x = AfterBox.Font.Size + 2;
+            if (x >= 100) return;
+            AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
+        }
+
+        private void MinusBtn_Click(object sender, EventArgs e)
+        {
+            var x = AfterBox.Font.Size - 2;
+            if (x <= 0) return;
+            AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
         }
     }
 
