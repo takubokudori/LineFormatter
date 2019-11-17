@@ -36,9 +36,15 @@ namespace LineFormatter
             .Replace("\r", "") // CRLF
             .Replace("\n", " ")
             .Replace("  ", " ") // 冗長な空白
-            .Replace(". ", ".\r\n")
+            .Replace(". ", ".\r\n") // .
             .Replace(".\n", ".\r\n")
             .Replace(".\t", ".\r\n")
+            .Replace("! ", "!\r\n") // !
+            .Replace("!\n", "!\r\n")
+            .Replace("!\t", "!\r\n")
+            .Replace("? ", "?\r\n") // ?
+            .Replace("?\n", "?\r\n")
+            .Replace("?\t", "?\r\n")
             .Replace("Fig.\r\n", "Fig. ") // 図
             .Replace("et al.\r\n", "et al. ") // 著者ら
             .Replace("et al,.\r\n", "et al. ");
