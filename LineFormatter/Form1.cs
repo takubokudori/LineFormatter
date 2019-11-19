@@ -62,9 +62,9 @@ namespace LineFormatter
             }
         }
 
-        private void Translate()
+        private void Translate(string orig)
         {
-            var text = System.Web.HttpUtility.UrlEncode(AfterBox.Text);
+            var text = System.Web.HttpUtility.UrlEncode(orig);
             if (text == "") return;
             var wc = new WebClient
             {
@@ -126,12 +126,12 @@ namespace LineFormatter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Translate();
+            Translate(AfterBox.Text);
         }
 
         private void TranslationTimer_Tick(object sender, EventArgs e)
         {
-            Translate();
+            Translate(AfterBox.Text);
             TranslationTimer.Enabled = false;
         }
 
