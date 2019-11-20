@@ -83,11 +83,11 @@ namespace LineFormatter
             while (l <= r)
             {
                 var m = (l + r) / 2;
-                if (pTlist[m].pos <= pos)
+                if (pTlist[m].Pos <= pos)
                 {
-                    if (pTlist.Count <= m + 1 || pos < pTlist[m + 1].pos)
+                    if (pTlist.Count <= m + 1 || pos < pTlist[m + 1].Pos)
                     {
-                        return pTlist[m].orig;
+                        return pTlist[m].Orig;
                     }
 
                     l = m;
@@ -105,17 +105,17 @@ namespace LineFormatter
     // 文章単位対訳
     public class PTrans
     {
-        public int pos;
-        public string orig;
-        public string sentence;
+        public int Pos;
+        public string Orig;
+        public string Sentence;
         public PTrans(int pos, string orig, string sentence)
         {
-            this.pos = pos;
-            this.orig = orig;
-            this.sentence = sentence;
+            Pos = pos;
+            Orig = orig;
+            Sentence = sentence;
         }
-
     }
+
     public class ModelTracking
     {
         public string checkpoint_md5 { get; set; }

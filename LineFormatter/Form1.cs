@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
-using System.Runtime.Serialization.Json;
 
 namespace LineFormatter
 {
 
     public partial class Form1 : Form
     {
-        private List<PTrans> _tlist = new List<PTrans>();
-        private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
-        private ProxyForm _proxyForm = new ProxyForm();
-        private Translation _trans = new Translation();
+        private readonly ProxyForm _proxyForm = new ProxyForm();
+        private readonly Translation _trans = new Translation();
 
         public Form1()
         {
@@ -96,14 +90,14 @@ namespace LineFormatter
             _proxyForm.Show();
         }
 
-        private void Lbtn_Click(object sender, EventArgs e)
+        private void LBtn_Click(object sender, EventArgs e)
         {
             if (tableLayoutPanel1.ColumnStyles[0].Width <= 5) return;
             tableLayoutPanel1.ColumnStyles[0].Width -= 5;
             tableLayoutPanel1.ColumnStyles[2].Width += 5;
         }
 
-        private void Rbtn_Click(object sender, EventArgs e)
+        private void RBtn_Click(object sender, EventArgs e)
         {
             if (tableLayoutPanel1.ColumnStyles[2].Width <= 5) return;
             tableLayoutPanel1.ColumnStyles[0].Width += 5;
