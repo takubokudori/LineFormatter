@@ -66,12 +66,12 @@ namespace LineFormatter
                 {
                     proxy.Credentials = new NetworkCredential(_proxyForm.Username, _proxyForm.Password);
                 }
-                _trans.proxy = proxy;
+                _trans.Proxy = proxy;
             }
-            else _trans.proxy = null;
+            else _trans.Proxy = null;
 
-            _trans.orig = orig;
-            _trans.tb = AfterBox;
+            _trans.Orig = orig;
+            _trans.Tb = AfterBox;
             _trans.Translate();
         }
         private void button2_Click(object sender, EventArgs e)

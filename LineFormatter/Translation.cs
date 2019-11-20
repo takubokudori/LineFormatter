@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
@@ -16,14 +13,14 @@ namespace LineFormatter
     {
 
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
-        public string orig = ""; // オリジナル
-        public string trans = ""; // 訳文
-        public TextBox tb = null;
-        private List<PTrans> pTlist = new List<PTrans>(); // 対訳リスト
-        public WebProxy proxy = null; // プロキシ
+        public string Orig = ""; // オリジナル
+        public string Trans = ""; // 訳文
+        public TextBox Tb = null;
+        private readonly List<PTrans> _pTlist = new List<PTrans>(); // 対訳リスト
+        public WebProxy Proxy = null; // プロキシ
         public void Translate()
         {
-            var text = System.Web.HttpUtility.UrlEncode(orig);
+            var text = System.Web.HttpUtility.UrlEncode(Orig);
             if (text == "") return;
             var wc = new WebClient
             {
@@ -34,7 +31,7 @@ namespace LineFormatter
                 "GoogleTranslate/5.9.59004 (iPhone; iOS 10.2; ja; iPhone9,1)");
             wc.Headers.Add("Accept", "*/*");
             wc.Headers.Add("Accept-Language", "ja-JP,en-US,*");
-            if (proxy != null) wc.Proxy = proxy;
+            if (Proxy != null) wc.Proxy = Proxy;
 
             wc.DownloadStringCompleted += CompleteDownloadProc1;
             wc.DownloadStringAsync(
@@ -60,34 +57,34 @@ namespace LineFormatter
                 res = (GTransResp)serializer.ReadObject(ms);
             }
 
-            trans = "";
-            pTlist.Clear();
+            Trans = "";
+            _pTlist.Clear();
             int pos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
-                trans += sentence.trans;
-                pTlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
+                Trans += sentence.trans;
+                _pTlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
                 pos += sentence.trans.Length;
             }
 
-            if (tb != null) tb.Text = trans;
+            if (Tb != null) Tb.Text = Trans;
         }
 
         // 指定位置の対を取得
         public string GetOrig(int pos)
         {
             var l = 0;
-            var r = pTlist.Count;
+            var r = _pTlist.Count;
             if (r == 0) return "";
             while (l <= r)
             {
                 var m = (l + r) / 2;
-                if (pTlist[m].Pos <= pos)
+                if (_pTlist[m].Pos <= pos)
                 {
-                    if (pTlist.Count <= m + 1 || pos < pTlist[m + 1].Pos)
+                    if (_pTlist.Count <= m + 1 || pos < _pTlist[m + 1].Pos)
                     {
-                        return pTlist[m].Orig;
+                        return _pTlist[m].Orig;
                     }
 
                     l = m;
