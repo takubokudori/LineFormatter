@@ -32,7 +32,7 @@ namespace LineFormatter
 
         private void Formatting()
         {
-            AfterBox.Text = BeforeBox.Text
+            BeforeBox.Text = BeforeBox.Text
             .Replace("\r", "") // CRLF
             .Replace("\n", " ")
             .Replace("  ", " ") // 冗長な空白
@@ -118,11 +118,8 @@ namespace LineFormatter
                 AfterBox.Text += sentence.trans;
                 _tlist.Add(new Trans(pos, sentence.orig, sentence.trans));
                 pos += sentence.trans.Length;
-
             }
-
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {
