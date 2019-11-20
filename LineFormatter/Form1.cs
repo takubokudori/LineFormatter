@@ -12,7 +12,7 @@ namespace LineFormatter
 
     public partial class Form1 : Form
     {
-        private List<Trans> _tlist = new List<Trans>();
+        private List<PTrans> _tlist = new List<PTrans>();
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         private ProxyForm _proxyForm = new ProxyForm();
 
@@ -116,7 +116,7 @@ namespace LineFormatter
             foreach (var sentence in res.sentences)
             {
                 AfterBox.Text += sentence.trans;
-                _tlist.Add(new Trans(pos, sentence.orig, sentence.trans));
+                _tlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
                 pos += sentence.trans.Length;
             }
         }
@@ -223,18 +223,5 @@ namespace LineFormatter
         public string src { get; set; }
     }
 
-    public class Trans
-    {
-        public int pos;
-        public string orig;
-        public string sentence;
-        public Trans(int pos, string orig, string sentence)
-        {
-            this.pos = pos;
-            this.orig = orig;
-            this.sentence = sentence;
-        }
-
-    }
 
 }
