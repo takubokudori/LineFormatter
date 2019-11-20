@@ -101,12 +101,12 @@ namespace LineFormatter
 
         public void CompleteDownloadProc1(Object sender, DownloadStringCompletedEventArgs e)
         {
-            Translation res;
+            GTransResp res;
             var serializer =
-                new DataContractJsonSerializer(typeof(Translation));
+                new DataContractJsonSerializer(typeof(GTransResp));
             using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(e.Result)))
             {
-                res = (Translation)serializer.ReadObject(ms);
+                res = (GTransResp)serializer.ReadObject(ms);
             }
 
             AfterBox.Text = "";
@@ -217,7 +217,7 @@ namespace LineFormatter
         public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
     }
 
-    public class Translation
+    public class GTransResp
     {
         public List<Sentence> sentences { get; set; }
         public string src { get; set; }
