@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
+using System.Windows.Forms;
+
 namespace LineFormatter
 {
     // 翻訳
@@ -16,6 +18,7 @@ namespace LineFormatter
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public string orig = ""; // オリジナル
         public string trans = ""; // 訳文
+        public TextBox tb = null;
         private List<PTrans> pTlist = new List<PTrans>(); // 対訳リスト
         public WebProxy proxy = null; // プロキシ
         public void Translate()
@@ -67,6 +70,35 @@ namespace LineFormatter
                 pTlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
                 pos += sentence.trans.Length;
             }
+
+            if (tb != null) tb.Text = trans;
+        }
+
+        // 指定位置の対を取得
+        public string GetOrig(int pos)
+        {
+            var l = 0;
+            var r = pTlist.Count;
+            if (r == 0) return "";
+            while (l <= r)
+            {
+                var m = (l + r) / 2;
+                if (pTlist[m].pos <= pos)
+                {
+                    if (pTlist.Count <= m + 1 || pos < pTlist[m + 1].pos)
+                    {
+                        return pTlist[m].orig;
+                    }
+
+                    l = m;
+                }
+                else
+                {
+                    r = m;
+                }
+            }
+
+            return "";
         }
     }
 

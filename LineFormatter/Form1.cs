@@ -15,6 +15,7 @@ namespace LineFormatter
         private List<PTrans> _tlist = new List<PTrans>();
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         private ProxyForm _proxyForm = new ProxyForm();
+        private Translation _trans = new Translation();
 
         public Form1()
         {
@@ -64,71 +65,29 @@ namespace LineFormatter
 
         private void Translate(string orig)
         {
-            var text = System.Web.HttpUtility.UrlEncode(orig);
-            if (text == "") return;
-            var wc = new WebClient
-            {
-                Encoding = Encoding.UTF8
-            };
-            wc.Headers.Add("Host", "translate.googleapis.com");
-            wc.Headers.Add("User-Agent",
-                "GoogleTranslate/5.9.59004 (iPhone; iOS 10.2; ja; iPhone9,1)");
-            wc.Headers.Add("Accept", "*/*");
-            wc.Headers.Add("Accept-Language", "ja-JP,en-US,*");
             if (_proxyForm.Url != "")
             {
                 var proxy = new WebProxy(_proxyForm.Url);
                 if (_proxyForm.Username != "")
                 {
                     proxy.Credentials = new NetworkCredential(_proxyForm.Username, _proxyForm.Password);
-                    wc.Proxy = proxy;
                 }
+                _trans.proxy = proxy;
             }
+            else _trans.proxy = null;
 
-            wc.DownloadStringCompleted += CompleteDownloadProc1;
-            wc.DownloadStringAsync(
-                new Uri(TranslationUrl +
-                        "?client=it" +
-                        "&sl=en" +
-                        "&tl=ja" +
-                        "&dt=t" +
-                        "&ie=UTF-8" +
-                        "&oe=UTF-8" +
-                        "&dj=1" +
-                        "&otf=2" +
-                        "&q=" + text));
+            _trans.orig = orig;
+            _trans.tb = AfterBox;
+            _trans.Translate();
         }
-
-        public void CompleteDownloadProc1(Object sender, DownloadStringCompletedEventArgs e)
-        {
-            GTransResp res;
-            var serializer =
-                new DataContractJsonSerializer(typeof(GTransResp));
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(e.Result)))
-            {
-                res = (GTransResp)serializer.ReadObject(ms);
-            }
-
-            AfterBox.Text = "";
-            _tlist.Clear();
-            int pos = 0;
-            if (res?.sentences == null) return;
-            foreach (var sentence in res.sentences)
-            {
-                AfterBox.Text += sentence.trans;
-                _tlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
-                pos += sentence.trans.Length;
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            Translate(AfterBox.Text);
+            Translate(BeforeBox.Text);
         }
 
         private void TranslationTimer_Tick(object sender, EventArgs e)
         {
-            Translate(AfterBox.Text);
+            Translate(BeforeBox.Text);
             TranslationTimer.Enabled = false;
         }
 
@@ -151,36 +110,10 @@ namespace LineFormatter
             tableLayoutPanel1.ColumnStyles[2].Width -= 5;
         }
 
-        // 指定位置の対を取得
-        public string GetOrig(int pos)
-        {
-            var l = 0;
-            var r = _tlist.Count;
-            if (r == 0) return "";
-            while (l <= r)
-            {
-                var m = (l + r) / 2;
-                if (_tlist[m].pos <= pos)
-                {
-                    if (_tlist.Count <= m + 1 || pos < _tlist[m + 1].pos)
-                    {
-                        return _tlist[m].orig;
-                    }
-
-                    l = m;
-                }
-                else
-                {
-                    r = m;
-                }
-            }
-
-            return "";
-        }
 
         private void AfterBox_Click(object sender, EventArgs e)
         {
-            origTextBox.Text = GetOrig(AfterBox.SelectionStart);
+            origTextBox.Text = _trans.GetOrig(AfterBox.SelectionStart);
         }
 
         private void PlusBtn_Click(object sender, EventArgs e)
