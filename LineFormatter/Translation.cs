@@ -14,10 +14,10 @@ namespace LineFormatter
     {
 
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
-        public string orig;
-        public string trans;
-        private List<PTrans> pTlist = new List<PTrans>();
-        public WebProxy proxy = null;
+        public string orig = ""; // オリジナル
+        public string trans = ""; // 訳文
+        private List<PTrans> pTlist = new List<PTrans>(); // 対訳リスト
+        public WebProxy proxy = null; // プロキシ
         public void Translate()
         {
             var text = System.Web.HttpUtility.UrlEncode(orig);
