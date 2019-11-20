@@ -189,7 +189,7 @@
             this.Lbtn.TabIndex = 8;
             this.Lbtn.Text = "←";
             this.Lbtn.UseVisualStyleBackColor = true;
-            this.Lbtn.Click += new System.EventHandler(this.Lbtn_Click);
+            this.Lbtn.Click += new System.EventHandler(this.LBtn_Click);
             // 
             // Rbtn
             // 
@@ -199,7 +199,7 @@
             this.Rbtn.TabIndex = 9;
             this.Rbtn.Text = "→";
             this.Rbtn.UseVisualStyleBackColor = true;
-            this.Rbtn.Click += new System.EventHandler(this.Rbtn_Click);
+            this.Rbtn.Click += new System.EventHandler(this.RBtn_Click);
             // 
             // origTextBox
             // 
