@@ -110,7 +110,6 @@ namespace LineFormatter
             tableLayoutPanel1.ColumnStyles[2].Width -= 5;
         }
 
-
         private void AfterBox_Click(object sender, EventArgs e)
         {
             origTextBox.Text = _trans.GetOrig(AfterBox.SelectionStart);
@@ -130,31 +129,5 @@ namespace LineFormatter
             AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
         }
     }
-
-    public class ModelTracking
-    {
-        public string checkpoint_md5 { get; set; }
-        public string launch_doc { get; set; }
-    }
-
-    public class TranslationEngineDebugInfo
-    {
-        public ModelTracking model_tracking { get; set; }
-    }
-
-    public class Sentence
-    {
-        public string trans { get; set; }
-        public string orig { get; set; }
-        public int backend { get; set; }
-        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
-    }
-
-    public class GTransResp
-    {
-        public List<Sentence> sentences { get; set; }
-        public string src { get; set; }
-    }
-
 
 }
