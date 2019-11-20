@@ -116,4 +116,28 @@ namespace LineFormatter
         }
 
     }
+    public class ModelTracking
+    {
+        public string checkpoint_md5 { get; set; }
+        public string launch_doc { get; set; }
+    }
+
+    public class TranslationEngineDebugInfo
+    {
+        public ModelTracking model_tracking { get; set; }
+    }
+
+    public class Sentence
+    {
+        public string trans { get; set; }
+        public string orig { get; set; }
+        public int backend { get; set; }
+        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
+    }
+
+    public class GTransResp
+    {
+        public List<Sentence> sentences { get; set; }
+        public string src { get; set; }
+    }
 }
