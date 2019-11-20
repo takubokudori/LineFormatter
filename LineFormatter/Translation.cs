@@ -59,7 +59,7 @@ namespace LineFormatter
 
             Trans = "";
             _pTList.Clear();
-            int pos = 0;
+            var pos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
