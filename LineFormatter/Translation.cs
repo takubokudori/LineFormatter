@@ -16,7 +16,7 @@ namespace LineFormatter
         public string Orig = ""; // オリジナル
         public string Trans = ""; // 訳文
         public TextBox Tb = null;
-        private readonly List<PTrans> _pTlist = new List<PTrans>(); // 対訳リスト
+        private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
         public WebProxy Proxy = null; // プロキシ
         public void Translate()
         {
@@ -58,13 +58,13 @@ namespace LineFormatter
             }
 
             Trans = "";
-            _pTlist.Clear();
+            _pTList.Clear();
             int pos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
                 Trans += sentence.trans;
-                _pTlist.Add(new PTrans(pos, sentence.orig, sentence.trans));
+                _pTList.Add(new PTrans(pos, sentence.orig, sentence.trans));
                 pos += sentence.trans.Length;
             }
 
@@ -75,16 +75,16 @@ namespace LineFormatter
         public string GetOrig(int pos)
         {
             var l = 0;
-            var r = _pTlist.Count;
+            var r = _pTList.Count;
             if (r == 0) return "";
             while (l <= r)
             {
                 var m = (l + r) / 2;
-                if (_pTlist[m].Pos <= pos)
+                if (_pTList[m].Pos <= pos)
                 {
-                    if (_pTlist.Count <= m + 1 || pos < _pTlist[m + 1].Pos)
+                    if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].Pos)
                     {
-                        return _pTlist[m].Orig;
+                        return _pTList[m].Orig;
                     }
 
                     l = m;
