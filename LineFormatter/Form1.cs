@@ -40,6 +40,9 @@ namespace LineFormatter
             .Replace(". ", ".\r\n") // .
             .Replace(".\n", ".\r\n")
             .Replace(".\t", ".\r\n")
+            .Replace(": ", ":\r\n") // :
+            .Replace(":\n", ":\r\n")
+            .Replace(":\t", ":\r\n")
             .Replace("! ", "!\r\n") // !
             .Replace("!\n", "!\r\n")
             .Replace("!\t", "!\r\n")
