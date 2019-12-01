@@ -1,5 +1,4 @@
-﻿using System;
-using LineFormatter;
+﻿using LineFormatter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
