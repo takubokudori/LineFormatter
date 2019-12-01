@@ -140,6 +140,11 @@ namespace LineFormatter
             BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
             origTextBox.Font = new Font(origTextBox.Font.OriginalFontName, x);
         }
+
+        private void BeforeBox_Click(object sender, EventArgs e)
+        {
+            origTextBox.Text = _trans.GetTrans(BeforeBox.SelectionStart);
+        }
     }
 
 }
