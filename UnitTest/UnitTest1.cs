@@ -53,7 +53,10 @@ Good.", @"1.2.3 T.E.S.T. Good.");
             Format( // 連番
                 @"1. Test.
 2. Hello.
-3. World.", @"1. Test. 2. Hello. 3. World.");
+3. World.
+4. Section.
+4.1. Chapter.
+4.1.2. Item.", @"1. Test. 2. Hello. 3. World. 4. Section. 4.1. Chapter. 4.1.2. Item.");
         }
     }
 }
