@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineFormatter", "LineFormatter\LineFormatter.csproj", "{6EA2A175-5169-4355-8E12-0DA2C8E60775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{FD29965A-EEF4-436E-9837-EF8002049602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6EA2A175-5169-4355-8E12-0DA2C8E60775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EA2A175-5169-4355-8E12-0DA2C8E60775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EA2A175-5169-4355-8E12-0DA2C8E60775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD29965A-EEF4-436E-9837-EF8002049602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD29965A-EEF4-436E-9837-EF8002049602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD29965A-EEF4-436E-9837-EF8002049602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD29965A-EEF4-436E-9837-EF8002049602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
