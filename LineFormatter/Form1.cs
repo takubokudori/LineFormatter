@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace LineFormatter
@@ -46,8 +47,12 @@ namespace LineFormatter
             .Replace("?\n", "?\r\n")
             .Replace("?\t", "?\r\n")
             .Replace("Fig.\r\n", "Fig. ") // 図
+            .Replace("e.g.\r\n", "e.g. ") // 例
             .Replace("et al.\r\n", "et al. ") // 著者ら
             .Replace("et al,.\r\n", "et al. ");
+            text = Regex.Replace(text, "\\d(\\d|\\.)*?\\.((\r??\n)|$)", // 1. 11. 1.1.
+                match => match.Value.TrimEnd('\r', '\n') + " ",
+                RegexOptions.Compiled);
             return text;
         }
 

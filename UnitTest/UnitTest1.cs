@@ -1,5 +1,4 @@
-﻿using System;
-using LineFormatter;
+﻿using LineFormatter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
@@ -42,6 +41,21 @@ Yes!",
             Format( // 隙間の無い.は改行しない
                 @"1.2.3 T.E.S.T.
 Good.", @"1.2.3 T.E.S.T. Good.");
+            Format( // 1.は改行されない
+                @"1. Test", @"1. Test");
+            Format( // 123.は改行されない
+                @"123. Test", @"123. Test");
+            Format( // 1.2.は改行されない
+                @"1.2. Test", @"1.2. Test");
+            Format( // 1.2.3.は改行されない
+                @"1.2.3. Test", @"1.2.3. Test");
+            Format( // 連番
+                @"1. Test.
+2. Hello.
+3. World.
+4. Section.
+4.1. Chapter.
+4.1.2. Item.", @"1. Test. 2. Hello. 3. World. 4. Section. 4.1. Chapter. 4.1.2. Item.");
         }
     }
 }
