@@ -30,7 +30,7 @@ namespace LineFormatter
             BeforeBox.Text = Format(BeforeBox.Text);
         }
 
-        public string Format(string text)
+        public static string Format(string text)
         {
             text = text
             .Replace("\r", "") // CRLF
