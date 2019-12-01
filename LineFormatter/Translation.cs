@@ -60,12 +60,14 @@ namespace LineFormatter
             Trans = "";
             _pTList.Clear();
             var transPos = 0;
+            var origPos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
                 Trans += sentence.trans;
-                _pTList.Add(new PTrans(transPos, sentence.orig, sentence.trans));
+                _pTList.Add(new PTrans(origPos, transPos, sentence.orig, sentence.trans));
                 transPos += sentence.trans.Length;
+                origPos += sentence.orig.Length;
             }
 
             if (Tb != null) Tb.Text = Trans;
@@ -106,10 +108,11 @@ namespace LineFormatter
         public string Orig; // 原文
         public int TransPos; // 訳文始点位置
         public string Sentence; // 訳文
-        public PTrans(int transPos, string orig, string sentence)
+        public PTrans(int origPos, int transPos, string orig, string sentence)
         {
-            TransPos = transPos;
+            OrigPos = origPos;
             Orig = orig;
+            TransPos = transPos;
             Sentence = sentence;
         }
     }
