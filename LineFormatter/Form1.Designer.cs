@@ -63,6 +63,7 @@
             this.BeforeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.BeforeBox.Size = new System.Drawing.Size(390, 482);
             this.BeforeBox.TabIndex = 0;
+            this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
             this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
             // 
             // AfterBox

@@ -99,6 +99,32 @@ namespace LineFormatter
 
             return "";
         }
+
+        public string GetTrans(int pos)
+        {
+            var l = 0;
+            var r = _pTList.Count;
+            if (r == 0) return "";
+            while (l <= r)
+            {
+                var m = (l + r) / 2;
+                if (_pTList[m].OrigPos <= pos)
+                {
+                    if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].OrigPos)
+                    {
+                        return _pTList[m].Sentence;
+                    }
+
+                    l = m;
+                }
+                else
+                {
+                    r = m;
+                }
+            }
+
+            return "";
+        }
     }
 
     // 文章単位対訳
