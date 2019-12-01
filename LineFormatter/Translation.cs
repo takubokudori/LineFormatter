@@ -59,13 +59,13 @@ namespace LineFormatter
 
             Trans = "";
             _pTList.Clear();
-            var pos = 0;
+            var transPos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
                 Trans += sentence.trans;
-                _pTList.Add(new PTrans(pos, sentence.orig, sentence.trans));
-                pos += sentence.trans.Length;
+                _pTList.Add(new PTrans(transPos, sentence.orig, sentence.trans));
+                transPos += sentence.trans.Length;
             }
 
             if (Tb != null) Tb.Text = Trans;
@@ -80,9 +80,9 @@ namespace LineFormatter
             while (l <= r)
             {
                 var m = (l + r) / 2;
-                if (_pTList[m].Pos <= pos)
+                if (_pTList[m].TransPos <= pos)
                 {
-                    if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].Pos)
+                    if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].TransPos)
                     {
                         return _pTList[m].Orig;
                     }
@@ -102,12 +102,13 @@ namespace LineFormatter
     // 文章単位対訳
     public class PTrans
     {
-        public int Pos;
-        public string Orig;
-        public string Sentence;
-        public PTrans(int pos, string orig, string sentence)
+        public int OrigPos; // 原文始点位置
+        public string Orig; // 原文
+        public int TransPos; // 訳文始点位置
+        public string Sentence; // 訳文
+        public PTrans(int transPos, string orig, string sentence)
         {
-            Pos = pos;
+            TransPos = transPos;
             Orig = orig;
             Sentence = sentence;
         }
