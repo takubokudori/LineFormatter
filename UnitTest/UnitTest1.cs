@@ -50,6 +50,10 @@ Good.", @"1.2.3 T.E.S.T. Good.");
                 @"1.2. Test", @"1.2. Test");
             Format( // 1.2.3.は改行されない
                 @"1.2.3. Test", @"1.2.3. Test");
+            Format( // 連番
+                @"1. Test.
+2. Hello.
+3. World.", @"1. Test. 2. Hello. 3. World.");
         }
     }
 }
