@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace LineFormatter
@@ -48,6 +49,7 @@ namespace LineFormatter
             .Replace("Fig.\r\n", "Fig. ") // 図
             .Replace("et al.\r\n", "et al. ") // 著者ら
             .Replace("et al,.\r\n", "et al. ");
+            text = Regex.Replace(text, "^[0-9]\\.\r?$", (match) => match.Value.TrimEnd('\r') + " ", RegexOptions.Multiline | RegexOptions.Compiled);
             return text;
         }
 
