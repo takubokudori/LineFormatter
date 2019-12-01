@@ -10,8 +10,7 @@ namespace UnitTest
         [TestMethod]
         public void FormatTest()
         {
-            var form = new Form1();
-            Assert.AreEqual($@"test", form.Format("test"));
+            Assert.AreEqual($@"test", Form1.Format("test"));
         }
     }
 }
