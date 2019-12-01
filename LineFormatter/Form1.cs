@@ -51,10 +51,7 @@ namespace LineFormatter
             .Replace("et al.\r\n", "et al. ") // 著者ら
             .Replace("et al,.\r\n", "et al. ");
             text = Regex.Replace(text, "\\d(\\d|\\.)*?\\.((\r??\n)|$)", // 1. 11. 1.1.
-                match =>
-                {
-                    return match.Value.TrimEnd('\r', '\n') + " ";
-                },
+                match => match.Value.TrimEnd('\r', '\n') + " ",
                 RegexOptions.Compiled);
             return text;
         }
