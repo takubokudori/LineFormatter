@@ -107,6 +107,7 @@
             this.ieCheckBox.TabIndex = 7;
             this.ieCheckBox.Text = "IEの設定を使用する";
             this.ieCheckBox.UseVisualStyleBackColor = true;
+            this.ieCheckBox.CheckedChanged += new System.EventHandler(this.ieCheckBox_CheckedChanged);
             // 
             // noProxyCheckBox
             // 
@@ -117,6 +118,7 @@
             this.noProxyCheckBox.TabIndex = 8;
             this.noProxyCheckBox.Text = "プロキシを使用しない";
             this.noProxyCheckBox.UseVisualStyleBackColor = true;
+            this.noProxyCheckBox.CheckedChanged += new System.EventHandler(this.noProxyCheckBox_CheckedChanged);
             // 
             // ProxyForm
             // 

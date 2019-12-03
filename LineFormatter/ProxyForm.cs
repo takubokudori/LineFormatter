@@ -42,5 +42,31 @@ namespace LineFormatter
             Hide();
 
         }
+
+        private void noProxyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TextEnabledToggle();
+        }
+
+        private void ieCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            TextEnabledToggle();
+        }
+
+        private void TextEnabledToggle()
+        {
+            if (noProxyCheckBox.Checked || ieCheckBox.Checked)
+            {
+                UrlTxt.Enabled = false; // 設定できないようにする
+                UsernameTxt.Enabled = false;
+                PasswordTxt.Enabled = false;
+            }
+            else
+            {
+                UrlTxt.Enabled = true; // 設定できるようにする
+                UsernameTxt.Enabled = true;
+                PasswordTxt.Enabled = true;
+            }
+        }
     }
 }
