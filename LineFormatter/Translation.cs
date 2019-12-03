@@ -17,7 +17,7 @@ namespace LineFormatter
         public string Trans = ""; // 訳文
         public TextBox Tb = null;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
-        public WebProxy Proxy = null; // プロキシ
+        public IWebProxy Proxy = null; // プロキシ
         public void Translate()
         {
             var text = System.Web.HttpUtility.UrlEncode(Orig);
