@@ -77,16 +77,7 @@ namespace LineFormatter
 
         private void Translate(string orig)
         {
-            if (_proxyForm.Url != "")
-            {
-                var proxy = new WebProxy(_proxyForm.Url);
-                if (_proxyForm.Username != "")
-                {
-                    proxy.Credentials = new NetworkCredential(_proxyForm.Username, _proxyForm.Password);
-                }
-                _trans.Proxy = proxy;
-            }
-            else _trans.Proxy = null;
+            _trans.Proxy = _proxyForm.Proxy;
 
             _trans.Orig = orig;
             _trans.Tb = AfterBox;
