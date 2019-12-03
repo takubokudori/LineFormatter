@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Forms;
 
 namespace LineFormatter
@@ -8,6 +9,26 @@ namespace LineFormatter
         public string Url = "";
         public string Username = "";
         public string Password = "";
+
+        public bool UseIE => ieCheckBox.Checked;
+        public bool NoProxy => noProxyCheckBox.Checked;
+
+        public IWebProxy Proxy
+        {
+            get
+            {
+                if (NoProxy) return null; //プロキシを使用しない
+                if (UseIE) return WebRequest.GetSystemWebProxy(); // システムプロキシを使用する
+                if (Url == "") return null; // URLがなければ指定しない
+                var proxy = new WebProxy(Url);
+                if (Username != "")
+                {
+                    proxy.Credentials = new NetworkCredential(Username, Password);
+                }
+                return proxy;
+
+            }
+        }
         public ProxyForm()
         {
             InitializeComponent();
