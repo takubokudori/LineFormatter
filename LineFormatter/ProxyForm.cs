@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 
 namespace LineFormatter
@@ -18,9 +19,9 @@ namespace LineFormatter
             get
             {
                 if (NoProxy) return null; //プロキシを使用しない
-                if (UseIE) return WebRequest.GetSystemWebProxy(); // システムプロキシを使用する
-                if (Url == "") return null; // URLがなければ指定しない
-                var proxy = new WebProxy(Url);
+                if (!UseIE && Url == "") return null; // URLがなければ指定しない
+
+                var proxy = UseIE ? WebRequest.GetSystemWebProxy() : new WebProxy(Url);
                 if (Username != "")
                 {
                     proxy.Credentials = new NetworkCredential(Username, Password);
@@ -45,12 +46,25 @@ namespace LineFormatter
 
         private void noProxyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (noProxyCheckBox.Checked) ieCheckBox.Checked = false;
             TextEnabledToggle();
         }
 
         private void ieCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            TextEnabledToggle();
+            if (ieCheckBox.Checked) noProxyCheckBox.Checked = false;
+            if (ieCheckBox.Checked)
+            {
+                UrlTxt.Enabled = false; // 設定できないようにする
+                UsernameTxt.Enabled = true;
+                PasswordTxt.Enabled = true;
+            }
+            else
+            {
+                UrlTxt.Enabled = true; // 設定できるようにする
+                UsernameTxt.Enabled = true;
+                PasswordTxt.Enabled = true;
+            }
         }
 
         private void TextEnabledToggle()

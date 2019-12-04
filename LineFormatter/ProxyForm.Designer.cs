@@ -67,7 +67,6 @@
             // 
             // UsernameTxt
             // 
-            this.UsernameTxt.Enabled = false;
             this.UsernameTxt.Location = new System.Drawing.Point(155, 114);
             this.UsernameTxt.Name = "UsernameTxt";
             this.UsernameTxt.Size = new System.Drawing.Size(308, 31);
@@ -75,7 +74,6 @@
             // 
             // PasswordTxt
             // 
-            this.PasswordTxt.Enabled = false;
             this.PasswordTxt.Location = new System.Drawing.Point(155, 176);
             this.PasswordTxt.Name = "PasswordTxt";
             this.PasswordTxt.PasswordChar = '*';
