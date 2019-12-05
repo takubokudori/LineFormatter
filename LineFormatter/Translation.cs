@@ -31,7 +31,7 @@ namespace LineFormatter
                 "GoogleTranslate/5.9.59004 (iPhone; iOS 10.2; ja; iPhone9,1)");
             wc.Headers.Add("Accept", "*/*");
             wc.Headers.Add("Accept-Language", "ja-JP,en-US,*");
-            if (Proxy != null) wc.Proxy = Proxy;
+            wc.Proxy = Proxy;
 
             wc.DownloadStringCompleted += CompleteDownloadProc1;
             wc.DownloadStringAsync(
