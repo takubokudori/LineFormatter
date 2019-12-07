@@ -137,13 +137,11 @@ namespace LineFormatter
             var pt = _trans.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
-            AfterBox.SelectionStart = 0;
-            AfterBox.SelectionLength = AfterBox.Text.Length;
-            AfterBox.SelectionBackColor = _afterBoxDefaultColor; // 色クリア
+            ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor);
             AfterBox.SelectionStart = pt.TransPos;
-            AfterBox.ScrollToCaret();
             AfterBox.SelectionLength = pt.TransText.Length;
             AfterBox.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
+            AfterBox.ScrollToCaret();
             BeforeBox.Focus(); // フォーカスを戻す
         }
 
@@ -153,15 +151,30 @@ namespace LineFormatter
             if (pt == null) return;
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
-            BeforeBox.SelectionStart = 0;
-            BeforeBox.SelectionLength = BeforeBox.Text.Length;
-            BeforeBox.SelectionBackColor = _beforeBoxDefaultColor; // 色クリア
+            ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor);
             BeforeBox.SelectionStart = pt.OrigPos;
-            BeforeBox.ScrollToCaret();
             BeforeBox.SelectionLength = pt.OrigText.Length;
             BeforeBox.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
+            BeforeBox.ScrollToCaret();
             AfterBox.Focus(); // フォーカスを戻す
             BeforeBox.TextChanged += BeforeBox_TextChanged;
+        }
+
+        private void ClearSelectionBackColor(RichTextBox rtb, Color color)
+        {
+            // rtbがフォーカスされていないと失敗する
+            rtb.SelectionStart = 0;
+            rtb.SelectionLength = rtb.Text.Length;
+            rtb.SelectionBackColor = color; // 色クリア
+        }
+
+        // 対訳ハイライト
+        private void HighlightPt(RichTextBox rtb, int pos, int len)
+        {
+            rtb.SelectionStart = pos;
+            rtb.SelectionLength = len;
+            rtb.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
+
         }
     }
 }
