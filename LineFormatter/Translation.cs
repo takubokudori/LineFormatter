@@ -15,7 +15,7 @@ namespace LineFormatter
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public string Orig = ""; // オリジナル
         public string Trans = ""; // 訳文
-        public TextBox Tb = null;
+        public TextBoxBase Tb = null;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
         public IWebProxy Proxy = null; // プロキシ
         public void Translate()

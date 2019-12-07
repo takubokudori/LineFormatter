@@ -10,6 +10,8 @@ namespace LineFormatter
     {
         private readonly ProxyForm _proxyForm = new ProxyForm();
         private readonly Translation _trans = new Translation();
+        private Color _beforeBoxDefaultColor;
+        private Color _afterBoxDefaultColor;
 
         public Form1()
         {
@@ -18,6 +20,8 @@ namespace LineFormatter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            _afterBoxDefaultColor = AfterBox.BackColor;
+            _beforeBoxDefaultColor = BeforeBox.BackColor;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,11 +116,6 @@ namespace LineFormatter
             tableLayoutPanel1.ColumnStyles[2].Width -= 5;
         }
 
-        private void AfterBox_Click(object sender, EventArgs e)
-        {
-            origTextBox.Text = _trans.GetOrigText(AfterBox.SelectionStart);
-        }
-
         private void PlusBtn_Click(object sender, EventArgs e)
         {
             var x = AfterBox.Font.Size + 2;
@@ -137,8 +136,36 @@ namespace LineFormatter
 
         private void BeforeBox_Click(object sender, EventArgs e)
         {
-            origTextBox.Text = _trans.GetTransText(BeforeBox.SelectionStart);
+            var pt = _trans.GetTrans(BeforeBox.SelectionStart);
+            if (pt == null) return;
+            AfterBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+            AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
+            AfterBox.SelectionStart = 0;
+            AfterBox.SelectionLength = AfterBox.Text.Length;
+            AfterBox.SelectionBackColor = _afterBoxDefaultColor; // 色クリア
+            AfterBox.SelectionStart = pt.TransPos;
+            AfterBox.ScrollToCaret();
+            AfterBox.SelectionLength = pt.TransText.Length;
+            AfterBox.SelectionBackColor = Color.Brown; // ハイライト
+            BeforeBox.Focus(); // フォーカスを戻す
+            AfterBox.TextChanged += BeforeBox_TextChanged;
+        }
+
+        private void AfterBox_Click(object sender, EventArgs e)
+        {
+            var pt = _trans.GetOrig(AfterBox.SelectionStart);
+            if (pt == null) return;
+            BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+            BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
+            BeforeBox.SelectionStart = 0;
+            BeforeBox.SelectionLength = BeforeBox.Text.Length;
+            BeforeBox.SelectionBackColor = _beforeBoxDefaultColor; // 色クリア
+            BeforeBox.SelectionStart = pt.OrigPos;
+            BeforeBox.ScrollToCaret();
+            BeforeBox.SelectionLength = pt.OrigText.Length;
+            BeforeBox.SelectionBackColor = Color.Brown; // ハイライト
+            AfterBox.Focus(); // フォーカスを戻す
+            BeforeBox.TextChanged += BeforeBox_TextChanged;
         }
     }
-
 }
