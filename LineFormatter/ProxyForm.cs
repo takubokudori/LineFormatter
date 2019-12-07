@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 
 namespace LineFormatter

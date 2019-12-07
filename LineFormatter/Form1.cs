@@ -136,17 +136,20 @@ namespace LineFormatter
         {
             var pt = _trans.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
+            WinApi.StopDrawing(AfterBox); // スクロールでちらつかないように描画停止
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor);
             HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length);
             AfterBox.ScrollToCaret();
             BeforeBox.Focus(); // フォーカスを戻す
+            WinApi.StartDrawing(AfterBox); // 描画再開
         }
 
         private void AfterBox_Click(object sender, EventArgs e)
         {
             var pt = _trans.GetOrig(AfterBox.SelectionStart);
             if (pt == null) return;
+            WinApi.StopDrawing(BeforeBox); // スクロールでちらつかないように描画停止
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor);
@@ -154,11 +157,13 @@ namespace LineFormatter
             BeforeBox.ScrollToCaret();
             AfterBox.Focus(); // フォーカスを戻す
             BeforeBox.TextChanged += BeforeBox_TextChanged;
+            WinApi.StartDrawing(BeforeBox); // 描画再開
         }
 
         private void ClearSelectionBackColor(RichTextBox rtb, Color color)
         {
             // rtbがフォーカスされていないと失敗する
+
             rtb.SelectionStart = 0;
             rtb.SelectionLength = rtb.Text.Length;
             rtb.SelectionBackColor = color; // 色クリア
@@ -170,7 +175,6 @@ namespace LineFormatter
             rtb.SelectionStart = pos;
             rtb.SelectionLength = len;
             rtb.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
-
         }
     }
 }
