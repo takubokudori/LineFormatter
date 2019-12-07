@@ -86,7 +86,7 @@ namespace LineFormatter
                 {
                     if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].TransPos)
                     {
-                        return _pTList[m].Orig;
+                        return _pTList[m].OrigText;
                     }
 
                     l = m;
@@ -112,7 +112,7 @@ namespace LineFormatter
                 {
                     if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].OrigPos)
                     {
-                        return _pTList[m].Sentence;
+                        return _pTList[m].TransText;
                     }
 
                     l = m;
@@ -131,15 +131,15 @@ namespace LineFormatter
     public class PTrans
     {
         public int OrigPos; // 原文始点位置
-        public string Orig; // 原文
+        public string OrigText; // 原文
         public int TransPos; // 訳文始点位置
-        public string Sentence; // 訳文
-        public PTrans(int origPos, int transPos, string orig, string sentence)
+        public string TransText; // 訳文
+        public PTrans(int origPos, int transPos, string origText, string transText)
         {
             OrigPos = origPos;
-            Orig = orig;
+            OrigText = origText;
             TransPos = transPos;
-            Sentence = sentence;
+            TransText = transText;
         }
     }
 
