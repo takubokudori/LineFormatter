@@ -138,7 +138,6 @@ namespace LineFormatter
         {
             var pt = _trans.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
-            AfterBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             AfterBox.SelectionStart = 0;
             AfterBox.SelectionLength = AfterBox.Text.Length;
@@ -146,9 +145,8 @@ namespace LineFormatter
             AfterBox.SelectionStart = pt.TransPos;
             AfterBox.ScrollToCaret();
             AfterBox.SelectionLength = pt.TransText.Length;
-            AfterBox.SelectionBackColor = Color.Brown; // ハイライト
+            AfterBox.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
             BeforeBox.Focus(); // フォーカスを戻す
-            AfterBox.TextChanged += BeforeBox_TextChanged;
         }
 
         private void AfterBox_Click(object sender, EventArgs e)
@@ -163,7 +161,7 @@ namespace LineFormatter
             BeforeBox.SelectionStart = pt.OrigPos;
             BeforeBox.ScrollToCaret();
             BeforeBox.SelectionLength = pt.OrigText.Length;
-            BeforeBox.SelectionBackColor = Color.Brown; // ハイライト
+            BeforeBox.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
             AfterBox.Focus(); // フォーカスを戻す
             BeforeBox.TextChanged += BeforeBox_TextChanged;
         }
