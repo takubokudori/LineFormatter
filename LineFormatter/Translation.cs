@@ -74,11 +74,11 @@ namespace LineFormatter
         }
 
         // 指定位置の対を取得
-        public string GetOrig(int pos)
+        public PTrans GetOrig(int pos)
         {
             var l = 0;
             var r = _pTList.Count;
-            if (r == 0) return "";
+            if (r == 0) return null;
             while (l <= r)
             {
                 var m = (l + r) / 2;
@@ -86,7 +86,7 @@ namespace LineFormatter
                 {
                     if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].TransPos)
                     {
-                        return _pTList[m].OrigText;
+                        return _pTList[m];
                     }
 
                     l = m;
@@ -97,14 +97,14 @@ namespace LineFormatter
                 }
             }
 
-            return "";
+            return null;
         }
 
-        public string GetTrans(int pos)
+        public PTrans GetTrans(int pos)
         {
             var l = 0;
             var r = _pTList.Count;
-            if (r == 0) return "";
+            if (r == 0) return null;
             while (l <= r)
             {
                 var m = (l + r) / 2;
@@ -112,7 +112,7 @@ namespace LineFormatter
                 {
                     if (_pTList.Count <= m + 1 || pos < _pTList[m + 1].OrigPos)
                     {
-                        return _pTList[m].TransText;
+                        return _pTList[m];
                     }
 
                     l = m;
@@ -123,7 +123,27 @@ namespace LineFormatter
                 }
             }
 
-            return "";
+            return null;
+        }
+
+        public string GetOrigText(int pos)
+        {
+            return GetOrig(pos)?.OrigText ?? "";
+        }
+
+        public string GetTransText(int pos)
+        {
+            return GetTrans(pos)?.TransText ?? "";
+        }
+
+        public int GetOrigPos(int pos)
+        {
+            return GetOrig(pos)?.OrigPos ?? 0;
+        }
+
+        public int GetTransPos(int pos)
+        {
+            return GetTrans(pos)?.TransPos ?? 0;
         }
     }
 
