@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.BeforeBox = new System.Windows.Forms.TextBox();
-            this.AfterBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TitleLbl = new System.Windows.Forms.Label();
@@ -47,39 +45,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.MinusBtn = new System.Windows.Forms.Button();
             this.PlusBtn = new System.Windows.Forms.Button();
+            this.BeforeBox = new System.Windows.Forms.RichTextBox();
+            this.AfterBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // BeforeBox
-            // 
-            this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
-            this.BeforeBox.MaxLength = 0;
-            this.BeforeBox.Multiline = true;
-            this.BeforeBox.Name = "BeforeBox";
-            this.BeforeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.BeforeBox.Size = new System.Drawing.Size(390, 482);
-            this.BeforeBox.TabIndex = 0;
-            this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
-            this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
-            // 
-            // AfterBox
-            // 
-            this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AfterBox.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.AfterBox.Location = new System.Drawing.Point(487, 3);
-            this.AfterBox.MaxLength = 0;
-            this.AfterBox.Multiline = true;
-            this.AfterBox.Name = "AfterBox";
-            this.AfterBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.AfterBox.Size = new System.Drawing.Size(390, 482);
-            this.AfterBox.TabIndex = 1;
-            this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -90,9 +60,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 202);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -251,6 +221,33 @@
             this.PlusBtn.UseVisualStyleBackColor = true;
             this.PlusBtn.Click += new System.EventHandler(this.PlusBtn_Click);
             // 
+            // BeforeBox
+            // 
+            this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
+            this.BeforeBox.Name = "BeforeBox";
+            this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.BeforeBox.Size = new System.Drawing.Size(390, 482);
+            this.BeforeBox.TabIndex = 3;
+            this.BeforeBox.Text = "";
+            this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
+            this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
+            // 
+            // AfterBox
+            // 
+            this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AfterBox.Location = new System.Drawing.Point(487, 3);
+            this.AfterBox.Name = "AfterBox";
+            this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.AfterBox.Size = new System.Drawing.Size(390, 482);
+            this.AfterBox.TabIndex = 4;
+            this.AfterBox.Text = "";
+            this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -274,7 +271,6 @@
             this.Text = "LineFormatter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -282,9 +278,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox BeforeBox;
-        private System.Windows.Forms.TextBox AfterBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label TitleLbl;
         private System.Windows.Forms.Button button1;
@@ -301,6 +294,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button MinusBtn;
         private System.Windows.Forms.Button PlusBtn;
+        private System.Windows.Forms.RichTextBox AfterBox;
+        private System.Windows.Forms.RichTextBox BeforeBox;
     }
 }
 
