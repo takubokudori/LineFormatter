@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Resource1.Designer.cs" />
     <Compile Include="Translation.cs" />
+    <Compile Include="WinApi.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
