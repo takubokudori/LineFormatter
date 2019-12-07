@@ -139,6 +139,7 @@
             this.Controls.Add(this.UrlTxt);
             this.Name = "ProxyForm";
             this.Text = "ProxyForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProxyForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
