@@ -82,5 +82,12 @@ namespace LineFormatter
                 PasswordTxt.Enabled = true;
             }
         }
+
+        private void ProxyForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Hide();
+            e.Cancel = true; // 閉じるときにオブジェクトを破棄しない
+
+        }
     }
 }
