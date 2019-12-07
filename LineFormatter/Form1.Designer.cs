@@ -40,7 +40,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.Lbtn = new System.Windows.Forms.Button();
             this.Rbtn = new System.Windows.Forms.Button();
-            this.origTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.MinusBtn = new System.Windows.Forms.Button();
@@ -172,17 +171,6 @@
             this.Rbtn.UseVisualStyleBackColor = true;
             this.Rbtn.Click += new System.EventHandler(this.RBtn_Click);
             // 
-            // origTextBox
-            // 
-            this.origTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.origTextBox.Location = new System.Drawing.Point(16, 138);
-            this.origTextBox.Multiline = true;
-            this.origTextBox.Name = "origTextBox";
-            this.origTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.origTextBox.Size = new System.Drawing.Size(873, 58);
-            this.origTextBox.TabIndex = 10;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -257,7 +245,6 @@
             this.Controls.Add(this.MinusBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.origTextBox);
             this.Controls.Add(this.Rbtn);
             this.Controls.Add(this.Lbtn);
             this.Controls.Add(this.button3);
@@ -289,7 +276,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button Lbtn;
         private System.Windows.Forms.Button Rbtn;
-        private System.Windows.Forms.TextBox origTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button MinusBtn;

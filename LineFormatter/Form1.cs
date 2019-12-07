@@ -122,7 +122,6 @@ namespace LineFormatter
             if (x >= 100) return;
             AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
             BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
-            origTextBox.Font = new Font(origTextBox.Font.OriginalFontName, x);
         }
 
         private void MinusBtn_Click(object sender, EventArgs e)
@@ -131,7 +130,6 @@ namespace LineFormatter
             if (x <= 0) return;
             AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
             BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
-            origTextBox.Font = new Font(origTextBox.Font.OriginalFontName, x);
         }
 
         private void BeforeBox_Click(object sender, EventArgs e)
