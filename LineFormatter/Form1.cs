@@ -114,7 +114,7 @@ namespace LineFormatter
 
         private void AfterBox_Click(object sender, EventArgs e)
         {
-            origTextBox.Text = _trans.GetOrig(AfterBox.SelectionStart);
+            origTextBox.Text = _trans.GetOrigText(AfterBox.SelectionStart);
         }
 
         private void PlusBtn_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace LineFormatter
 
         private void BeforeBox_Click(object sender, EventArgs e)
         {
-            origTextBox.Text = _trans.GetTrans(BeforeBox.SelectionStart);
+            origTextBox.Text = _trans.GetTransText(BeforeBox.SelectionStart);
         }
     }
 
