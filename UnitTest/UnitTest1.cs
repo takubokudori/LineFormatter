@@ -1,4 +1,5 @@
-﻿using LineFormatter;
+﻿using System.Collections.Generic;
+using LineFormatter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
@@ -56,6 +57,26 @@ Good.", @"1.2.3 T.E.S.T. Good.");
 4. Section.
 4.1. Chapter.
 4.1.2. Item.", @"1. Test. 2. Hello. 3. World. 4. Section. 4.1. Chapter. 4.1.2. Item.");
+        }
+
+        [TestMethod]
+        public void TranslationTest()
+        {
+            var origText = new List<string> { "Test.", "Hello world!", "This is good." };
+            var transText = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
+            var pTList = new List<PTrans>();
+            var origPos = 0;
+            var transPos = 0;
+            for (var i = 0; i < origText.Count; i++)
+            {
+                pTList.Add(new PTrans(origPos, transPos, origText[i], transText[i]));
+                origPos += origText[i].Length;
+                transPos += transText[i].Length;
+            }
+            var trans = new Translation();
+            var poTrans = new PrivateObject(trans);
+            poTrans.SetField("_pTList", pTList);
+
         }
     }
 }
