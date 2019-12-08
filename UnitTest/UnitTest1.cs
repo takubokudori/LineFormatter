@@ -62,21 +62,29 @@ Good.", @"1.2.3 T.E.S.T. Good.");
         [TestMethod]
         public void TranslationTest()
         {
-            var origText = new List<string> { "Test.", "Hello world!", "This is good." };
-            var transText = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
-            var pTList = new List<PTrans>();
-            var origPos = 0;
-            var transPos = 0;
-            for (var i = 0; i < origText.Count; i++)
-            {
-                pTList.Add(new PTrans(origPos, transPos, origText[i], transText[i]));
-                origPos += origText[i].Length;
-                transPos += transText[i].Length;
-            }
+            var origList = new List<string> { "Test.", "Hello world!", "This is good." };
+            var transList = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
+            var pTList = BuildPTList(origList, transList);
             var trans = new Translation();
             var poTrans = new PrivateObject(trans);
             poTrans.SetField("_pTList", pTList);
-
         }
+
+        private static List<PTrans> BuildPTList(List<string> origList, List<string> transList)
+        {
+            var pTList = new List<PTrans>();
+            var origPos = 0;
+            var transPos = 0;
+            for (var i = 0; i < origList.Count; i++)
+            {
+                pTList.Add(new PTrans(origPos, transPos, origList[i], transList[i]));
+                origPos += origList[i].Length;
+                transPos += transList[i].Length;
+            }
+
+            return pTList;
+        }
+
+
     }
 }
