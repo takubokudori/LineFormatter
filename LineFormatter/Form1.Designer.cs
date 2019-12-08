@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.AfterBox = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BeforeBox = new System.Windows.Forms.RichTextBox();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
@@ -44,8 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.MinusBtn = new System.Windows.Forms.Button();
             this.PlusBtn = new System.Windows.Forms.Button();
-            this.BeforeBox = new System.Windows.Forms.RichTextBox();
-            this.AfterBox = new System.Windows.Forms.RichTextBox();
+            this.PtColorDialog = new System.Windows.Forms.ColorDialog();
+            this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +71,19 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 488);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // AfterBox
+            // 
+            this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AfterBox.Location = new System.Drawing.Point(487, 3);
+            this.AfterBox.Name = "AfterBox";
+            this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.AfterBox.Size = new System.Drawing.Size(390, 482);
+            this.AfterBox.TabIndex = 4;
+            this.AfterBox.Text = "";
+            this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -82,6 +97,20 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // BeforeBox
+            // 
+            this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
+            this.BeforeBox.Name = "BeforeBox";
+            this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.BeforeBox.Size = new System.Drawing.Size(390, 482);
+            this.BeforeBox.TabIndex = 3;
+            this.BeforeBox.Text = "";
+            this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
+            this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
             // 
             // TitleLbl
             // 
@@ -209,38 +238,26 @@
             this.PlusBtn.UseVisualStyleBackColor = true;
             this.PlusBtn.Click += new System.EventHandler(this.PlusBtn_Click);
             // 
-            // BeforeBox
+            // PtColorDialog
             // 
-            this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
-            this.BeforeBox.Name = "BeforeBox";
-            this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.BeforeBox.Size = new System.Drawing.Size(390, 482);
-            this.BeforeBox.TabIndex = 3;
-            this.BeforeBox.Text = "";
-            this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
-            this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
+            this.PtColorDialog.Color = System.Drawing.Color.DeepSkyBlue;
             // 
-            // AfterBox
+            // button4
             // 
-            this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AfterBox.Location = new System.Drawing.Point(487, 3);
-            this.AfterBox.Name = "AfterBox";
-            this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.AfterBox.Size = new System.Drawing.Size(390, 482);
-            this.AfterBox.TabIndex = 4;
-            this.AfterBox.Text = "";
-            this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
+            this.button4.Location = new System.Drawing.Point(658, 120);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(117, 47);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "対訳色";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 702);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.PlusBtn);
             this.Controls.Add(this.MinusBtn);
             this.Controls.Add(this.label2);
@@ -282,6 +299,8 @@
         private System.Windows.Forms.Button PlusBtn;
         private System.Windows.Forms.RichTextBox AfterBox;
         private System.Windows.Forms.RichTextBox BeforeBox;
+        private System.Windows.Forms.ColorDialog PtColorDialog;
+        private System.Windows.Forms.Button button4;
     }
 }
 
