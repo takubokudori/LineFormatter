@@ -22,12 +22,12 @@ is
 a
 test.");
             Format( // et al.は改行しない
-                @"Adam et al. introduced a test.",
+                @"Adam et al introduced a test.",
                     @"Adam et al.
 introduced a
 test.");
             Format( // et al,.は改行せず，また,が消える
-                @"Adam et al. introduced a test.",
+                @"Adam et al introduced a test.",
                     @"Adam et al,.
 introduced a
 test.");
