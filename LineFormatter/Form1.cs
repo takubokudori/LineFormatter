@@ -174,7 +174,7 @@ namespace LineFormatter
             WinApi.StartDrawing(BeforeBox);
         }
 
-        private void ClearSelectionBackColor(RichTextBox rtb, Color color, bool isStay = false)
+        private static void ClearSelectionBackColor(RichTextBox rtb, Color color, bool isStay = false)
         {
             Highlight(rtb, 0, rtb.TextLength, color, isStay);
         }

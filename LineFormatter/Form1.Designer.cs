@@ -240,7 +240,7 @@
             // 
             // PtColorDialog
             // 
-            this.PtColorDialog.Color = System.Drawing.Color.DeepSkyBlue;
+            this.PtColorDialog.Color = System.Drawing.Color.LightSkyBlue;
             // 
             // button4
             // 
