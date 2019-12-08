@@ -78,7 +78,8 @@ namespace LineFormatter
         {
             var l = 0;
             var r = _pTList.Count;
-            if (r == 0) return null;
+            if (r == 0) return null; // リストが空の場合
+            if (pos < 0) return _pTList[0]; // posが負の場合
             while (l <= r)
             {
                 var m = (l + r) / 2;
@@ -97,14 +98,15 @@ namespace LineFormatter
                 }
             }
 
-            return null;
+            return _pTList[_pTList.Count - 1];
         }
 
         public PTrans GetTrans(int pos)
         {
             var l = 0;
             var r = _pTList.Count;
-            if (r == 0) return null;
+            if (r == 0) return null; // リストが空の場合
+            if (pos < 0) return _pTList[0]; // posが負の場合
             while (l <= r)
             {
                 var m = (l + r) / 2;
@@ -123,7 +125,7 @@ namespace LineFormatter
                 }
             }
 
-            return null;
+            return _pTList[_pTList.Count - 1];
         }
 
         public string GetOrigText(int pos)
