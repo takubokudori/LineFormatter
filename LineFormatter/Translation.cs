@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace LineFormatter
 {
     // 翻訳
-    class Translation
+    public class Translation
     {
 
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
