@@ -76,6 +76,8 @@ namespace LineFormatter
                 TranslationTimer.Interval = 500;
                 TranslationTimer.Start();
             }
+
+            BeforeLenLbl.Text = $@"{BeforeBox.TextLength} 文字";
         }
 
         private void Translate(string orig)
@@ -202,6 +204,11 @@ namespace LineFormatter
         private void button4_Click(object sender, EventArgs e)
         {
             PtColorDialog.ShowDialog();
+        }
+
+        private void AfterBox_TextChanged(object sender, EventArgs e)
+        {
+            AfterLenLbl.Text = $@"{AfterBox.TextLength} 文字";
         }
     }
 }

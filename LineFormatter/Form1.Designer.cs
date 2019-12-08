@@ -48,6 +48,8 @@
             this.PlusBtn = new System.Windows.Forms.Button();
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.button4 = new System.Windows.Forms.Button();
+            this.BeforeLenLbl = new System.Windows.Forms.Label();
+            this.AfterLenLbl = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +85,7 @@
             this.AfterBox.TabIndex = 4;
             this.AfterBox.Text = "";
             this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
+            this.AfterBox.TextChanged += new System.EventHandler(this.AfterBox_TextChanged);
             // 
             // pictureBox1
             // 
@@ -252,11 +255,31 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // BeforeLenLbl
+            // 
+            this.BeforeLenLbl.AutoSize = true;
+            this.BeforeLenLbl.Location = new System.Drawing.Point(165, 170);
+            this.BeforeLenLbl.Name = "BeforeLenLbl";
+            this.BeforeLenLbl.Size = new System.Drawing.Size(77, 24);
+            this.BeforeLenLbl.TabIndex = 16;
+            this.BeforeLenLbl.Text = "0 文字";
+            // 
+            // AfterLenLbl
+            // 
+            this.AfterLenLbl.AutoSize = true;
+            this.AfterLenLbl.Location = new System.Drawing.Point(629, 170);
+            this.AfterLenLbl.Name = "AfterLenLbl";
+            this.AfterLenLbl.Size = new System.Drawing.Size(77, 24);
+            this.AfterLenLbl.TabIndex = 17;
+            this.AfterLenLbl.Text = "0 文字";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 702);
+            this.Controls.Add(this.AfterLenLbl);
+            this.Controls.Add(this.BeforeLenLbl);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.PlusBtn);
             this.Controls.Add(this.MinusBtn);
@@ -301,6 +324,8 @@
         private System.Windows.Forms.RichTextBox BeforeBox;
         private System.Windows.Forms.ColorDialog PtColorDialog;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label BeforeLenLbl;
+        private System.Windows.Forms.Label AfterLenLbl;
     }
 }
 
