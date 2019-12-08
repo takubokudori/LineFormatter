@@ -12,6 +12,14 @@ namespace UnitTest
             Assert.AreEqual(expected, Form1.Format(actual));
         }
 
+        private static void AssertPT(PTrans expected, PTrans actual)
+        {
+            Assert.AreEqual(expected.OrigPos, actual.OrigPos);
+            Assert.AreEqual(expected.TransPos, actual.TransPos);
+            Assert.AreEqual(expected.OrigText, actual.OrigText);
+            Assert.AreEqual(expected.TransText, actual.TransText);
+        }
+
         [TestMethod]
         public void FormatTest()
         {
@@ -62,11 +70,26 @@ Good.", @"1.2.3 T.E.S.T. Good.");
         [TestMethod]
         public void TranslationTest()
         {
+            var trans = new Translation();
+            var poTrans = new PrivateObject(trans);
+
             var origList = new List<string> { "Test.", "Hello world!", "This is good." };
             var transList = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
             var pTList = BuildPTList(origList, transList);
-            var trans = new Translation();
-            var poTrans = new PrivateObject(trans);
+            poTrans.SetField("_pTList", pTList);
+            GetOrigAssert(trans, pTList);
+            GetTransAssert(trans, pTList);
+
+            origList = new List<string> { "A", "B", "C" };
+            transList = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
+            pTList = BuildPTList(origList, transList);
+            poTrans.SetField("_pTList", pTList);
+            GetOrigAssert(trans, pTList);
+            GetTransAssert(trans, pTList);
+
+            origList = new List<string> { "Test.", "Hello world!", "This is good." };
+            transList = new List<string> { "A", "B", "C" };
+            pTList = BuildPTList(origList, transList);
             poTrans.SetField("_pTList", pTList);
             GetOrigAssert(trans, pTList);
             GetTransAssert(trans, pTList);
@@ -92,8 +115,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
         {
             var x = pTList[pTList.Count - 1].OrigPos + pTList[pTList.Count - 1].OrigText.Length + 10; // 余分な長さまで確認
             var pt = trans.GetOrig(-1); // 負数を渡すと先頭を返す
-            Assert.AreEqual(pTList[0].OrigText, pt.OrigText);
-            Assert.AreEqual(pTList[0].TransText, pt.TransText);
+            AssertPT(pTList[0], pt);
 
             var idx = 0;
             for (var i = 0; i < x; i++)
@@ -103,8 +125,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
                     if (idx < pTList.Count - 1) idx++;
                 }
                 pt = trans.GetOrig(i);
-                Assert.AreEqual(pTList[idx].OrigText, pt.OrigText);
-                Assert.AreEqual(pTList[idx].TransText, pt.TransText);
+                AssertPT(pTList[idx], pt);
             }
         }
 
@@ -112,8 +133,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
         {
             var x = pTList[pTList.Count - 1].TransPos + pTList[pTList.Count - 1].TransText.Length + 10; // 余分な長さまで確認
             var pt = trans.GetTrans(-1); // 負数を渡すと先頭を返す
-            Assert.AreEqual(pTList[0].OrigText, pt.OrigText);
-            Assert.AreEqual(pTList[0].TransText, pt.TransText);
+            AssertPT(pTList[0], pt);
 
             var idx = 0;
             for (var i = 0; i < x; i++)
@@ -123,8 +143,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
                     if (idx < pTList.Count - 1) idx++;
                 }
                 pt = trans.GetTrans(i);
-                Assert.AreEqual(pTList[idx].OrigText, pt.OrigText);
-                Assert.AreEqual(pTList[idx].TransText, pt.TransText);
+                AssertPT(pTList[idx], pt);
             }
         }
     }
