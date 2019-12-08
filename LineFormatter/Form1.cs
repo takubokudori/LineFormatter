@@ -68,7 +68,12 @@ namespace LineFormatter
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
         {
-            if (isAutoFormat.Checked) Formatting();
+            if (isAutoFormat.Checked)
+            {
+                var temp = BeforeBox.SelectionStart; // 整形でキャレット位置がずれるのを防ぐ
+                Formatting();
+                BeforeBox.SelectionStart = temp;
+            }
             if (isAutoTranslation.Checked)
             {
                 TranslationTimer.Stop();
