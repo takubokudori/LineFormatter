@@ -180,9 +180,9 @@ namespace LineFormatter
         }
 
         // 対訳ハイライト
-        private static void HighlightPt(RichTextBox rtb, int pos, int len, bool isStay = false)
+        private void HighlightPt(RichTextBox rtb, int pos, int len, bool isStay = false)
         {
-            Highlight(rtb, pos, len, Color.DeepSkyBlue, isStay);
+            Highlight(rtb, pos, len, PtColorDialog.Color, isStay);
         }
 
         private static void Highlight(RichTextBox rtb, int pos, int len, Color color, bool isStay = false)
@@ -197,6 +197,11 @@ namespace LineFormatter
             rtb.SelectionStart = start;
             rtb.SelectionLength = length;
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PtColorDialog.ShowDialog();
         }
     }
 }
