@@ -138,8 +138,10 @@ namespace LineFormatter
             if (pt == null) return;
             WinApi.StopDrawing(AfterBox); // スクロールでちらつかないように描画停止
             WinApi.StopDrawing(BeforeBox);
+            BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor, true);
             HighlightPt(BeforeBox, pt.OrigPos, pt.OrigText.Length, true);
+            BeforeBox.TextChanged += BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor);
             HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length);
