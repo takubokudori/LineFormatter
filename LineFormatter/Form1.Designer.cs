@@ -63,14 +63,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 202);
+            this.tableLayoutPanel1.Controls.Add(this.BeforeLenLbl, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AfterLenLbl, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 190);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 488);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 500);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // AfterBox
@@ -78,10 +81,10 @@
             this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AfterBox.Location = new System.Drawing.Point(487, 3);
+            this.AfterBox.Location = new System.Drawing.Point(487, 33);
             this.AfterBox.Name = "AfterBox";
             this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.AfterBox.Size = new System.Drawing.Size(390, 482);
+            this.AfterBox.Size = new System.Drawing.Size(390, 464);
             this.AfterBox.TabIndex = 4;
             this.AfterBox.Text = "";
             this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
@@ -94,9 +97,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::LineFormatter.Resource1.arrow;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(399, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(399, 33);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 482);
+            this.pictureBox1.Size = new System.Drawing.Size(82, 464);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -106,10 +109,10 @@
             this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BeforeBox.Location = new System.Drawing.Point(3, 3);
+            this.BeforeBox.Location = new System.Drawing.Point(3, 33);
             this.BeforeBox.Name = "BeforeBox";
             this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.BeforeBox.Size = new System.Drawing.Size(390, 482);
+            this.BeforeBox.Size = new System.Drawing.Size(390, 464);
             this.BeforeBox.TabIndex = 3;
             this.BeforeBox.Text = "";
             this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
@@ -257,8 +260,9 @@
             // 
             // BeforeLenLbl
             // 
+            this.BeforeLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BeforeLenLbl.AutoSize = true;
-            this.BeforeLenLbl.Location = new System.Drawing.Point(165, 170);
+            this.BeforeLenLbl.Location = new System.Drawing.Point(159, 3);
             this.BeforeLenLbl.Name = "BeforeLenLbl";
             this.BeforeLenLbl.Size = new System.Drawing.Size(77, 24);
             this.BeforeLenLbl.TabIndex = 16;
@@ -266,8 +270,9 @@
             // 
             // AfterLenLbl
             // 
+            this.AfterLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AfterLenLbl.AutoSize = true;
-            this.AfterLenLbl.Location = new System.Drawing.Point(629, 170);
+            this.AfterLenLbl.Location = new System.Drawing.Point(643, 3);
             this.AfterLenLbl.Name = "AfterLenLbl";
             this.AfterLenLbl.Size = new System.Drawing.Size(77, 24);
             this.AfterLenLbl.TabIndex = 17;
@@ -278,8 +283,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 702);
-            this.Controls.Add(this.AfterLenLbl);
-            this.Controls.Add(this.BeforeLenLbl);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.PlusBtn);
             this.Controls.Add(this.MinusBtn);
@@ -298,6 +301,7 @@
             this.Text = "LineFormatter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
