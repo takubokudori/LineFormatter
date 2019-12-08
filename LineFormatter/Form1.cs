@@ -171,32 +171,27 @@ namespace LineFormatter
 
         private void ClearSelectionBackColor(RichTextBox rtb, Color color, bool isStay = false)
         {
-            // rtbがフォーカスされていないと失敗する
-            var start = rtb.SelectionStart;
-            var length = rtb.SelectionLength;
-            rtb.SelectionStart = 0;
-            rtb.SelectionLength = rtb.Text.Length;
-            rtb.SelectionBackColor = color; // 色クリア
-            if (isStay)
-            {
-                rtb.SelectionStart = start;
-                rtb.SelectionLength = length;
-            }
+            Highlight(rtb, 0, rtb.TextLength, color, isStay);
         }
 
         // 対訳ハイライト
-        private void HighlightPt(RichTextBox rtb, int pos, int len, bool isStay = false)
+        private static void HighlightPt(RichTextBox rtb, int pos, int len, bool isStay = false)
         {
+            Highlight(rtb, pos, len, Color.DeepSkyBlue, isStay);
+        }
+
+        private static void Highlight(RichTextBox rtb, int pos, int len, Color color, bool isStay = false)
+        {
+            // rtbがフォーカスされていないと失敗する
             var start = rtb.SelectionStart;
             var length = rtb.SelectionLength;
             rtb.SelectionStart = pos;
             rtb.SelectionLength = len;
-            rtb.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
-            if (isStay)
-            {
-                rtb.SelectionStart = start;
-                rtb.SelectionLength = length;
-            }
+            rtb.SelectionBackColor = color; // ハイライト
+            if (!isStay) return;
+            rtb.SelectionStart = start;
+            rtb.SelectionLength = length;
+
         }
     }
 }
