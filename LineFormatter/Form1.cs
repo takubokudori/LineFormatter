@@ -137,11 +137,14 @@ namespace LineFormatter
             var pt = _trans.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
             WinApi.StopDrawing(AfterBox); // スクロールでちらつかないように描画停止
+            WinApi.StopDrawing(BeforeBox);
+            ClearHighlightAndStay(BeforeBox, _beforeBoxDefaultColor);
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor);
             HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length);
             AfterBox.ScrollToCaret();
             BeforeBox.Focus(); // フォーカスを戻す
+            WinApi.StartDrawing(BeforeBox);
             WinApi.StartDrawing(AfterBox); // 描画再開
         }
 
@@ -150,6 +153,9 @@ namespace LineFormatter
             var pt = _trans.GetOrig(AfterBox.SelectionStart);
             if (pt == null) return;
             WinApi.StopDrawing(BeforeBox); // スクロールでちらつかないように描画停止
+            WinApi.StopDrawing(AfterBox);
+
+            ClearHighlightAndStay(AfterBox, _afterBoxDefaultColor);
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor);
@@ -157,6 +163,7 @@ namespace LineFormatter
             BeforeBox.ScrollToCaret();
             AfterBox.Focus(); // フォーカスを戻す
             BeforeBox.TextChanged += BeforeBox_TextChanged;
+            WinApi.StartDrawing(AfterBox); // 描画再開
             WinApi.StartDrawing(BeforeBox); // 描画再開
         }
 
@@ -175,6 +182,15 @@ namespace LineFormatter
             rtb.SelectionStart = pos;
             rtb.SelectionLength = len;
             rtb.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
+        }
+
+        private void ClearHighlightAndStay(RichTextBox rtb, Color color)
+        {
+            var temp = rtb.SelectionStart;
+            ClearSelectionBackColor(rtb, color);
+            rtb.SelectionLength = 0;
+            rtb.SelectionStart = temp;
+            rtb.ScrollToCaret();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace LineFormatter
         public static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         public const int WM_SETREDRAW = 0x000B;
+        public const int EM_LINEFROMCHAR = 0xC9;
 
         // コントロールの描画停止
         public static void StopDrawing(Control control)
@@ -22,6 +23,13 @@ namespace LineFormatter
         {
             SendMessage(control.Handle, WM_SETREDRAW, 1, 0);
             control.Refresh();
+        }
+
+        // 行数の取得
+        public static int GetNumOfLines(Control control)
+        {
+
+            return SendMessage( control.Handle, EM_LINEFROMCHAR, -1, 0).ToInt32() + 1;
         }
     }
 }
