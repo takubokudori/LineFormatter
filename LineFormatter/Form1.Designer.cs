@@ -119,7 +119,7 @@
             this.TitleLbl.Name = "TitleLbl";
             this.TitleLbl.Size = new System.Drawing.Size(214, 24);
             this.TitleLbl.TabIndex = 2;
-            this.TitleLbl.Text = "LineFormatter v1.1.0";
+            this.TitleLbl.Text = "LineFormatter v1.2.0";
             // 
             // button1
             // 
