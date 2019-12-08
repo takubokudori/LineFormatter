@@ -138,7 +138,8 @@ namespace LineFormatter
             if (pt == null) return;
             WinApi.StopDrawing(AfterBox); // スクロールでちらつかないように描画停止
             WinApi.StopDrawing(BeforeBox);
-            ClearHighlightAndStay(BeforeBox, _beforeBoxDefaultColor);
+            ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor, true);
+            HighlightPt(BeforeBox, pt.OrigPos, pt.OrigText.Length, true);
             AfterBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor);
             HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length);
@@ -155,7 +156,8 @@ namespace LineFormatter
             WinApi.StopDrawing(BeforeBox); // スクロールでちらつかないように描画停止
             WinApi.StopDrawing(AfterBox);
 
-            ClearHighlightAndStay(AfterBox, _afterBoxDefaultColor);
+            ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor, true);
+            HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length, true);
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
             BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
             ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor);
@@ -167,30 +169,34 @@ namespace LineFormatter
             WinApi.StartDrawing(BeforeBox); // 描画再開
         }
 
-        private void ClearSelectionBackColor(RichTextBox rtb, Color color)
+        private void ClearSelectionBackColor(RichTextBox rtb, Color color, bool isStay = false)
         {
             // rtbがフォーカスされていないと失敗する
-
+            var start = rtb.SelectionStart;
+            var length = rtb.SelectionLength;
             rtb.SelectionStart = 0;
             rtb.SelectionLength = rtb.Text.Length;
             rtb.SelectionBackColor = color; // 色クリア
+            if (isStay)
+            {
+                rtb.SelectionStart = start;
+                rtb.SelectionLength = length;
+            }
         }
 
         // 対訳ハイライト
-        private void HighlightPt(RichTextBox rtb, int pos, int len)
+        private void HighlightPt(RichTextBox rtb, int pos, int len, bool isStay = false)
         {
+            var start = rtb.SelectionStart;
+            var length = rtb.SelectionLength;
             rtb.SelectionStart = pos;
             rtb.SelectionLength = len;
             rtb.SelectionBackColor = Color.DeepSkyBlue; // ハイライト
-        }
-
-        private void ClearHighlightAndStay(RichTextBox rtb, Color color)
-        {
-            var temp = rtb.SelectionStart;
-            ClearSelectionBackColor(rtb, color);
-            rtb.SelectionLength = 0;
-            rtb.SelectionStart = temp;
-            rtb.ScrollToCaret();
+            if (isStay)
+            {
+                rtb.SelectionStart = start;
+                rtb.SelectionLength = length;
+            }
         }
     }
 }
