@@ -68,11 +68,13 @@ Good.", @"1.2.3 T.E.S.T. Good.");
             var trans = new Translation();
             var poTrans = new PrivateObject(trans);
             poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans,pTList);
+            GetOrigAssert(trans, pTList);
+            GetTransAssert(trans, pTList);
         }
 
         private static List<PTrans> BuildPTList(List<string> origList, List<string> transList)
         {
+            Assert.AreEqual(origList.Count, transList.Count);
             var pTList = new List<PTrans>();
             var origPos = 0;
             var transPos = 0;
@@ -88,15 +90,15 @@ Good.", @"1.2.3 T.E.S.T. Good.");
 
         private static void GetOrigAssert(Translation trans, List<PTrans> pTList)
         {
-            var X = pTList[pTList.Count - 1].OrigPos + pTList[pTList.Count - 1].OrigText.Length + 10; // 余分な長さまで確認
+            var x = pTList[pTList.Count - 1].OrigPos + pTList[pTList.Count - 1].OrigText.Length + 10; // 余分な長さまで確認
             var pt = trans.GetOrig(-1); // 負数を渡すと先頭を返す
             Assert.AreEqual(pTList[0].OrigText, pt.OrigText);
             Assert.AreEqual(pTList[0].TransText, pt.TransText);
 
             var idx = 0;
-            for (var i = 0; i < X; i++)
+            for (var i = 0; i < x; i++)
             {
-                if (i >= pTList[idx].OrigPos + pTList[idx].OrigText.Length)
+                if (i >= pTList[idx].TransPos + pTList[idx].TransText.Length)
                 {
                     if (idx < pTList.Count - 1) idx++;
                 }
@@ -104,9 +106,26 @@ Good.", @"1.2.3 T.E.S.T. Good.");
                 Assert.AreEqual(pTList[idx].OrigText, pt.OrigText);
                 Assert.AreEqual(pTList[idx].TransText, pt.TransText);
             }
-
-
         }
 
+        private static void GetTransAssert(Translation trans, List<PTrans> pTList)
+        {
+            var x = pTList[pTList.Count - 1].TransPos + pTList[pTList.Count - 1].TransText.Length + 10; // 余分な長さまで確認
+            var pt = trans.GetTrans(-1); // 負数を渡すと先頭を返す
+            Assert.AreEqual(pTList[0].OrigText, pt.OrigText);
+            Assert.AreEqual(pTList[0].TransText, pt.TransText);
+
+            var idx = 0;
+            for (var i = 0; i < x; i++)
+            {
+                if (i >= pTList[idx].OrigPos + pTList[idx].OrigText.Length)
+                {
+                    if (idx < pTList.Count - 1) idx++;
+                }
+                pt = trans.GetTrans(i);
+                Assert.AreEqual(pTList[idx].OrigText, pt.OrigText);
+                Assert.AreEqual(pTList[idx].TransText, pt.TransText);
+            }
+        }
     }
 }
