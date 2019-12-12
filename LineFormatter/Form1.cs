@@ -58,7 +58,7 @@ namespace LineFormatter
             .Replace("Fig.\r\n", "Fig. ") // 図
             .Replace("etc.\r\n", "etc. ") // 等
             .Replace("e.g.\r\n", "e.g. ") // 例
-            .Replace("i.e.\r\n", "i.e. ") // 例
+            .Replace("i.e.\r\n", "i.e. ") // つまり
             .Replace("et al.\r\n", "et al ") // 著者ら
             .Replace("et al,.\r\n", "et al ");
             text = Regex.Replace(text, "\\d(\\d|\\.)*?\\.((\r??\n)|$)", // 1. 11. 1.1.
