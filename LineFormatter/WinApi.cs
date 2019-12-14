@@ -28,7 +28,6 @@ namespace LineFormatter
         // 行数の取得
         public static int GetNumOfLines(Control control)
         {
-
             return SendMessage( control.Handle, EM_LINEFROMCHAR, -1, 0).ToInt32() + 1;
         }
     }
