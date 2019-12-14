@@ -50,8 +50,14 @@
             this.PlusBtn = new System.Windows.Forms.Button();
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.button4 = new System.Windows.Forms.Button();
+            this.AfterBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.BeforeBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchWithGoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchWithGoogleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.AfterBoxCtxMenuStrip.SuspendLayout();
+            this.BeforeBoxCtxMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -101,6 +107,7 @@
             this.AfterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AfterBox.ContextMenuStrip = this.AfterBoxCtxMenuStrip;
             this.AfterBox.Location = new System.Drawing.Point(487, 33);
             this.AfterBox.Name = "AfterBox";
             this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
@@ -129,6 +136,7 @@
             this.BeforeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BeforeBox.ContextMenuStrip = this.BeforeBoxCtxMenuStrip;
             this.BeforeBox.Location = new System.Drawing.Point(3, 33);
             this.BeforeBox.Name = "BeforeBox";
             this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
@@ -278,6 +286,36 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // AfterBoxCtxMenuStrip
+            // 
+            this.AfterBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.AfterBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchWithGoogleToolStripMenuItem});
+            this.AfterBoxCtxMenuStrip.Name = "AfterBoxCtxMenuStrip";
+            this.AfterBoxCtxMenuStrip.Size = new System.Drawing.Size(298, 42);
+            // 
+            // BeforeBoxCtxMenuStrip
+            // 
+            this.BeforeBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.BeforeBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchWithGoogleToolStripMenuItem1});
+            this.BeforeBoxCtxMenuStrip.Name = "BeforeBoxCtxMenuStrip";
+            this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(301, 86);
+            // 
+            // searchWithGoogleToolStripMenuItem
+            // 
+            this.searchWithGoogleToolStripMenuItem.Name = "searchWithGoogleToolStripMenuItem";
+            this.searchWithGoogleToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.searchWithGoogleToolStripMenuItem.Text = "Search with Google";
+            this.searchWithGoogleToolStripMenuItem.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem_Click);
+            // 
+            // searchWithGoogleToolStripMenuItem1
+            // 
+            this.searchWithGoogleToolStripMenuItem1.Name = "searchWithGoogleToolStripMenuItem1";
+            this.searchWithGoogleToolStripMenuItem1.Size = new System.Drawing.Size(300, 38);
+            this.searchWithGoogleToolStripMenuItem1.Text = "Search with Google";
+            this.searchWithGoogleToolStripMenuItem1.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -303,6 +341,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.AfterBoxCtxMenuStrip.ResumeLayout(false);
+            this.BeforeBoxCtxMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,6 +370,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label BeforeLenLbl;
         private System.Windows.Forms.Label AfterLenLbl;
+        private System.Windows.Forms.ContextMenuStrip AfterBoxCtxMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem searchWithGoogleToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip BeforeBoxCtxMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem searchWithGoogleToolStripMenuItem1;
     }
 }
 

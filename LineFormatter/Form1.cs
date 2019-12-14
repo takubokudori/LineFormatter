@@ -226,5 +226,18 @@ namespace LineFormatter
         {
             AfterLenLbl.Text = $@"訳文: {AfterBox.TextLength} 文字";
         }
+
+        private void searchWithGoogleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (AfterBox.SelectedText == "") return;
+            System.Diagnostics.Process.Start($"https://google.com/search?q={System.Web.HttpUtility.UrlEncode(AfterBox.SelectedText)}");
+        }
+
+        private void searchWithGoogleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (BeforeBox.SelectedText == "") return;
+            System.Diagnostics.Process.Start($"https://google.com/search?q={System.Web.HttpUtility.UrlEncode(BeforeBox.SelectedText)}");
+
+        }
     }
 }
