@@ -152,11 +152,13 @@ namespace LineFormatter
 
         private void BeforeBox_Click(object sender, EventArgs e)
         {
+            // 対訳ハイライト
             var pt = _trans.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
             WinApi.StopDrawing(AfterBox); // スクロールでちらつかないように描画停止
             WinApi.StopDrawing(BeforeBox);
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+            AfterBox.TextChanged -= AfterBox_TextChanged;
 
             ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor, true);
             HighlightPt(BeforeBox, pt.OrigPos, pt.OrigText.Length, true);
@@ -166,6 +168,7 @@ namespace LineFormatter
             AfterBox.ScrollToCaret();
             BeforeBox.Focus(); // フォーカスを戻す
 
+            AfterBox.TextChanged += AfterBox_TextChanged;
             BeforeBox.TextChanged += BeforeBox_TextChanged;
             WinApi.StartDrawing(BeforeBox);
             WinApi.StartDrawing(AfterBox); // 描画再開
@@ -173,11 +176,13 @@ namespace LineFormatter
 
         private void AfterBox_Click(object sender, EventArgs e)
         {
+            // 対訳ハイライト
             var pt = _trans.GetOrig(AfterBox.SelectionStart);
             if (pt == null) return;
             WinApi.StopDrawing(BeforeBox); // スクロールでちらつかないように描画停止
             WinApi.StopDrawing(AfterBox);
             BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+            AfterBox.TextChanged -= AfterBox_TextChanged;
 
             ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor, true);
             HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length, true);
@@ -187,6 +192,7 @@ namespace LineFormatter
             BeforeBox.ScrollToCaret();
             AfterBox.Focus(); // フォーカスを戻す
 
+            AfterBox.TextChanged += AfterBox_TextChanged;
             BeforeBox.TextChanged += BeforeBox_TextChanged;
             WinApi.StartDrawing(AfterBox); // 描画再開
             WinApi.StartDrawing(BeforeBox);
