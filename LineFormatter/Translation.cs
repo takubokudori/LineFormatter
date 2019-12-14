@@ -65,6 +65,7 @@ namespace LineFormatter
             foreach (var sentence in res.sentences)
             {
                 Trans += sentence.trans;
+                for (; Orig[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
                 _pTList.Add(new PTrans(origPos, transPos, sentence.orig, sentence.trans));
                 transPos += sentence.trans.Length;
                 origPos += sentence.orig.Length;
