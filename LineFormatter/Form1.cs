@@ -220,7 +220,6 @@ namespace LineFormatter
             if (!isStay) return;
             rtb.SelectionStart = start;
             rtb.SelectionLength = length;
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -243,7 +242,6 @@ namespace LineFormatter
         {
             if (BeforeBox.SelectedText == "") return;
             System.Diagnostics.Process.Start($"https://google.com/search?q={System.Web.HttpUtility.UrlEncode(BeforeBox.SelectedText)}");
-
         }
 
         private void AfterBox_KeyDown(object sender, KeyEventArgs e)
@@ -264,7 +262,6 @@ namespace LineFormatter
                 searchWithGoogleToolStripMenuItem1_Click(sender, e);
                 e.SuppressKeyPress = true;
             }
-
         }
     }
 }

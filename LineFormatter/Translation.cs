@@ -11,7 +11,6 @@ namespace LineFormatter
     // 翻訳
     public class Translation
     {
-
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public string Orig = ""; // オリジナル
         public string Trans = ""; // 訳文
