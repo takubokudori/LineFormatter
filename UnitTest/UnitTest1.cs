@@ -96,6 +96,13 @@ Good.", @"1.2.3 T.E.S.T. Good.");
             poTrans.SetField("_pTList", pTList);
             GetOrigAssert(trans, pTList);
             GetTransAssert(trans, pTList);
+
+            origList = new List<string> { "Test.", "      Hello world!", "   This is good." };
+            transList = new List<string> { "A", "B", "C" };
+            pTList = BuildPTList(origList, transList);
+            poTrans.SetField("_pTList", pTList);
+            GetOrigAssert(trans, pTList);
+            GetTransAssert(trans, pTList);
         }
 
         private static List<PTrans> BuildPTList(List<string> origList, List<string> transList)
