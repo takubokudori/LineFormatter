@@ -69,6 +69,7 @@ namespace LineFormatter
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
         {
+            WinApi.StopDrawing(BeforeBox);
             if (isAutoFormat.Checked)
             {
                 var temp = BeforeBox.SelectionStart; // 整形でキャレット位置がずれるのを防ぐ
@@ -82,6 +83,15 @@ namespace LineFormatter
                 TranslationTimer.Interval = 500;
                 TranslationTimer.Start();
             }
+
+            var start = BeforeBox.SelectionStart;
+            var len = BeforeBox.SelectionLength;
+            BeforeBox.SelectionStart = 0;
+            BeforeBox.SelectionLength = BeforeBox.TextLength;
+            BeforeBox.SelectionFont = BeforeBox.Font; // 元のフォントに戻す
+            BeforeBox.SelectionStart = start;
+            BeforeBox.SelectionLength = len;
+            WinApi.StartDrawing(BeforeBox);
 
             BeforeLenLbl.Text = $@"{BeforeBox.TextLength} 文字";
         }
