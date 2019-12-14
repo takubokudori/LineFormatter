@@ -30,6 +30,9 @@ namespace UnitTest
 is
 a
 test.");
+            Format( // e.g. i.e.は改行しない
+                @"This (i.e. dog) is an animal (e.g. cat).",
+                    @"This (i.e. dog) is an animal (e.g. cat).");
             Format( // et al.は改行しない
                 @"Adam et al introduced a test.",
                     @"Adam et al.
