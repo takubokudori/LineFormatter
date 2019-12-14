@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BeforeLenLbl = new System.Windows.Forms.Label();
+            this.AfterLenLbl = new System.Windows.Forms.Label();
             this.AfterBox = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BeforeBox = new System.Windows.Forms.RichTextBox();
@@ -48,8 +50,6 @@
             this.PlusBtn = new System.Windows.Forms.Button();
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.button4 = new System.Windows.Forms.Button();
-            this.BeforeLenLbl = new System.Windows.Forms.Label();
-            this.AfterLenLbl = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,26 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 500);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // BeforeLenLbl
+            // 
+            this.BeforeLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BeforeLenLbl.AutoSize = true;
+            this.BeforeLenLbl.Location = new System.Drawing.Point(129, 3);
+            this.BeforeLenLbl.Name = "BeforeLenLbl";
+            this.BeforeLenLbl.Size = new System.Drawing.Size(137, 24);
+            this.BeforeLenLbl.TabIndex = 16;
+            this.BeforeLenLbl.Text = "原文: 0 文字";
+            // 
+            // AfterLenLbl
+            // 
+            this.AfterLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AfterLenLbl.AutoSize = true;
+            this.AfterLenLbl.Location = new System.Drawing.Point(613, 3);
+            this.AfterLenLbl.Name = "AfterLenLbl";
+            this.AfterLenLbl.Size = new System.Drawing.Size(137, 24);
+            this.AfterLenLbl.TabIndex = 17;
+            this.AfterLenLbl.Text = "訳文: 0 文字";
             // 
             // AfterBox
             // 
@@ -257,26 +277,6 @@
             this.button4.Text = "対訳色";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // BeforeLenLbl
-            // 
-            this.BeforeLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BeforeLenLbl.AutoSize = true;
-            this.BeforeLenLbl.Location = new System.Drawing.Point(159, 3);
-            this.BeforeLenLbl.Name = "BeforeLenLbl";
-            this.BeforeLenLbl.Size = new System.Drawing.Size(77, 24);
-            this.BeforeLenLbl.TabIndex = 16;
-            this.BeforeLenLbl.Text = "0 文字";
-            // 
-            // AfterLenLbl
-            // 
-            this.AfterLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AfterLenLbl.AutoSize = true;
-            this.AfterLenLbl.Location = new System.Drawing.Point(643, 3);
-            this.AfterLenLbl.Name = "AfterLenLbl";
-            this.AfterLenLbl.Size = new System.Drawing.Size(77, 24);
-            this.AfterLenLbl.TabIndex = 17;
-            this.AfterLenLbl.Text = "0 文字";
             // 
             // Form1
             // 
