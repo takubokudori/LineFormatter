@@ -93,7 +93,7 @@ namespace LineFormatter
             BeforeBox.SelectionLength = len;
             WinApi.StartDrawing(BeforeBox);
 
-            BeforeLenLbl.Text = $@"{BeforeBox.TextLength} 文字";
+            BeforeLenLbl.Text = $@"原文: {BeforeBox.TextLength} 文字";
         }
 
         private void Translate(string orig)
@@ -224,7 +224,7 @@ namespace LineFormatter
 
         private void AfterBox_TextChanged(object sender, EventArgs e)
         {
-            AfterLenLbl.Text = $@"{AfterBox.TextLength} 文字";
+            AfterLenLbl.Text = $@"訳文: {AfterBox.TextLength} 文字";
         }
     }
 }
