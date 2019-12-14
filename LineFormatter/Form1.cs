@@ -239,5 +239,26 @@ namespace LineFormatter
             System.Diagnostics.Process.Start($"https://google.com/search?q={System.Web.HttpUtility.UrlEncode(BeforeBox.SelectedText)}");
 
         }
+
+        private void AfterBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((ModifierKeys & Keys.Control) == Keys.Control && e.KeyCode == Keys.G)
+            {
+                // Ctrl+Gで検索
+                searchWithGoogleToolStripMenuItem_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void BeforeBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((ModifierKeys & Keys.Control) == Keys.Control && e.KeyCode == Keys.G)
+            {
+                // Ctrl+Gで検索
+                searchWithGoogleToolStripMenuItem1_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
+
+        }
     }
 }

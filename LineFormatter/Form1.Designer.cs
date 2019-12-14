@@ -33,8 +33,12 @@
             this.BeforeLenLbl = new System.Windows.Forms.Label();
             this.AfterLenLbl = new System.Windows.Forms.Label();
             this.AfterBox = new System.Windows.Forms.RichTextBox();
+            this.AfterBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchWithGoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BeforeBox = new System.Windows.Forms.RichTextBox();
+            this.BeforeBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.searchWithGoogleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
@@ -50,13 +54,9 @@
             this.PlusBtn = new System.Windows.Forms.Button();
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.button4 = new System.Windows.Forms.Button();
-            this.AfterBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.BeforeBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.searchWithGoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchWithGoogleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.AfterBoxCtxMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BeforeBoxCtxMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,6 +116,22 @@
             this.AfterBox.Text = "";
             this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
             this.AfterBox.TextChanged += new System.EventHandler(this.AfterBox_TextChanged);
+            this.AfterBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AfterBox_KeyDown);
+            // 
+            // AfterBoxCtxMenuStrip
+            // 
+            this.AfterBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.AfterBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchWithGoogleToolStripMenuItem});
+            this.AfterBoxCtxMenuStrip.Name = "AfterBoxCtxMenuStrip";
+            this.AfterBoxCtxMenuStrip.Size = new System.Drawing.Size(298, 42);
+            // 
+            // searchWithGoogleToolStripMenuItem
+            // 
+            this.searchWithGoogleToolStripMenuItem.Name = "searchWithGoogleToolStripMenuItem";
+            this.searchWithGoogleToolStripMenuItem.Size = new System.Drawing.Size(297, 38);
+            this.searchWithGoogleToolStripMenuItem.Text = "Search with Google";
+            this.searchWithGoogleToolStripMenuItem.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -145,6 +161,22 @@
             this.BeforeBox.Text = "";
             this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
             this.BeforeBox.TextChanged += new System.EventHandler(this.BeforeBox_TextChanged);
+            this.BeforeBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BeforeBox_KeyDown);
+            // 
+            // BeforeBoxCtxMenuStrip
+            // 
+            this.BeforeBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.BeforeBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchWithGoogleToolStripMenuItem1});
+            this.BeforeBoxCtxMenuStrip.Name = "BeforeBoxCtxMenuStrip";
+            this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(298, 42);
+            // 
+            // searchWithGoogleToolStripMenuItem1
+            // 
+            this.searchWithGoogleToolStripMenuItem1.Name = "searchWithGoogleToolStripMenuItem1";
+            this.searchWithGoogleToolStripMenuItem1.Size = new System.Drawing.Size(297, 38);
+            this.searchWithGoogleToolStripMenuItem1.Text = "Search with Google";
+            this.searchWithGoogleToolStripMenuItem1.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
             // 
             // TitleLbl
             // 
@@ -286,36 +318,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // AfterBoxCtxMenuStrip
-            // 
-            this.AfterBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.AfterBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchWithGoogleToolStripMenuItem});
-            this.AfterBoxCtxMenuStrip.Name = "AfterBoxCtxMenuStrip";
-            this.AfterBoxCtxMenuStrip.Size = new System.Drawing.Size(298, 42);
-            // 
-            // BeforeBoxCtxMenuStrip
-            // 
-            this.BeforeBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.BeforeBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchWithGoogleToolStripMenuItem1});
-            this.BeforeBoxCtxMenuStrip.Name = "BeforeBoxCtxMenuStrip";
-            this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(301, 86);
-            // 
-            // searchWithGoogleToolStripMenuItem
-            // 
-            this.searchWithGoogleToolStripMenuItem.Name = "searchWithGoogleToolStripMenuItem";
-            this.searchWithGoogleToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
-            this.searchWithGoogleToolStripMenuItem.Text = "Search with Google";
-            this.searchWithGoogleToolStripMenuItem.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem_Click);
-            // 
-            // searchWithGoogleToolStripMenuItem1
-            // 
-            this.searchWithGoogleToolStripMenuItem1.Name = "searchWithGoogleToolStripMenuItem1";
-            this.searchWithGoogleToolStripMenuItem1.Size = new System.Drawing.Size(300, 38);
-            this.searchWithGoogleToolStripMenuItem1.Text = "Search with Google";
-            this.searchWithGoogleToolStripMenuItem1.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -340,8 +342,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.AfterBoxCtxMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.BeforeBoxCtxMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
