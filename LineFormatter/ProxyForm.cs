@@ -26,7 +26,6 @@ namespace LineFormatter
                     proxy.Credentials = new NetworkCredential(Username, Password);
                 }
                 return proxy;
-
             }
         }
         public ProxyForm()
@@ -40,7 +39,6 @@ namespace LineFormatter
             Username = UsernameTxt.Text;
             Password = PasswordTxt.Text;
             Hide();
-
         }
 
         private void noProxyCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -86,7 +84,6 @@ namespace LineFormatter
         {
             Hide();
             e.Cancel = true; // 閉じるときにオブジェクトを破棄しない
-
         }
     }
 }
