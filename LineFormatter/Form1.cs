@@ -69,49 +69,31 @@ namespace LineFormatter
 
         private void BeforeBox_TextChanged(object sender, EventArgs e)
         {
-            WinApi.StopDrawing(BeforeBox);
-            if (isAutoFormat.Checked)
+            StopDrawingFunc(BeforeBox, bfb =>
             {
-                var temp = BeforeBox.SelectionStart; // 整形でキャレット位置がずれるのを防ぐ
-                Formatting();
-                BeforeBox.SelectionStart = temp;
-            }
-            if (isAutoTranslation.Checked)
-            {
-                TranslationTimer.Stop();
-                TranslationTimer.Enabled = true;
-                TranslationTimer.Interval = 500;
-                TranslationTimer.Start();
-            }
+                if (isAutoFormat.Checked)
+                {
+                    var temp = BeforeBox.SelectionStart; // 整形でキャレット位置がずれるのを防ぐ
+                    Formatting();
+                    BeforeBox.SelectionStart = temp;
+                }
+                if (isAutoTranslation.Checked)
+                {
+                    TranslationTimer.Stop();
+                    TranslationTimer.Enabled = true;
+                    TranslationTimer.Interval = 500;
+                    TranslationTimer.Start();
+                }
 
-            SelectionFunc(BeforeBox, x =>
-            {
-                x.SelectionFont = x.Font; // 元のフォントに戻す
+                SelectionFunc(BeforeBox, x =>
+                {
+                    x.SelectionFont = x.Font; // 元のフォントに戻す
+                    return true;
+                });
                 return true;
             });
-            WinApi.StartDrawing(BeforeBox);
 
             BeforeLenLbl.Text = $@"原文: {BeforeBox.TextLength} 文字";
-        }
-
-        private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc, bool isStay = true, bool isAll = true)
-        {
-            rtb.Focus();
-            var start = rtb.SelectionStart;
-            var length = rtb.SelectionLength;
-            if (isAll)
-            {
-                // 全選択
-                rtb.SelectionStart = 0;
-                rtb.SelectionLength = rtb.TextLength;
-            }
-            callbackFunc(rtb);
-            if (isStay)
-            {
-                // 選択を元に戻す
-                rtb.SelectionStart = start;
-                rtb.SelectionLength = length;
-            }
         }
 
         private void Translate(string orig)
@@ -198,23 +180,28 @@ namespace LineFormatter
             // 対訳ハイライト
             var pt = _trans.GetOrig(AfterBox.SelectionStart);
             if (pt == null) return;
-            WinApi.StopDrawing(BeforeBox); // スクロールでちらつかないように描画停止
-            WinApi.StopDrawing(AfterBox);
-            BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
-            AfterBox.TextChanged -= AfterBox_TextChanged;
+            StopDrawingFunc(BeforeBox, bfb =>
+            {
+                StopDrawingFunc(AfterBox, afb =>
+                {
+                    bfb.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+                    afb.TextChanged -= AfterBox_TextChanged;
 
-            ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor, true);
-            HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length, true);
-            BeforeBox.Focus(); // 色変えとキャレット移動にはフォーカスが必要
-            ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor);
-            HighlightPt(BeforeBox, pt.OrigPos, pt.OrigText.Length);
-            BeforeBox.ScrollToCaret();
-            AfterBox.Focus(); // フォーカスを戻す
+                    ClearSelectionBackColor(afb, _afterBoxDefaultColor, true);
+                    HighlightPt(afb, pt.TransPos, pt.TransText.Length, true);
+                    bfb.Focus(); // 色変えとキャレット移動にはフォーカスが必要
+                    ClearSelectionBackColor(bfb, _beforeBoxDefaultColor);
+                    HighlightPt(bfb, pt.OrigPos, pt.OrigText.Length);
+                    bfb.ScrollToCaret();
+                    afb.Focus(); // フォーカスを戻す
 
-            AfterBox.TextChanged += AfterBox_TextChanged;
-            BeforeBox.TextChanged += BeforeBox_TextChanged;
-            WinApi.StartDrawing(AfterBox); // 描画再開
-            WinApi.StartDrawing(BeforeBox);
+                    afb.TextChanged += AfterBox_TextChanged;
+                    bfb.TextChanged += BeforeBox_TextChanged;
+
+                    return true;
+                });
+                return true;
+            });
         }
 
         private static void ClearSelectionBackColor(RichTextBox rtb, Color color, bool isStay = false)
@@ -239,6 +226,7 @@ namespace LineFormatter
                 return true;
             }, isStay, false);
         }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -280,6 +268,33 @@ namespace LineFormatter
                 searchWithGoogleToolStripMenuItem1_Click(sender, e);
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc, bool isStay = true, bool isAll = true)
+        {
+            rtb.Focus();
+            var start = rtb.SelectionStart;
+            var length = rtb.SelectionLength;
+            if (isAll)
+            {
+                // 全選択
+                rtb.SelectionStart = 0;
+                rtb.SelectionLength = rtb.TextLength;
+            }
+            callbackFunc(rtb);
+            if (isStay)
+            {
+                // 選択を元に戻す
+                rtb.SelectionStart = start;
+                rtb.SelectionLength = length;
+            }
+        }
+
+        private static void StopDrawingFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc)
+        {
+            WinApi.StopDrawing(rtb);
+            callbackFunc(rtb);
+            WinApi.StartDrawing(rtb);
         }
     }
 }
