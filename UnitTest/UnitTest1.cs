@@ -30,6 +30,7 @@ namespace UnitTest
 is
 a
 test.");
+            Format(@"example.com", "example.com"); // .の後に文字が続く場合は改行しない
             Format( // e.g. i.e.は改行しない
                 @"This (i.e. dog) is an animal (e.g. cat).",
                     @"This (i.e. dog) is an animal (e.g. cat).");
