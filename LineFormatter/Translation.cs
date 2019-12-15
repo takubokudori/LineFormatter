@@ -12,14 +12,14 @@ namespace LineFormatter
     public class Translation
     {
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
-        public string Orig = ""; // オリジナル
-        public string Trans = ""; // 訳文
+        public string OrigText = ""; // オリジナル
+        public string TransText = ""; // 訳文
         public TextBoxBase Tb = null;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
         public IWebProxy Proxy = null; // プロキシ
         public void Translate()
         {
-            var text = System.Web.HttpUtility.UrlEncode(Orig);
+            var text = System.Web.HttpUtility.UrlEncode(OrigText);
             if (text == "") return;
             var wc = new WebClient
             {
@@ -56,21 +56,21 @@ namespace LineFormatter
                 res = (GTransResp)serializer.ReadObject(ms);
             }
 
-            Trans = "";
+            TransText = "";
             _pTList.Clear();
             var transPos = 0;
             var origPos = 0;
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
-                Trans += sentence.trans;
-                for (; Orig[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
+                TransText += sentence.trans;
+                for (; OrigText[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
                 _pTList.Add(new PTrans(origPos, transPos, sentence.orig, sentence.trans));
                 transPos += sentence.trans.Length;
                 origPos += sentence.orig.Length;
             }
 
-            if (Tb != null) Tb.Text = Trans;
+            if (Tb != null) Tb.Text = TransText;
         }
 
         // 指定位置の対を取得

@@ -7,10 +7,10 @@ namespace LineFormatter
     class WinApi
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
-        public const int WM_SETREDRAW = 0x000B;
-        public const int EM_LINEFROMCHAR = 0xC9;
+        private const int WM_SETREDRAW = 0x000B;
+        private const int EM_LINEFROMCHAR = 0xC9;
 
         // コントロールの描画停止
         public static void StopDrawing(Control control)
@@ -28,7 +28,7 @@ namespace LineFormatter
         // 行数の取得
         public static int GetNumOfLines(Control control)
         {
-            return SendMessage( control.Handle, EM_LINEFROMCHAR, -1, 0).ToInt32() + 1;
+            return SendMessage(control.Handle, EM_LINEFROMCHAR, -1, 0).ToInt32() + 1;
         }
     }
 }

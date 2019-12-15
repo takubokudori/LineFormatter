@@ -100,7 +100,7 @@ namespace LineFormatter
         {
             _trans.Proxy = _proxyForm.Proxy;
 
-            _trans.Orig = orig;
+            _trans.OrigText = orig;
             _trans.Tb = AfterBox;
             _trans.Translate();
         }
@@ -286,12 +286,10 @@ namespace LineFormatter
                 rtb.SelectionLength = rtb.TextLength;
             }
             callbackFunc(rtb);
-            if (isStay)
-            {
-                // 選択を元に戻す
-                rtb.SelectionStart = start;
-                rtb.SelectionLength = length;
-            }
+            if (!isStay) return;
+            // 選択を元に戻す
+            rtb.SelectionStart = start;
+            rtb.SelectionLength = length;
         }
 
         private static void StopDrawingFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc)
