@@ -84,21 +84,21 @@ namespace LineFormatter
                 TranslationTimer.Start();
             }
 
-            SelectionFunc(BeforeBox, rtb =>
+            SelectionFunc(BeforeBox, x =>
             {
                 BeforeBox.SelectionFont = BeforeBox.Font; // 元のフォントに戻す
-                return rtb;
+                return true;
             });
             WinApi.StartDrawing(BeforeBox);
 
             BeforeLenLbl.Text = $@"原文: {BeforeBox.TextLength} 文字";
         }
 
-        private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, RichTextBox> callbackFunc, bool isStay = true, bool isAll = true)
+        private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc, bool isStay = true, bool isAll = true)
         {
             rtb.Focus();
             var start = rtb.SelectionStart;
-            var len = rtb.SelectionLength;
+            var length = rtb.SelectionLength;
             if (isAll)
             {
                 // 全選択
@@ -110,7 +110,7 @@ namespace LineFormatter
             {
                 // 選択を元に戻す
                 rtb.SelectionStart = start;
-                rtb.SelectionLength = len;
+                rtb.SelectionLength = length;
             }
         }
 
@@ -231,14 +231,13 @@ namespace LineFormatter
         private static void Highlight(RichTextBox rtb, int pos, int len, Color color, bool isStay = false)
         {
             // rtbがフォーカスされていないと失敗する
-            var start = rtb.SelectionStart;
-            var length = rtb.SelectionLength;
-            rtb.SelectionStart = pos;
-            rtb.SelectionLength = len;
-            rtb.SelectionBackColor = color; // ハイライト
-            if (!isStay) return;
-            rtb.SelectionStart = start;
-            rtb.SelectionLength = length;
+            SelectionFunc(rtb, x =>
+            {
+                rtb.SelectionStart = pos;
+                rtb.SelectionLength = len;
+                rtb.SelectionBackColor = color; // ハイライト
+                return true;
+            });
         }
 
         private void button4_Click(object sender, EventArgs e)
