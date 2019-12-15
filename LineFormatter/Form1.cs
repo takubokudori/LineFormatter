@@ -84,16 +84,34 @@ namespace LineFormatter
                 TranslationTimer.Start();
             }
 
-            var start = BeforeBox.SelectionStart;
-            var len = BeforeBox.SelectionLength;
-            BeforeBox.SelectionStart = 0;
-            BeforeBox.SelectionLength = BeforeBox.TextLength;
-            BeforeBox.SelectionFont = BeforeBox.Font; // 元のフォントに戻す
-            BeforeBox.SelectionStart = start;
-            BeforeBox.SelectionLength = len;
+            SelectionFunc(BeforeBox, rtb =>
+            {
+                BeforeBox.SelectionFont = BeforeBox.Font; // 元のフォントに戻す
+                return rtb;
+            });
             WinApi.StartDrawing(BeforeBox);
 
             BeforeLenLbl.Text = $@"原文: {BeforeBox.TextLength} 文字";
+        }
+
+        private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, RichTextBox> callbackFunc, bool isStay = true, bool isAll = true)
+        {
+            rtb.Focus();
+            var start = rtb.SelectionStart;
+            var len = rtb.SelectionLength;
+            if (isAll)
+            {
+                // 全選択
+                rtb.SelectionStart = 0;
+                rtb.SelectionLength = rtb.TextLength;
+            }
+            callbackFunc(rtb);
+            if (isStay)
+            {
+                // 選択を元に戻す
+                rtb.SelectionStart = start;
+                rtb.SelectionLength = len;
+            }
         }
 
         private void Translate(string orig)
@@ -104,6 +122,7 @@ namespace LineFormatter
             _trans.Tb = AfterBox;
             _trans.Translate();
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Translate(BeforeBox.Text);
