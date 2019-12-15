@@ -86,7 +86,7 @@ namespace LineFormatter
 
             SelectionFunc(BeforeBox, x =>
             {
-                BeforeBox.SelectionFont = BeforeBox.Font; // 元のフォントに戻す
+                x.SelectionFont = x.Font; // 元のフォントに戻す
                 return true;
             });
             WinApi.StartDrawing(BeforeBox);
@@ -233,11 +233,11 @@ namespace LineFormatter
             // rtbがフォーカスされていないと失敗する
             SelectionFunc(rtb, x =>
             {
-                rtb.SelectionStart = pos;
-                rtb.SelectionLength = len;
-                rtb.SelectionBackColor = color; // ハイライト
+                x.SelectionStart = pos;
+                x.SelectionLength = len;
+                x.SelectionBackColor = color; // ハイライト
                 return true;
-            });
+            }, isStay, false);
         }
 
         private void button4_Click(object sender, EventArgs e)
