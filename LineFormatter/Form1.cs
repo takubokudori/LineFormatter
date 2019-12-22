@@ -168,6 +168,7 @@ namespace LineFormatter
                     HighlightPt(bfb, pt.OrigPos, pt.OrigText.Length, true);
                     ClearSelectionBackColor(afb, _afterBoxDefaultColor, true);
                     HighlightPt(afb, pt.TransPos, pt.TransText.Length);
+                    afb.SelectionLength = 0; // 選択解除
                     afb.ScrollToCaret();
                     bfb.Focus(); // フォーカスを戻す
 
@@ -195,6 +196,7 @@ namespace LineFormatter
                     HighlightPt(afb, pt.TransPos, pt.TransText.Length, true);
                     ClearSelectionBackColor(bfb, _beforeBoxDefaultColor, true);
                     HighlightPt(bfb, pt.OrigPos, pt.OrigText.Length);
+                    bfb.SelectionLength = 0; // 選択解除
                     bfb.ScrollToCaret();
                     afb.Focus(); // フォーカスを戻す
 
