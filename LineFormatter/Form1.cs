@@ -161,18 +161,18 @@ namespace LineFormatter
             {
                 StopDrawingFunc(AfterBox, afb =>
                 {
-                    BeforeBox.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
-                    AfterBox.TextChanged -= AfterBox_TextChanged;
+                    bfb.TextChanged -= BeforeBox_TextChanged; // 自動整形と競合するので一旦ハンドラを外す
+                    afb.TextChanged -= AfterBox_TextChanged;
 
-                    ClearSelectionBackColor(BeforeBox, _beforeBoxDefaultColor, true);
-                    HighlightPt(BeforeBox, pt.OrigPos, pt.OrigText.Length, true);
-                    ClearSelectionBackColor(AfterBox, _afterBoxDefaultColor,true);
-                    HighlightPt(AfterBox, pt.TransPos, pt.TransText.Length);
-                    AfterBox.ScrollToCaret();
-                    BeforeBox.Focus(); // フォーカスを戻す
+                    ClearSelectionBackColor(bfb, _beforeBoxDefaultColor, true);
+                    HighlightPt(bfb, pt.OrigPos, pt.OrigText.Length, true);
+                    ClearSelectionBackColor(afb, _afterBoxDefaultColor, true);
+                    HighlightPt(afb, pt.TransPos, pt.TransText.Length);
+                    afb.ScrollToCaret();
+                    bfb.Focus(); // フォーカスを戻す
 
-                    AfterBox.TextChanged += AfterBox_TextChanged;
-                    BeforeBox.TextChanged += BeforeBox_TextChanged;
+                    afb.TextChanged += AfterBox_TextChanged;
+                    bfb.TextChanged += BeforeBox_TextChanged;
                     return true;
                 });
                 return true;
@@ -193,7 +193,7 @@ namespace LineFormatter
 
                     ClearSelectionBackColor(afb, _afterBoxDefaultColor, true);
                     HighlightPt(afb, pt.TransPos, pt.TransText.Length, true);
-                    ClearSelectionBackColor(bfb, _beforeBoxDefaultColor,true);
+                    ClearSelectionBackColor(bfb, _beforeBoxDefaultColor, true);
                     HighlightPt(bfb, pt.OrigPos, pt.OrigText.Length);
                     bfb.ScrollToCaret();
                     afb.Focus(); // フォーカスを戻す
