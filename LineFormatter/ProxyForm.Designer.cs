@@ -34,7 +34,7 @@
             this.UsernameTxt = new System.Windows.Forms.TextBox();
             this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.OkBtn = new System.Windows.Forms.Button();
             this.ieCheckBox = new System.Windows.Forms.CheckBox();
             this.noProxyCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -89,15 +89,15 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Password:";
             // 
-            // button1
+            // OkBtn
             // 
-            this.button1.Location = new System.Drawing.Point(315, 292);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 47);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.OkBtn.Location = new System.Drawing.Point(315, 292);
+            this.OkBtn.Name = "OkBtn";
+            this.OkBtn.Size = new System.Drawing.Size(135, 47);
+            this.OkBtn.TabIndex = 6;
+            this.OkBtn.Text = "OK";
+            this.OkBtn.UseVisualStyleBackColor = true;
+            this.OkBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // ieCheckBox
             // 
@@ -125,12 +125,13 @@
             // 
             // ProxyForm
             // 
+            this.AcceptButton = this.OkBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 351);
             this.Controls.Add(this.noProxyCheckBox);
             this.Controls.Add(this.ieCheckBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.OkBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.PasswordTxt);
             this.Controls.Add(this.UsernameTxt);
@@ -153,7 +154,7 @@
         private System.Windows.Forms.TextBox UsernameTxt;
         private System.Windows.Forms.TextBox PasswordTxt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button OkBtn;
         private System.Windows.Forms.CheckBox ieCheckBox;
         private System.Windows.Forms.CheckBox noProxyCheckBox;
     }
