@@ -14,7 +14,7 @@ namespace LineFormatter
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public string OrigText = ""; // オリジナル
         public string TransText = ""; // 訳文
-        public TextBoxBase Tb = null;
+        public Func<string, string> _downloadCallbackFunc;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
         public IWebProxy Proxy = null; // プロキシ
         public void Translate()
@@ -70,7 +70,7 @@ namespace LineFormatter
                 origPos += sentence.orig.Length;
             }
 
-            if (Tb != null) Tb.Text = TransText;
+            _downloadCallbackFunc(TransText);
         }
 
         // 指定位置の対を取得
