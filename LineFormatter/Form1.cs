@@ -100,9 +100,12 @@ namespace LineFormatter
         private void Translate(string orig)
         {
             _trans.Proxy = _proxyForm.Proxy;
-
             _trans.OrigText = orig;
-            _trans.Tb = AfterBox;
+            _trans._downloadCallbackFunc = transText =>
+            {
+                AfterBox.Text = transText;
+                return transText;
+            };
             _trans.Translate();
         }
 
