@@ -62,6 +62,12 @@
     <Compile Include="ProxyForm.Designer.cs">
       <DependentUpon>ProxyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReplaceForm.Designer.cs">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resource1.Designer.cs" />
     <Compile Include="Translation.cs" />
     <Compile Include="WinApi.cs" />
@@ -79,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="ProxyForm.resx">
       <DependentUpon>ProxyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReplaceForm.resx">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx" />
     <None Include="Properties\Settings.settings">

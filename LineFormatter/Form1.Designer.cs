@@ -38,14 +38,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BeforeBox = new System.Windows.Forms.RichTextBox();
             this.BeforeBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.searchWithGoogleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchWithGoogleTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TitleLbl = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.FormatBtn = new System.Windows.Forms.Button();
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
             this.isAutoTranslation = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.TranslateBtn = new System.Windows.Forms.Button();
             this.TranslationTimer = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.ProxyBtn = new System.Windows.Forms.Button();
             this.Lbtn = new System.Windows.Forms.Button();
             this.Rbtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +53,9 @@
             this.MinusBtn = new System.Windows.Forms.Button();
             this.PlusBtn = new System.Windows.Forms.Button();
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
-            this.button4 = new System.Windows.Forms.Button();
+            this.PColorBtn = new System.Windows.Forms.Button();
+            this.ReplaceBtn = new System.Windows.Forms.Button();
+            this.ReplaceTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.AfterBoxCtxMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -167,16 +169,17 @@
             // 
             this.BeforeBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.BeforeBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchWithGoogleToolStripMenuItem1});
+            this.searchWithGoogleTSMI,
+            this.ReplaceTSMI});
             this.BeforeBoxCtxMenuStrip.Name = "BeforeBoxCtxMenuStrip";
-            this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(298, 42);
+            this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(301, 124);
             // 
-            // searchWithGoogleToolStripMenuItem1
+            // searchWithGoogleTSMI
             // 
-            this.searchWithGoogleToolStripMenuItem1.Name = "searchWithGoogleToolStripMenuItem1";
-            this.searchWithGoogleToolStripMenuItem1.Size = new System.Drawing.Size(297, 38);
-            this.searchWithGoogleToolStripMenuItem1.Text = "Search with Google";
-            this.searchWithGoogleToolStripMenuItem1.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
+            this.searchWithGoogleTSMI.Name = "searchWithGoogleTSMI";
+            this.searchWithGoogleTSMI.Size = new System.Drawing.Size(300, 38);
+            this.searchWithGoogleTSMI.Text = "Search with Google";
+            this.searchWithGoogleTSMI.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
             // 
             // TitleLbl
             // 
@@ -187,15 +190,15 @@
             this.TitleLbl.TabIndex = 2;
             this.TitleLbl.Text = "LineFormatter v1.3.0";
             // 
-            // button1
+            // FormatBtn
             // 
-            this.button1.Location = new System.Drawing.Point(658, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 47);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "整形";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.FormatBtn.Location = new System.Drawing.Point(658, 13);
+            this.FormatBtn.Name = "FormatBtn";
+            this.FormatBtn.Size = new System.Drawing.Size(117, 47);
+            this.FormatBtn.TabIndex = 3;
+            this.FormatBtn.Text = "整形";
+            this.FormatBtn.UseVisualStyleBackColor = true;
+            this.FormatBtn.Click += new System.EventHandler(this.FormatBtn_Click);
             // 
             // isAutoFormat
             // 
@@ -221,30 +224,30 @@
             this.isAutoTranslation.Text = "自動翻訳";
             this.isAutoTranslation.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // TranslateBtn
             // 
-            this.button2.Location = new System.Drawing.Point(781, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(117, 47);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "翻訳";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.TranslateBtn.Location = new System.Drawing.Point(781, 13);
+            this.TranslateBtn.Name = "TranslateBtn";
+            this.TranslateBtn.Size = new System.Drawing.Size(117, 47);
+            this.TranslateBtn.TabIndex = 6;
+            this.TranslateBtn.Text = "翻訳";
+            this.TranslateBtn.UseVisualStyleBackColor = true;
+            this.TranslateBtn.Click += new System.EventHandler(this.TranslateBtn_Click);
             // 
             // TranslationTimer
             // 
             this.TranslationTimer.Interval = 2000;
             this.TranslationTimer.Tick += new System.EventHandler(this.TranslationTimer_Tick);
             // 
-            // button3
+            // ProxyBtn
             // 
-            this.button3.Location = new System.Drawing.Point(357, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 47);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "プロキシ";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.ProxyBtn.Location = new System.Drawing.Point(357, 12);
+            this.ProxyBtn.Name = "ProxyBtn";
+            this.ProxyBtn.Size = new System.Drawing.Size(117, 47);
+            this.ProxyBtn.TabIndex = 7;
+            this.ProxyBtn.Text = "プロキシ";
+            this.ProxyBtn.UseVisualStyleBackColor = true;
+            this.ProxyBtn.Click += new System.EventHandler(this.ProxyBtn_Click);
             // 
             // Lbtn
             // 
@@ -308,33 +311,51 @@
             // 
             this.PtColorDialog.Color = System.Drawing.Color.LightSkyBlue;
             // 
-            // button4
+            // PColorBtn
             // 
-            this.button4.Location = new System.Drawing.Point(658, 120);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(117, 47);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "対訳色";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.PColorBtn.Location = new System.Drawing.Point(658, 120);
+            this.PColorBtn.Name = "PColorBtn";
+            this.PColorBtn.Size = new System.Drawing.Size(117, 47);
+            this.PColorBtn.TabIndex = 15;
+            this.PColorBtn.Text = "対訳色";
+            this.PColorBtn.UseVisualStyleBackColor = true;
+            this.PColorBtn.Click += new System.EventHandler(this.PColorBtn_Click);
+            // 
+            // ReplaceBtn
+            // 
+            this.ReplaceBtn.Location = new System.Drawing.Point(16, 76);
+            this.ReplaceBtn.Name = "ReplaceBtn";
+            this.ReplaceBtn.Size = new System.Drawing.Size(117, 47);
+            this.ReplaceBtn.TabIndex = 16;
+            this.ReplaceBtn.Text = "固定";
+            this.ReplaceBtn.UseVisualStyleBackColor = true;
+            this.ReplaceBtn.Click += new System.EventHandler(this.ReplaceBtn_Click);
+            // 
+            // ReplaceTSMI
+            // 
+            this.ReplaceTSMI.Name = "ReplaceTSMI";
+            this.ReplaceTSMI.Size = new System.Drawing.Size(300, 38);
+            this.ReplaceTSMI.Text = "置換リストに追加";
+            this.ReplaceTSMI.Click += new System.EventHandler(this.ReplaceTSMI_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 702);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ReplaceBtn);
+            this.Controls.Add(this.PColorBtn);
             this.Controls.Add(this.PlusBtn);
             this.Controls.Add(this.MinusBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Rbtn);
             this.Controls.Add(this.Lbtn);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ProxyBtn);
+            this.Controls.Add(this.TranslateBtn);
             this.Controls.Add(this.isAutoTranslation);
             this.Controls.Add(this.isAutoFormat);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.FormatBtn);
             this.Controls.Add(this.TitleLbl);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
@@ -353,13 +374,13 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label TitleLbl;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button FormatBtn;
         private System.Windows.Forms.CheckBox isAutoFormat;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox isAutoTranslation;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button TranslateBtn;
         private System.Windows.Forms.Timer TranslationTimer;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ProxyBtn;
         private System.Windows.Forms.Button Lbtn;
         private System.Windows.Forms.Button Rbtn;
         private System.Windows.Forms.Label label1;
@@ -369,13 +390,15 @@
         private System.Windows.Forms.RichTextBox AfterBox;
         private System.Windows.Forms.RichTextBox BeforeBox;
         private System.Windows.Forms.ColorDialog PtColorDialog;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button PColorBtn;
         private System.Windows.Forms.Label BeforeLenLbl;
         private System.Windows.Forms.Label AfterLenLbl;
         private System.Windows.Forms.ContextMenuStrip AfterBoxCtxMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchWithGoogleToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip BeforeBoxCtxMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem searchWithGoogleToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem searchWithGoogleTSMI;
+        private System.Windows.Forms.Button ReplaceBtn;
+        private System.Windows.Forms.ToolStripMenuItem ReplaceTSMI;
     }
 }
 

@@ -4,7 +4,6 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
-using System.Windows.Forms;
 
 namespace LineFormatter
 {
@@ -14,7 +13,9 @@ namespace LineFormatter
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
         public string OrigText = ""; // オリジナル
         public string TransText = ""; // 訳文
-        public Func<string, string> _downloadCallbackFunc;
+        public Func<string, string> DownloadCallbackFunc = null;
+        public Func<string, string> TransTextCallbackFunc = null;
+        public Func<string, string> OrigTextCallbackFunc = null;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
         public IWebProxy Proxy = null; // プロキシ
         public void Translate()
@@ -60,17 +61,24 @@ namespace LineFormatter
             _pTList.Clear();
             var transPos = 0;
             var origPos = 0;
+            OrigText = "";
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
-                TransText += sentence.trans;
+                var oText = sentence.orig;
+                var tText = sentence.trans;
+                oText = OrigTextCallbackFunc?.Invoke(oText);
+                tText = TransTextCallbackFunc?.Invoke(tText);
+                if (oText == null || tText == null) break;
+                OrigText += oText;
+                TransText += tText;
                 for (; OrigText[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
-                _pTList.Add(new PTrans(origPos, transPos, sentence.orig, sentence.trans));
-                transPos += sentence.trans.Length;
-                origPos += sentence.orig.Length;
+                _pTList.Add(new PTrans(origPos, transPos, oText, tText));
+                transPos += tText.Length;
+                origPos += oText.Length;
             }
 
-            _downloadCallbackFunc(TransText);
+            DownloadCallbackFunc?.Invoke(TransText);
         }
 
         // 指定位置の対を取得
