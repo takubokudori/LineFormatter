@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -8,8 +9,23 @@ namespace LineFormatter
 
     public partial class Form1 : Form
     {
+        class Rep
+        {
+            public readonly string Before;
+            public readonly string After;
+            public readonly string Temp;
+
+            public Rep(string before, string after, string temp)
+            {
+                Before = before;
+                After = after;
+                Temp = temp;
+            }
+        }
         private readonly ProxyForm _proxyForm = new ProxyForm();
         private readonly Translation _trans = new Translation();
+        private readonly ReplaceForm _replaceForm = new ReplaceForm();
+        private readonly List<Rep> _reps = new List<Rep>();
         private Color _beforeBoxDefaultColor;
         private Color _afterBoxDefaultColor;
 
@@ -24,11 +40,54 @@ namespace LineFormatter
             _beforeBoxDefaultColor = BeforeBox.BackColor;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FormatBtn_Click(object sender, EventArgs e)
         {
             Formatting();
         }
 
+        private static string GenRandomStr(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var r = new Random();
+            var ret = "";
+            for (var i = 0; i < length; i++)
+            {
+                ret += chars[r.Next(chars.Length)];
+            }
+            return ret;
+        }
+
+        private string ReplaceText(string text)
+        {
+            const int len = 5;
+            var c = text.Split(' ');
+            var sList = new HashSet<string>();
+            foreach (var x in c)
+            {
+                if (x.Length == len) sList.Add(x);
+            }
+
+            var tList = new HashSet<string>();
+            _reps.Clear();
+            foreach (DataGridViewRow row in _replaceForm.ReplaceDGV.Rows)
+            {
+                var before = (string)row.Cells[0].Value;
+                var after = (string)row.Cells[1].Value;
+                if (before == null) break;
+                string tmp;
+                do
+                {
+                    tmp = GenRandomStr(len);
+                } while (sList.Contains(tmp) || tList.Contains(tmp));
+
+                tList.Add(tmp);
+                if (string.IsNullOrEmpty(after)) after = before;
+                _reps.Add(new Rep(before, after, tmp));
+                text = text.Replace(before, tmp);
+            }
+
+            return text;
+        }
         private void Formatting()
         {
             BeforeBox.Text = Format(BeforeBox.Text);
@@ -100,8 +159,26 @@ namespace LineFormatter
         private void Translate(string orig)
         {
             _trans.Proxy = _proxyForm.Proxy;
-            _trans.OrigText = orig;
-            _trans._downloadCallbackFunc = transText =>
+            _trans.OrigText = ReplaceText(orig);
+            _trans.TransTextCallbackFunc = transText =>
+            {
+                foreach (var rep in _reps)
+                {
+                    transText = transText.Replace(rep.Temp, rep.After);
+                }
+
+                return transText;
+            };
+            _trans.OrigTextCallbackFunc = origText =>
+            {
+                foreach (var rep in _reps)
+                {
+                    origText = origText.Replace(rep.Temp, rep.Before);
+                }
+
+                return origText;
+            };
+            _trans.DownloadCallbackFunc = transText =>
             {
                 AfterBox.Text = transText;
                 return transText;
@@ -109,7 +186,7 @@ namespace LineFormatter
             _trans.Translate();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void TranslateBtn_Click(object sender, EventArgs e)
         {
             Translate(BeforeBox.Text);
         }
@@ -120,7 +197,7 @@ namespace LineFormatter
             TranslationTimer.Enabled = false;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void ProxyBtn_Click(object sender, EventArgs e)
         {
             _proxyForm.Show();
         }
@@ -235,8 +312,7 @@ namespace LineFormatter
             }, isStay, false);
         }
 
-
-        private void button4_Click(object sender, EventArgs e)
+        private void PColorBtn_Click(object sender, EventArgs e)
         {
             PtColorDialog.ShowDialog();
         }
@@ -301,6 +377,18 @@ namespace LineFormatter
             WinApi.StopDrawing(rtb);
             callbackFunc(rtb);
             WinApi.StartDrawing(rtb);
+        }
+
+        private void ReplaceBtn_Click(object sender, EventArgs e)
+        {
+            _replaceForm.Show();
+        }
+
+        private void ReplaceTSMI_Click(object sender, EventArgs e)
+        {
+            var text = BeforeBox.SelectedText.Trim();
+            if (text == "") return;
+            _replaceForm.ReplaceDGV.Rows.Add(text, "");
         }
     }
 }
