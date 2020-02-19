@@ -19,5 +19,20 @@ namespace LineFormatter
         {
             Hide();
         }
+
+        private void TransBtn_Click(object sender, System.EventArgs e)
+        {
+            if (MessageBox.Show(@"選択されているテキストを翻訳します。よろしいですか？", @"翻訳", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+            foreach (DataGridViewRow row in FixationDGV.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    MessageBox.Show("翻訳");
+                }
+            }
+        }
     }
 }
