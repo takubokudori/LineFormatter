@@ -1,6 +1,6 @@
 ﻿namespace LineFormatter
 {
-    partial class ReplaceForm
+    partial class FixationForm
     {
         /// <summary>
         /// Required designer variable.

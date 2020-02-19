@@ -2,9 +2,9 @@
 
 namespace LineFormatter
 {
-    public partial class ReplaceForm : Form
+    public partial class FixationForm : Form
     {
-        public ReplaceForm()
+        public FixationForm()
         {
             InitializeComponent();
         }
