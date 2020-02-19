@@ -24,7 +24,7 @@ namespace LineFormatter
         }
         private readonly ProxyForm _proxyForm = new ProxyForm();
         private readonly Translation _trans = new Translation();
-        private readonly FixationForm _replaceForm = new FixationForm();
+        private readonly FixationForm _fixationForm = new FixationForm();
         private readonly List<Rep> _reps = new List<Rep>();
         private Color _beforeBoxDefaultColor;
         private Color _afterBoxDefaultColor;
@@ -69,10 +69,10 @@ namespace LineFormatter
 
             var tList = new HashSet<string>();
             _reps.Clear();
-            foreach (DataGridViewRow row in _replaceForm.ReplaceDGV.Rows)
+            foreach (DataGridViewRow row in _fixationForm.FixationDGV.Rows)
             {
-                var before = (string)row.Cells[0].Value;
-                var after = (string)row.Cells[1].Value;
+                var before = (string)row.Cells[1].Value;
+                var after = (string)row.Cells[2].Value;
                 if (before == null) break;
                 string tmp;
                 do
@@ -379,16 +379,16 @@ namespace LineFormatter
             WinApi.StartDrawing(rtb);
         }
 
-        private void ReplaceBtn_Click(object sender, EventArgs e)
+        private void FixationBtn_Click(object sender, EventArgs e)
         {
-            _replaceForm.Show();
+            _fixationForm.Show();
         }
 
-        private void ReplaceTSMI_Click(object sender, EventArgs e)
+        private void FixationTSMI_Click(object sender, EventArgs e)
         {
             var text = BeforeBox.SelectedText.Trim();
             if (text == "") return;
-            _replaceForm.ReplaceDGV.Rows.Add(text, "");
+            _fixationForm.FixationDGV.Rows.Add(text, "");
         }
     }
 }
