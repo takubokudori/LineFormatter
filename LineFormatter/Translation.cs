@@ -74,8 +74,8 @@ namespace LineFormatter
                 TransText += tText;
                 for (; OrigText[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
                 _pTList.Add(new PTrans(origPos, transPos, oText, tText));
-                transPos += tText.Length;
                 origPos += oText.Length;
+                transPos += tText.Length;
             }
 
             DownloadCallbackFunc?.Invoke(TransText);

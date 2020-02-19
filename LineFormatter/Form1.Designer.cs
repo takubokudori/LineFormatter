@@ -39,6 +39,7 @@
             this.BeforeBox = new System.Windows.Forms.RichTextBox();
             this.BeforeBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchWithGoogleTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.FixationTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.FormatBtn = new System.Windows.Forms.Button();
             this.isAutoFormat = new System.Windows.Forms.CheckBox();
@@ -55,7 +56,6 @@
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.PColorBtn = new System.Windows.Forms.Button();
             this.ReplaceBtn = new System.Windows.Forms.Button();
-            this.ReplaceTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.AfterBoxCtxMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -170,7 +170,7 @@
             this.BeforeBoxCtxMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.BeforeBoxCtxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchWithGoogleTSMI,
-            this.ReplaceTSMI});
+            this.FixationTSMI});
             this.BeforeBoxCtxMenuStrip.Name = "BeforeBoxCtxMenuStrip";
             this.BeforeBoxCtxMenuStrip.Size = new System.Drawing.Size(301, 124);
             // 
@@ -180,6 +180,13 @@
             this.searchWithGoogleTSMI.Size = new System.Drawing.Size(300, 38);
             this.searchWithGoogleTSMI.Text = "Search with Google";
             this.searchWithGoogleTSMI.Click += new System.EventHandler(this.searchWithGoogleToolStripMenuItem1_Click);
+            // 
+            // FixationTSMI
+            // 
+            this.FixationTSMI.Name = "FixationTSMI";
+            this.FixationTSMI.Size = new System.Drawing.Size(300, 38);
+            this.FixationTSMI.Text = "固定リストに追加";
+            this.FixationTSMI.Click += new System.EventHandler(this.ReplaceTSMI_Click);
             // 
             // TitleLbl
             // 
@@ -331,13 +338,6 @@
             this.ReplaceBtn.UseVisualStyleBackColor = true;
             this.ReplaceBtn.Click += new System.EventHandler(this.ReplaceBtn_Click);
             // 
-            // ReplaceTSMI
-            // 
-            this.ReplaceTSMI.Name = "ReplaceTSMI";
-            this.ReplaceTSMI.Size = new System.Drawing.Size(300, 38);
-            this.ReplaceTSMI.Text = "置換リストに追加";
-            this.ReplaceTSMI.Click += new System.EventHandler(this.ReplaceTSMI_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -398,7 +398,7 @@
         private System.Windows.Forms.ContextMenuStrip BeforeBoxCtxMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem searchWithGoogleTSMI;
         private System.Windows.Forms.Button ReplaceBtn;
-        private System.Windows.Forms.ToolStripMenuItem ReplaceTSMI;
+        private System.Windows.Forms.ToolStripMenuItem FixationTSMI;
     }
 }
 

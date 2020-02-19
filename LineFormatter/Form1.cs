@@ -24,7 +24,7 @@ namespace LineFormatter
         }
         private readonly ProxyForm _proxyForm = new ProxyForm();
         private readonly Translation _trans = new Translation();
-        private readonly ReplaceForm _replaceForm = new ReplaceForm();
+        private readonly FixationForm _replaceForm = new FixationForm();
         private readonly List<Rep> _reps = new List<Rep>();
         private Color _beforeBoxDefaultColor;
         private Color _afterBoxDefaultColor;
