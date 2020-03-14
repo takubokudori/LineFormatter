@@ -38,6 +38,7 @@ namespace LineFormatter
             Url = UrlTxt.Text;
             Username = UsernameTxt.Text;
             Password = PasswordTxt.Text;
+            Translation.Proxy = Proxy;
             Hide();
         }
 

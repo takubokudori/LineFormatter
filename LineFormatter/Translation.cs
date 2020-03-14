@@ -17,7 +17,7 @@ namespace LineFormatter
         public Func<string, string> TransTextCallbackFunc = null;
         public Func<string, string> OrigTextCallbackFunc = null;
         private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
-        public IWebProxy Proxy = null; // プロキシ
+        public static IWebProxy Proxy = null; // プロキシ
         public void Translate()
         {
             var text = System.Web.HttpUtility.UrlEncode(OrigText);
@@ -67,8 +67,8 @@ namespace LineFormatter
             {
                 var oText = sentence.orig;
                 var tText = sentence.trans;
-                oText = OrigTextCallbackFunc?.Invoke(oText);
-                tText = TransTextCallbackFunc?.Invoke(tText);
+                oText = OrigTextCallbackFunc == null ? oText : OrigTextCallbackFunc(oText);
+                tText = TransTextCallbackFunc == null ? tText : TransTextCallbackFunc(tText);
                 if (oText == null || tText == null) break;
                 OrigText += oText;
                 TransText += tText;
