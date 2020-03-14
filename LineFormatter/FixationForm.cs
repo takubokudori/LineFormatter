@@ -30,7 +30,7 @@ namespace LineFormatter
             {
                 if (row.Cells[0].Value != null)
                 {
-                    MessageBox.Show("翻訳");
+                    MessageBox.Show(@"翻訳");
                 }
             }
         }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.FixationDGV = new System.Windows.Forms.DataGridView();
-            this.CloseBtn = new System.Windows.Forms.Button();
-            this.TransBtn = new System.Windows.Forms.Button();
-            this.DeleteBtn = new System.Windows.Forms.Button();
             this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.BeforeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AfterCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CloseBtn = new System.Windows.Forms.Button();
+            this.TransBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FixationDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +53,27 @@
             this.FixationDGV.RowTemplate.Height = 33;
             this.FixationDGV.Size = new System.Drawing.Size(776, 233);
             this.FixationDGV.TabIndex = 0;
+            // 
+            // CheckCol
+            // 
+            this.CheckCol.HeaderText = "チェック";
+            this.CheckCol.MinimumWidth = 10;
+            this.CheckCol.Name = "CheckCol";
+            this.CheckCol.Width = 60;
+            // 
+            // BeforeCol
+            // 
+            this.BeforeCol.HeaderText = "変換前";
+            this.BeforeCol.MinimumWidth = 10;
+            this.BeforeCol.Name = "BeforeCol";
+            this.BeforeCol.Width = 140;
+            // 
+            // AfterCol
+            // 
+            this.AfterCol.HeaderText = "変換後";
+            this.AfterCol.MinimumWidth = 10;
+            this.AfterCol.Name = "AfterCol";
+            this.AfterCol.Width = 140;
             // 
             // CloseBtn
             // 
@@ -83,27 +104,6 @@
             this.DeleteBtn.Text = "削除";
             this.DeleteBtn.UseVisualStyleBackColor = true;
             // 
-            // CheckCol
-            // 
-            this.CheckCol.HeaderText = "チェック";
-            this.CheckCol.MinimumWidth = 10;
-            this.CheckCol.Name = "CheckCol";
-            this.CheckCol.Width = 60;
-            // 
-            // BeforeCol
-            // 
-            this.BeforeCol.HeaderText = "変換前";
-            this.BeforeCol.MinimumWidth = 10;
-            this.BeforeCol.Name = "BeforeCol";
-            this.BeforeCol.Width = 140;
-            // 
-            // AfterCol
-            // 
-            this.AfterCol.HeaderText = "変換後";
-            this.AfterCol.MinimumWidth = 10;
-            this.AfterCol.Name = "AfterCol";
-            this.AfterCol.Width = 140;
-            // 
             // FixationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -114,7 +114,7 @@
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.FixationDGV);
             this.Name = "FixationForm";
-            this.Text = "ReplaceForm";
+            this.Text = "FixationForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReplaceForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.FixationDGV)).EndInit();
             this.ResumeLayout(false);
