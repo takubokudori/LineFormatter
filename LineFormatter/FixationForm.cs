@@ -22,16 +22,24 @@ namespace LineFormatter
 
         private void TransBtn_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show(@"選択されているテキストを翻訳します。よろしいですか？", @"翻訳", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            if (MessageBox.Show(@"選択されているテキストを翻訳します。よろしいですか？
+今入力されている変換後のテキストは上書きされます。", @"翻訳", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 return;
             }
+
             foreach (DataGridViewRow row in FixationDGV.Rows)
             {
-                if (row.Cells[0].Value != null)
+                if (row.Cells[0].Value == null) continue;
+                var t = new Translation();
+                var before = (string)row.Cells[1].Value;
+                t.OrigText = before;
+                t.DownloadCallbackFunc = transText =>
                 {
-                    MessageBox.Show(@"翻訳");
-                }
+                    row.Cells[2].Value = transText;
+                    return transText;
+                };
+                t.Translate();
             }
         }
     }

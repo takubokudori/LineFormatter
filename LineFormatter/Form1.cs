@@ -158,7 +158,6 @@ namespace LineFormatter
 
         private void Translate(string orig)
         {
-            _trans.Proxy = _proxyForm.Proxy;
             _trans.OrigText = ReplaceText(orig);
             _trans.TransTextCallbackFunc = transText =>
             {
@@ -336,22 +335,18 @@ namespace LineFormatter
 
         private void AfterBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((ModifierKeys & Keys.Control) == Keys.Control && e.KeyCode == Keys.G)
-            {
-                // Ctrl+Gで検索
-                searchWithGoogleToolStripMenuItem_Click(sender, e);
-                e.SuppressKeyPress = true;
-            }
+            if ((ModifierKeys & Keys.Control) != Keys.Control || e.KeyCode != Keys.G) return;
+            // Ctrl+Gで検索
+            searchWithGoogleToolStripMenuItem_Click(sender, e);
+            e.SuppressKeyPress = true;
         }
 
         private void BeforeBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((ModifierKeys & Keys.Control) == Keys.Control && e.KeyCode == Keys.G)
-            {
-                // Ctrl+Gで検索
-                searchWithGoogleToolStripMenuItem1_Click(sender, e);
-                e.SuppressKeyPress = true;
-            }
+            if ((ModifierKeys & Keys.Control) != Keys.Control || e.KeyCode != Keys.G) return;
+            // Ctrl+Gで検索
+            searchWithGoogleToolStripMenuItem1_Click(sender, e);
+            e.SuppressKeyPress = true;
         }
 
         private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc, bool isStay = true, bool isAll = true)
