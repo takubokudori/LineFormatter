@@ -72,9 +72,8 @@ namespace LineFormatter
                 if (oText == null || tText == null) break;
                 OrigText += oText;
                 TransText += tText;
-                for (; OrigText[origPos] != sentence.orig[0]; origPos++) { } // 先頭の空白がtrimされるのでその分位置をずらす
                 _pTList.Add(new PTrans(origPos, transPos, oText, tText));
-                origPos += oText.Length;
+                origPos += oText.Length * 2 - oText.TrimStart().Length; // 先頭空白による位置ずれ調整
                 transPos += tText.Length;
             }
 
@@ -134,26 +133,6 @@ namespace LineFormatter
             }
 
             return _pTList[_pTList.Count - 1];
-        }
-
-        public string GetOrigText(int pos)
-        {
-            return GetOrig(pos)?.OrigText ?? "";
-        }
-
-        public string GetTransText(int pos)
-        {
-            return GetTrans(pos)?.TransText ?? "";
-        }
-
-        public int GetOrigPos(int pos)
-        {
-            return GetOrig(pos)?.OrigPos ?? 0;
-        }
-
-        public int GetTransPos(int pos)
-        {
-            return GetTrans(pos)?.TransPos ?? 0;
         }
     }
 

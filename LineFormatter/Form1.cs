@@ -388,7 +388,7 @@ namespace LineFormatter
         {
             var text = BeforeBox.SelectedText.Trim();
             if (text == "") return;
-            _fixationForm.FixationDGV.Rows.Add(text, "");
+            _fixationForm.FixationDGV.Rows.Add(false, text, "");
         }
     }
 }
