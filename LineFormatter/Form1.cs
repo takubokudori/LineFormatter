@@ -147,6 +147,7 @@ namespace LineFormatter
 
                 SelectionFunc(BeforeBox, x =>
                 {
+                    x.SelectionBackColor = Color.White;
                     x.SelectionFont = x.Font; // 元のフォントに戻す
                     return true;
                 });
@@ -349,6 +350,13 @@ namespace LineFormatter
             e.SuppressKeyPress = true;
         }
 
+        /// <summary>
+        /// 指定した
+        /// </summary>
+        /// <param name="rtb">RichTextBox</param>
+        /// <param name="callbackFunc">コールバック</param>
+        /// <param name="isStay">trueの場合、選択箇所を元に戻す</param>
+        /// <param name="isAll">全選択</param>
         private static void SelectionFunc(RichTextBox rtb, Func<RichTextBox, bool> callbackFunc, bool isStay = true, bool isAll = true)
         {
             rtb.Focus();
