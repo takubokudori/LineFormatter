@@ -74,43 +74,38 @@ Good.", @"1.2.3 T.E.S.T. Good.");
         [TestMethod]
         public void TranslationTest()
         {
-            var trans = new Translation();
-            var poTrans = new PrivateObject(trans);
+            AssertOrigTransPT(
+            new List<string> { "Test.", "Hello world!", "This is good." },
+            new List<string> { "テスト。", "ハローワールド！", "これは良い。" }
+                );
 
-            var origList = new List<string> { "Test.", "Hello world!", "This is good." };
-            var transList = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
+            AssertOrigTransPT(
+                new List<string> { "A", "B", "C" },
+                new List<string> { "テスト。", "ハローワールド！", "これは良い。" }
+            );
+
+            AssertOrigTransPT(
+            new List<string> { "Test.", "Hello world!", "This is good." },
+            new List<string> { "A", "B", "C" }
+                );
+
+            AssertOrigTransPT(
+                new List<string> { "Test.", "      Hello world!", "   This is good." },
+                new List<string> { "A", "B", "C" }
+            );
+
+            AssertOrigTransPT(
+                new List<string> { "Test.       is.          good.", "      Hello world!", "   This is good." },
+                new List<string> { "A", "B", "C" }
+            );
+        }
+
+        private static void AssertOrigTransPT(List<string> origList, List<string> transList)
+        {
             var pTList = BuildPTList(origList, transList);
-            poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans, pTList);
-            GetTransAssert(trans, pTList);
-
-            origList = new List<string> { "A", "B", "C" };
-            transList = new List<string> { "テスト。", "ハローワールド！", "これは良い。" };
-            pTList = BuildPTList(origList, transList);
-            poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans, pTList);
-            GetTransAssert(trans, pTList);
-
-            origList = new List<string> { "Test.", "Hello world!", "This is good." };
-            transList = new List<string> { "A", "B", "C" };
-            pTList = BuildPTList(origList, transList);
-            poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans, pTList);
-            GetTransAssert(trans, pTList);
-
-            origList = new List<string> { "Test.", "      Hello world!", "   This is good." };
-            transList = new List<string> { "A", "B", "C" };
-            pTList = BuildPTList(origList, transList);
-            poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans, pTList);
-            GetTransAssert(trans, pTList);
-
-            origList = new List<string> { "Test.       is.          good.", "      Hello world!", "   This is good." };
-            transList = new List<string> { "A", "B", "C" };
-            pTList = BuildPTList(origList, transList);
-            poTrans.SetField("_pTList", pTList);
-            GetOrigAssert(trans, pTList);
-            GetTransAssert(trans, pTList);
+            var tt = new TranslationText("", "", pTList);
+            GetOrigAssert(tt, pTList);
+            GetTransAssert(tt, pTList);
         }
 
         private static List<PTrans> BuildPTList(List<string> origList, List<string> transList)
@@ -129,7 +124,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
             return pTList;
         }
 
-        private static void GetOrigAssert(Translation trans, List<PTrans> pTList)
+        private static void GetOrigAssert(TranslationText trans, List<PTrans> pTList)
         {
             var x = pTList[pTList.Count - 1].OrigPos + pTList[pTList.Count - 1].OrigText.Length + 10; // 余分な長さまで確認
             var pt = trans.GetOrig(-1); // 負数を渡すと先頭を返す
@@ -147,7 +142,7 @@ Good.", @"1.2.3 T.E.S.T. Good.");
             }
         }
 
-        private static void GetTransAssert(Translation trans, List<PTrans> pTList)
+        private static void GetTransAssert(TranslationText trans, List<PTrans> pTList)
         {
             var x = pTList[pTList.Count - 1].TransPos + pTList[pTList.Count - 1].TransText.Length + 10; // 余分な長さまで確認
             var pt = trans.GetTrans(-1); // 負数を渡すと先頭を返す

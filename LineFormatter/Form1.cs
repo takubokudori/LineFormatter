@@ -24,6 +24,7 @@ namespace LineFormatter
         }
         private readonly ProxyForm _proxyForm = new ProxyForm();
         private readonly Translation _trans = new Translation();
+        private TranslationText _tt = new TranslationText("", "", new List<PTrans>());
         private readonly FixationForm _fixationForm = new FixationForm();
         private readonly List<Rep> _reps = new List<Rep>();
         private Color _beforeBoxDefaultColor;
@@ -42,7 +43,11 @@ namespace LineFormatter
 
         private void FormatBtn_Click(object sender, EventArgs e)
         {
-            Formatting();
+            AutoChangeFunc(() =>
+            {
+                Formatting();
+                return true;
+            });
         }
 
         private static string GenRandomStr(int length)
@@ -159,7 +164,7 @@ namespace LineFormatter
 
         private void Translate(string orig)
         {
-            _trans.OrigText = ReplaceText(orig);
+            var OrigText = ReplaceText(orig);
             _trans.TransTextCallbackFunc = transText =>
             {
                 foreach (var rep in _reps)
@@ -178,17 +183,29 @@ namespace LineFormatter
 
                 return origText;
             };
-            _trans.DownloadCallbackFunc = transText =>
+            _trans.DownloadCallbackFunc = tt =>
             {
-                AfterBox.Text = transText;
-                return transText;
+                AfterBox.Text = tt.GetTransText();
+                _tt = tt;
+                // 履歴に追加
+                HistoryCmbBox.Items.Insert(0, tt);
+                // 直近30個のみ保存し、それ以上は削除
+                if (HistoryCmbBox.Items.Count >= 30)
+                {
+                    HistoryCmbBox.Items.RemoveAt(HistoryCmbBox.Items.Count - 1);
+                }
+                return AfterBox.Text;
             };
-            _trans.Translate();
+            _trans.Translate(OrigText);
         }
 
         private void TranslateBtn_Click(object sender, EventArgs e)
         {
-            Translate(BeforeBox.Text);
+            AutoChangeFunc(() =>
+            {
+                Translate(BeforeBox.Text);
+                return true;
+            });
         }
 
         private void TranslationTimer_Tick(object sender, EventArgs e)
@@ -218,24 +235,32 @@ namespace LineFormatter
 
         private void PlusBtn_Click(object sender, EventArgs e)
         {
-            var x = AfterBox.Font.Size + 2;
-            if (x >= 100) return;
-            AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
-            BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
+            AutoChangeFunc(() =>
+            {
+                var x = AfterBox.Font.Size + 2;
+                if (x >= 100) return true;
+                AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
+                BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
+                return true;
+            });
         }
 
         private void MinusBtn_Click(object sender, EventArgs e)
         {
-            var x = AfterBox.Font.Size - 2;
-            if (x <= 0) return;
-            AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
-            BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
+            AutoChangeFunc(() =>
+            {
+                var x = AfterBox.Font.Size - 2;
+                if (x <= 0) return true;
+                AfterBox.Font = new Font(AfterBox.Font.OriginalFontName, x);
+                BeforeBox.Font = new Font(BeforeBox.Font.OriginalFontName, x);
+                return true;
+            });
         }
 
         private void BeforeBox_Click(object sender, EventArgs e)
         {
             // 対訳ハイライト
-            var pt = _trans.GetTrans(BeforeBox.SelectionStart);
+            var pt = _tt.GetTrans(BeforeBox.SelectionStart);
             if (pt == null) return;
             StopDrawingFunc(BeforeBox, bfb =>
             {
@@ -263,7 +288,7 @@ namespace LineFormatter
         private void AfterBox_Click(object sender, EventArgs e)
         {
             // 対訳ハイライト
-            var pt = _trans.GetOrig(AfterBox.SelectionStart);
+            var pt = _tt.GetOrig(AfterBox.SelectionStart);
             if (pt == null) return;
             StopDrawingFunc(BeforeBox, bfb =>
             {
@@ -382,6 +407,13 @@ namespace LineFormatter
             WinApi.StartDrawing(rtb);
         }
 
+        private static void StopDrawingFunc2(Control ctrl, Func<bool> callbackFunc)
+        {
+            WinApi.StopDrawing(ctrl);
+            callbackFunc();
+            WinApi.StartDrawing(ctrl);
+        }
+
         private void FixationBtn_Click(object sender, EventArgs e)
         {
             _fixationForm.Show();
@@ -392,6 +424,42 @@ namespace LineFormatter
             var text = BeforeBox.SelectedText.Trim();
             if (text == "") return;
             _fixationForm.FixationDGV.Rows.Add(false, text, "");
+        }
+
+        // BeforeBoxの内容が変化したときに自動整形や自動翻訳が暴発するのを防ぐコールバック
+        private void AutoChangeFunc(Func<bool> callbackFunc)
+        {
+            StopDrawingFunc2(isAutoFormat, () =>
+            {
+                StopDrawingFunc2(isAutoTranslation, () =>
+                 {
+                     var isAf = isAutoFormat.Checked;
+                     var isAt = isAutoTranslation.Checked;
+                     isAutoFormat.Checked = false; // 内容を壊さないように一時的に切る
+                     isAutoTranslation.Checked = false;
+                     callbackFunc();
+                     isAutoFormat.Checked = isAf;
+                     isAutoTranslation.Checked = isAt;
+                     return true;
+                 });
+                return true;
+            });
+        }
+
+        private void HistoryCmbBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 指定した翻訳文をコピー
+
+            var isAF = isAutoFormat.Checked;
+            var isAT = isAutoTranslation.Checked;
+            isAutoFormat.Checked = false; // 内容を壊さないように一時的に切る
+            isAutoTranslation.Checked = false;
+            var x = (TranslationText)HistoryCmbBox.SelectedItem;
+            _tt = x;
+            BeforeBox.Text = _tt.GetOrigText();
+            AfterBox.Text = _tt.GetTransText();
+            isAutoFormat.Checked = isAF;
+            isAutoTranslation.Checked = isAT;
         }
     }
 }

@@ -33,13 +33,12 @@ namespace LineFormatter
                 if (row.Cells[0].Value == null) continue;
                 var t = new Translation();
                 var before = (string)row.Cells[1].Value;
-                t.OrigText = before;
-                t.DownloadCallbackFunc = transText =>
+                t.DownloadCallbackFunc = Tt =>
                 {
-                    row.Cells[2].Value = transText;
-                    return transText;
+                    row.Cells[2].Value = Tt.GetTransText();
+                    return Tt.GetTransText();
                 };
-                t.Translate();
+                t.Translate(before);
             }
         }
     }

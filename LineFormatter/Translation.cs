@@ -11,16 +11,16 @@ namespace LineFormatter
     public class Translation
     {
         private const string TranslationUrl = "https://translate.googleapis.com/translate_a/single";
-        public string OrigText = ""; // オリジナル
-        public string TransText = ""; // 訳文
-        public Func<string, string> DownloadCallbackFunc = null;
+        public Func<TranslationText, string> DownloadCallbackFunc = null;
         public Func<string, string> TransTextCallbackFunc = null;
         public Func<string, string> OrigTextCallbackFunc = null;
-        private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
+        private TranslationText _tt;
+
         public static IWebProxy Proxy = null; // プロキシ
-        public void Translate()
+
+        public void Translate(string origText)
         {
-            var text = System.Web.HttpUtility.UrlEncode(OrigText);
+            var text = System.Web.HttpUtility.UrlEncode(origText);
             if (text == "") return;
             var wc = new WebClient
             {
@@ -57,11 +57,11 @@ namespace LineFormatter
                 res = (GTransResp)serializer.ReadObject(ms);
             }
 
-            TransText = "";
-            _pTList.Clear();
+            var transText = "";
+            var ptList = new List<PTrans>();
             var transPos = 0;
             var origPos = 0;
-            OrigText = "";
+            var origText = "";
             if (res?.sentences == null) return;
             foreach (var sentence in res.sentences)
             {
@@ -70,15 +70,76 @@ namespace LineFormatter
                 oText = OrigTextCallbackFunc == null ? oText : OrigTextCallbackFunc(oText);
                 tText = TransTextCallbackFunc == null ? tText : TransTextCallbackFunc(tText);
                 if (oText == null || tText == null) break;
-                OrigText += oText;
-                TransText += tText;
-                _pTList.Add(new PTrans(origPos, transPos, oText, tText));
+                origText += oText;
+                transText += tText;
+                ptList.Add(new PTrans(origPos, transPos, oText, tText));
                 origPos += oText.Length * 2 - oText.TrimStart().Length; // 先頭空白による位置ずれ調整
                 transPos += tText.Length;
             }
 
-            DownloadCallbackFunc?.Invoke(TransText);
+            _tt = new TranslationText(origText, transText, ptList);
+
+            DownloadCallbackFunc?.Invoke(_tt);
         }
+    }
+
+    // 文章単位対訳
+    public class PTrans
+    {
+        public int OrigPos; // 原文始点位置
+        public string OrigText; // 原文
+        public int TransPos; // 訳文始点位置
+        public string TransText; // 訳文
+        public PTrans(int origPos, int transPos, string origText, string transText)
+        {
+            OrigPos = origPos;
+            OrigText = origText;
+            TransPos = transPos;
+            TransText = transText;
+        }
+    }
+
+    public class ModelTracking
+    {
+        public string checkpoint_md5 { get; set; }
+        public string launch_doc { get; set; }
+    }
+
+    public class TranslationEngineDebugInfo
+    {
+        public ModelTracking model_tracking { get; set; }
+    }
+
+    public class Sentence
+    {
+        public string trans { get; set; }
+        public string orig { get; set; }
+        public int backend { get; set; }
+        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
+    }
+
+    public class GTransResp
+    {
+        public List<Sentence> sentences { get; set; }
+        public string src { get; set; }
+    }
+
+    public class TranslationText
+    {
+        private string OrigText = ""; // オリジナル
+        private string TransText = ""; // 訳文
+        private readonly List<PTrans> _pTList = new List<PTrans>(); // 対訳リスト
+
+        public TranslationText(string OrigText, string TransText, List<PTrans> _pTList)
+        {
+            this.OrigText = OrigText;
+            this.TransText = TransText;
+            this._pTList = _pTList;
+        }
+
+        public string GetOrigText() { return OrigText; }
+
+        public string GetTransText() { return TransText; }
 
         // 指定位置の対を取得
         public PTrans GetOrig(int pos)
@@ -134,46 +195,12 @@ namespace LineFormatter
 
             return _pTList[_pTList.Count - 1];
         }
-    }
 
-    // 文章単位対訳
-    public class PTrans
-    {
-        public int OrigPos; // 原文始点位置
-        public string OrigText; // 原文
-        public int TransPos; // 訳文始点位置
-        public string TransText; // 訳文
-        public PTrans(int origPos, int transPos, string origText, string transText)
+        // 訳文を最大100文字プレビュー
+        public override string ToString()
         {
-            OrigPos = origPos;
-            OrigText = origText;
-            TransPos = transPos;
-            TransText = transText;
+            var x = TransText.Length < 100 ? TransText.Length : 100;
+            return TransText.Substring(0, x);
         }
-    }
-
-    public class ModelTracking
-    {
-        public string checkpoint_md5 { get; set; }
-        public string launch_doc { get; set; }
-    }
-
-    public class TranslationEngineDebugInfo
-    {
-        public ModelTracking model_tracking { get; set; }
-    }
-
-    public class Sentence
-    {
-        public string trans { get; set; }
-        public string orig { get; set; }
-        public int backend { get; set; }
-        public List<TranslationEngineDebugInfo> translation_engine_debug_info { get; set; }
-    }
-
-    public class GTransResp
-    {
-        public List<Sentence> sentences { get; set; }
-        public string src { get; set; }
     }
 }
