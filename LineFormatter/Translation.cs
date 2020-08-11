@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
+using System.Windows.Forms;
 
 namespace LineFormatter
 {
@@ -18,7 +19,7 @@ namespace LineFormatter
 
         public static IWebProxy Proxy = null; // プロキシ
 
-        public void Translate(string origText)
+        public void Translate(string origText, string fromLang, string toLang)
         {
             var text = System.Web.HttpUtility.UrlEncode(origText);
             if (text == "") return;
@@ -37,8 +38,8 @@ namespace LineFormatter
             wc.DownloadStringAsync(
                 new Uri(TranslationUrl +
                         "?client=it" +
-                        "&sl=en" +
-                        "&tl=ja" +
+                        "&sl=" + fromLang +
+                        "&tl=" + toLang +
                         "&dt=t" +
                         "&ie=UTF-8" +
                         "&oe=UTF-8" +

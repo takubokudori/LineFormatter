@@ -33,6 +33,8 @@ namespace LineFormatter
         public Form1()
         {
             InitializeComponent();
+            FromComboBox.SelectedIndex = 1; // en
+            ToComboBox.SelectedIndex = 0; // ja
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -196,7 +198,9 @@ namespace LineFormatter
                 }
                 return AfterBox.Text;
             };
-            _trans.Translate(OrigText);
+            var fromLang = ((string)FromComboBox.SelectedItem).Split(',')[0];
+            var toLang = ((string)ToComboBox.SelectedItem).Split(',')[0];
+            _trans.Translate(OrigText, fromLang, toLang);
         }
 
         private void TranslateBtn_Click(object sender, EventArgs e)
@@ -460,6 +464,13 @@ namespace LineFormatter
             AfterBox.Text = _tt.GetTransText();
             isAutoFormat.Checked = isAF;
             isAutoTranslation.Checked = isAT;
+        }
+
+        private void LangSwapBtn_Click(object sender, EventArgs e)
+        {
+            var t = FromComboBox.SelectedIndex;
+            FromComboBox.SelectedIndex = ToComboBox.SelectedIndex;
+            ToComboBox.SelectedIndex = t;
         }
     }
 }

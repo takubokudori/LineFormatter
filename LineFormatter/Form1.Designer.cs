@@ -32,6 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BeforeLenLbl = new System.Windows.Forms.Label();
             this.AfterLenLbl = new System.Windows.Forms.Label();
+            this.HistoryCmbBox = new System.Windows.Forms.ComboBox();
             this.AfterBox = new System.Windows.Forms.RichTextBox();
             this.AfterBoxCtxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchWithGoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,9 @@
             this.PtColorDialog = new System.Windows.Forms.ColorDialog();
             this.PColorBtn = new System.Windows.Forms.Button();
             this.FixationBtn = new System.Windows.Forms.Button();
-            this.HistoryCmbBox = new System.Windows.Forms.ComboBox();
+            this.FromComboBox = new System.Windows.Forms.ComboBox();
+            this.ToComboBox = new System.Windows.Forms.ComboBox();
+            this.LangSwapBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.AfterBoxCtxMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -106,6 +109,18 @@
             this.AfterLenLbl.Size = new System.Drawing.Size(137, 24);
             this.AfterLenLbl.TabIndex = 17;
             this.AfterLenLbl.Text = "訳文: 0 文字";
+            // 
+            // HistoryCmbBox
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.HistoryCmbBox, 3);
+            this.HistoryCmbBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HistoryCmbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.HistoryCmbBox.FormattingEnabled = true;
+            this.HistoryCmbBox.Location = new System.Drawing.Point(3, 3);
+            this.HistoryCmbBox.Name = "HistoryCmbBox";
+            this.HistoryCmbBox.Size = new System.Drawing.Size(1121, 32);
+            this.HistoryCmbBox.TabIndex = 18;
+            this.HistoryCmbBox.SelectedIndexChanged += new System.EventHandler(this.HistoryCmbBox_SelectedIndexChanged);
             // 
             // AfterBox
             // 
@@ -341,23 +356,260 @@
             this.FixationBtn.UseVisualStyleBackColor = true;
             this.FixationBtn.Click += new System.EventHandler(this.FixationBtn_Click);
             // 
-            // HistoryCmbBox
+            // FromComboBox
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.HistoryCmbBox, 3);
-            this.HistoryCmbBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HistoryCmbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.HistoryCmbBox.FormattingEnabled = true;
-            this.HistoryCmbBox.Location = new System.Drawing.Point(3, 3);
-            this.HistoryCmbBox.Name = "HistoryCmbBox";
-            this.HistoryCmbBox.Size = new System.Drawing.Size(1121, 32);
-            this.HistoryCmbBox.TabIndex = 18;
-            this.HistoryCmbBox.SelectedIndexChanged += new System.EventHandler(this.HistoryCmbBox_SelectedIndexChanged);
+            this.FromComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FromComboBox.FormattingEnabled = true;
+            this.FromComboBox.Items.AddRange(new object[] {
+            "ja,日本語",
+            "en,英語",
+            "zh-CN,中国語",
+            "ru,ロシア語",
+            "ko,韓国語",
+            "is,アイスランド語",
+            "ga,アイルランド語",
+            "az,アゼルバイジャン語",
+            "af,アフリカーンス語",
+            "am,アムハラ語",
+            "ar,アラビア語",
+            "sq,アルバニア語",
+            "hy,アルメニア語",
+            "it,イタリア語",
+            "yi,イディッシュ語",
+            "ig,イボ語",
+            "id,インドネシア語",
+            "ug,ウイグル語",
+            "cy,ウェールズ語",
+            "uk,ウクライナ語",
+            "uz,ウズベク語",
+            "ur,ウルドゥ語",
+            "et,エストニア語",
+            "eo,エスペラント語",
+            "nl,オランダ語",
+            "or,オリヤ語",
+            "kk,カザフ語",
+            "ca,カタルーニャ語",
+            "gl,ガリシア語",
+            "kn,カンナダ語",
+            "rw,キニヤルワンダ語",
+            "el,ギリシャ語",
+            "ky,キルギス語",
+            "gu,グジャラト語",
+            "km,クメール語",
+            "ku,クルド語",
+            "hr,クロアチア語",
+            "xh,コーサ語",
+            "co,コルシカ語",
+            "sm,サモア語",
+            "jw,ジャワ語",
+            "ka,ジョージア(グルジア)語",
+            "sn,ショナ語",
+            "sd,シンド語",
+            "si,シンハラ語",
+            "sv,スウェーデン語",
+            "zu,ズールー語",
+            "gd,スコットランド ゲール語",
+            "es,スペイン語",
+            "sk,スロバキア語",
+            "sl,スロベニア語",
+            "sw,スワヒリ語",
+            "su,スンダ語",
+            "ceb,セブアノ語",
+            "sr,セルビア語",
+            "st,ソト語",
+            "so,ソマリ語",
+            "th,タイ語",
+            "tl,タガログ語",
+            "tg,タジク語",
+            "tt,タタール語",
+            "ta,タミル語",
+            "cs,チェコ語",
+            "ny,チェワ語",
+            "te,テルグ語",
+            "da,デンマーク語",
+            "de,ドイツ語",
+            "tk,トルクメン語",
+            "tr,トルコ語",
+            "ne,ネパール語",
+            "no,ノルウェー語",
+            "ht,ハイチ語",
+            "ha,ハウサ語",
+            "ps,パシュト語",
+            "eu,バスク語",
+            "haw,ハワイ語",
+            "hu,ハンガリー語",
+            "pa,パンジャブ語",
+            "hi,ヒンディー語",
+            "fi,フィンランド語",
+            "fr,フランス語",
+            "fy,フリジア語",
+            "bg,ブルガリア語",
+            "vi,ベトナム語",
+            "iw,ヘブライ語",
+            "be,ベラルーシ語",
+            "fa,ペルシャ語",
+            "bn,ベンガル語",
+            "pl,ポーランド語",
+            "bs,ボスニア語",
+            "pt,ポルトガル語",
+            "mi,マオリ語",
+            "mk,マケドニア語",
+            "mr,マラーティー語",
+            "mg,マラガシ語",
+            "ml,マラヤーラム語",
+            "mt,マルタ語",
+            "ms,マレー語",
+            "my,ミャンマー語",
+            "mn,モンゴル語",
+            "hmn,モン語",
+            "yo,ヨルバ語",
+            "lo,ラオ語",
+            "la,ラテン語",
+            "lv,ラトビア語",
+            "lt,リトアニア語",
+            "ro,ルーマニア語",
+            "lb,ルクセンブルク語"});
+            this.FromComboBox.Location = new System.Drawing.Point(30, 147);
+            this.FromComboBox.Name = "FromComboBox";
+            this.FromComboBox.Size = new System.Drawing.Size(251, 32);
+            this.FromComboBox.TabIndex = 17;
+            // 
+            // ToComboBox
+            // 
+            this.ToComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ToComboBox.FormattingEnabled = true;
+            this.ToComboBox.Items.AddRange(new object[] {
+            "ja,日本語",
+            "en,英語",
+            "zh-CN,中国語",
+            "ru,ロシア語",
+            "ko,韓国語",
+            "is,アイスランド語",
+            "ga,アイルランド語",
+            "az,アゼルバイジャン語",
+            "af,アフリカーンス語",
+            "am,アムハラ語",
+            "ar,アラビア語",
+            "sq,アルバニア語",
+            "hy,アルメニア語",
+            "it,イタリア語",
+            "yi,イディッシュ語",
+            "ig,イボ語",
+            "id,インドネシア語",
+            "ug,ウイグル語",
+            "cy,ウェールズ語",
+            "uk,ウクライナ語",
+            "uz,ウズベク語",
+            "ur,ウルドゥ語",
+            "et,エストニア語",
+            "eo,エスペラント語",
+            "nl,オランダ語",
+            "or,オリヤ語",
+            "kk,カザフ語",
+            "ca,カタルーニャ語",
+            "gl,ガリシア語",
+            "kn,カンナダ語",
+            "rw,キニヤルワンダ語",
+            "el,ギリシャ語",
+            "ky,キルギス語",
+            "gu,グジャラト語",
+            "km,クメール語",
+            "ku,クルド語",
+            "hr,クロアチア語",
+            "xh,コーサ語",
+            "co,コルシカ語",
+            "sm,サモア語",
+            "jw,ジャワ語",
+            "ka,ジョージア(グルジア)語",
+            "sn,ショナ語",
+            "sd,シンド語",
+            "si,シンハラ語",
+            "sv,スウェーデン語",
+            "zu,ズールー語",
+            "gd,スコットランド ゲール語",
+            "es,スペイン語",
+            "sk,スロバキア語",
+            "sl,スロベニア語",
+            "sw,スワヒリ語",
+            "su,スンダ語",
+            "ceb,セブアノ語",
+            "sr,セルビア語",
+            "st,ソト語",
+            "so,ソマリ語",
+            "th,タイ語",
+            "tl,タガログ語",
+            "tg,タジク語",
+            "tt,タタール語",
+            "ta,タミル語",
+            "cs,チェコ語",
+            "ny,チェワ語",
+            "te,テルグ語",
+            "da,デンマーク語",
+            "de,ドイツ語",
+            "tk,トルクメン語",
+            "tr,トルコ語",
+            "ne,ネパール語",
+            "no,ノルウェー語",
+            "ht,ハイチ語",
+            "ha,ハウサ語",
+            "ps,パシュト語",
+            "eu,バスク語",
+            "haw,ハワイ語",
+            "hu,ハンガリー語",
+            "pa,パンジャブ語",
+            "hi,ヒンディー語",
+            "fi,フィンランド語",
+            "fr,フランス語",
+            "fy,フリジア語",
+            "bg,ブルガリア語",
+            "vi,ベトナム語",
+            "iw,ヘブライ語",
+            "be,ベラルーシ語",
+            "fa,ペルシャ語",
+            "bn,ベンガル語",
+            "pl,ポーランド語",
+            "bs,ボスニア語",
+            "pt,ポルトガル語",
+            "mi,マオリ語",
+            "mk,マケドニア語",
+            "mr,マラーティー語",
+            "mg,マラガシ語",
+            "ml,マラヤーラム語",
+            "mt,マルタ語",
+            "ms,マレー語",
+            "my,ミャンマー語",
+            "mn,モンゴル語",
+            "hmn,モン語",
+            "yo,ヨルバ語",
+            "lo,ラオ語",
+            "la,ラテン語",
+            "lv,ラトビア語",
+            "lt,リトアニア語",
+            "ro,ルーマニア語",
+            "lb,ルクセンブルク語"});
+            this.ToComboBox.Location = new System.Drawing.Point(368, 147);
+            this.ToComboBox.Name = "ToComboBox";
+            this.ToComboBox.Size = new System.Drawing.Size(239, 32);
+            this.ToComboBox.TabIndex = 18;
+            // 
+            // LangSwapBtn
+            // 
+            this.LangSwapBtn.Location = new System.Drawing.Point(287, 139);
+            this.LangSwapBtn.Name = "LangSwapBtn";
+            this.LangSwapBtn.Size = new System.Drawing.Size(75, 47);
+            this.LangSwapBtn.TabIndex = 19;
+            this.LangSwapBtn.Text = "⇔";
+            this.LangSwapBtn.UseVisualStyleBackColor = true;
+            this.LangSwapBtn.Click += new System.EventHandler(this.LangSwapBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 972);
+            this.Controls.Add(this.LangSwapBtn);
+            this.Controls.Add(this.ToComboBox);
+            this.Controls.Add(this.FromComboBox);
             this.Controls.Add(this.FixationBtn);
             this.Controls.Add(this.PColorBtn);
             this.Controls.Add(this.PlusBtn);
@@ -415,6 +667,9 @@
         private System.Windows.Forms.Button FixationBtn;
         private System.Windows.Forms.ToolStripMenuItem FixationTSMI;
         private System.Windows.Forms.ComboBox HistoryCmbBox;
+        private System.Windows.Forms.ComboBox FromComboBox;
+        private System.Windows.Forms.ComboBox ToComboBox;
+        private System.Windows.Forms.Button LangSwapBtn;
     }
 }
 

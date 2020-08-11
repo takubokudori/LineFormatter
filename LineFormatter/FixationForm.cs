@@ -38,7 +38,7 @@ namespace LineFormatter
                     row.Cells[2].Value = Tt.GetTransText();
                     return Tt.GetTransText();
                 };
-                t.Translate(before);
+                t.Translate(before, "en", "ja");
             }
         }
     }
