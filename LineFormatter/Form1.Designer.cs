@@ -481,6 +481,7 @@
             this.FromComboBox.Name = "FromComboBox";
             this.FromComboBox.Size = new System.Drawing.Size(501, 32);
             this.FromComboBox.TabIndex = 17;
+            this.FromComboBox.SelectedIndexChanged += new System.EventHandler(this.FromComboBox_SelectedIndexChanged);
             // 
             // ToComboBox
             // 
@@ -602,6 +603,7 @@
             this.ToComboBox.Name = "ToComboBox";
             this.ToComboBox.Size = new System.Drawing.Size(502, 32);
             this.ToComboBox.TabIndex = 18;
+            this.ToComboBox.SelectedIndexChanged += new System.EventHandler(this.ToComboBox_SelectedIndexChanged);
             // 
             // LangSwapBtn
             // 

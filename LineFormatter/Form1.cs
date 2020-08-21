@@ -472,5 +472,46 @@ namespace LineFormatter
             FromComboBox.SelectedIndex = ToComboBox.SelectedIndex;
             ToComboBox.SelectedIndex = t;
         }
+
+        private void FromComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 翻訳前と翻訳後が同じ言語の場合は翻訳後を日本語にする
+            // ただし翻訳前が日本語の場合は英語にする
+            var from = FromComboBox.SelectedIndex;
+            var to = ToComboBox.SelectedIndex;
+            if (from == 0) return; // autoなら何もしない
+            from--; // Fromのほうはautoが含まれるために番号が1多いので1引く
+            if (from == 0 && to == 0)
+            { // 両方とも日本語の場合は翻訳後を英語にする
+                ToComboBox.SelectedIndex = 1;
+                return;
+            }
+            // 同じ言語(日本語以外)の場合は日本語にする
+            if (from == to)
+            {
+                ToComboBox.SelectedIndex = 0; // 日本語
+            }
+        }
+
+        private void ToComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 翻訳前と翻訳後が同じ言語の場合は翻訳前を日本語にする
+            // ただし翻訳後が日本語の場合はautoにする
+            var from = FromComboBox.SelectedIndex;
+            var to = ToComboBox.SelectedIndex;
+            if (from == 0) return; // autoなら何もしない
+            from--; // Fromのほうはautoが含まれるために番号が1多いので1引く
+            if (from == 0 && to == 0)
+            { // 両方とも日本語の場合は翻訳前をautoにする
+                FromComboBox.SelectedIndex = 0;
+                return;
+            }
+            // 同じ言語(日本語以外)の場合は日本語にする
+            if (from == to)
+            {
+                FromComboBox.SelectedIndex = 1; // 日本語
+            }
+
+        }
     }
 }
