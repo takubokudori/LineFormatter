@@ -33,7 +33,7 @@ namespace LineFormatter
         public Form1()
         {
             InitializeComponent();
-            FromComboBox.SelectedIndex = 1; // en
+            FromComboBox.SelectedIndex = 0; // auto
             ToComboBox.SelectedIndex = 0; // ja
         }
 

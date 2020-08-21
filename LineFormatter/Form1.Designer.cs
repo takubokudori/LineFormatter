@@ -75,15 +75,19 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel1.Controls.Add(this.BeforeLenLbl, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.AfterLenLbl, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.HistoryCmbBox, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BeforeLenLbl, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.AfterLenLbl, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ToComboBox, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LangSwapBtn, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.HistoryCmbBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.AfterBox, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.FromComboBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.BeforeBox, 0, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 196);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -94,7 +98,7 @@
             // 
             this.BeforeLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BeforeLenLbl.AutoSize = true;
-            this.BeforeLenLbl.Location = new System.Drawing.Point(185, 63);
+            this.BeforeLenLbl.Location = new System.Drawing.Point(185, 123);
             this.BeforeLenLbl.Name = "BeforeLenLbl";
             this.BeforeLenLbl.Size = new System.Drawing.Size(137, 24);
             this.BeforeLenLbl.TabIndex = 16;
@@ -104,7 +108,7 @@
             // 
             this.AfterLenLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AfterLenLbl.AutoSize = true;
-            this.AfterLenLbl.Location = new System.Drawing.Point(804, 63);
+            this.AfterLenLbl.Location = new System.Drawing.Point(804, 123);
             this.AfterLenLbl.Name = "AfterLenLbl";
             this.AfterLenLbl.Size = new System.Drawing.Size(137, 24);
             this.AfterLenLbl.TabIndex = 17;
@@ -116,7 +120,7 @@
             this.HistoryCmbBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HistoryCmbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HistoryCmbBox.FormattingEnabled = true;
-            this.HistoryCmbBox.Location = new System.Drawing.Point(3, 3);
+            this.HistoryCmbBox.Location = new System.Drawing.Point(3, 63);
             this.HistoryCmbBox.Name = "HistoryCmbBox";
             this.HistoryCmbBox.Size = new System.Drawing.Size(1121, 32);
             this.HistoryCmbBox.TabIndex = 18;
@@ -128,10 +132,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AfterBox.ContextMenuStrip = this.AfterBoxCtxMenuStrip;
-            this.AfterBox.Location = new System.Drawing.Point(622, 93);
+            this.AfterBox.Location = new System.Drawing.Point(622, 153);
             this.AfterBox.Name = "AfterBox";
             this.AfterBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.AfterBox.Size = new System.Drawing.Size(502, 668);
+            this.AfterBox.Size = new System.Drawing.Size(502, 608);
             this.AfterBox.TabIndex = 4;
             this.AfterBox.Text = "";
             this.AfterBox.Click += new System.EventHandler(this.AfterBox_Click);
@@ -160,9 +164,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::LineFormatter.Resource1.arrow;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(510, 93);
+            this.pictureBox1.Location = new System.Drawing.Point(510, 153);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(106, 668);
+            this.pictureBox1.Size = new System.Drawing.Size(106, 608);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -173,10 +177,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BeforeBox.ContextMenuStrip = this.BeforeBoxCtxMenuStrip;
-            this.BeforeBox.Location = new System.Drawing.Point(3, 93);
+            this.BeforeBox.Location = new System.Drawing.Point(3, 153);
             this.BeforeBox.Name = "BeforeBox";
             this.BeforeBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.BeforeBox.Size = new System.Drawing.Size(501, 668);
+            this.BeforeBox.Size = new System.Drawing.Size(501, 608);
             this.BeforeBox.TabIndex = 3;
             this.BeforeBox.Text = "";
             this.BeforeBox.Click += new System.EventHandler(this.BeforeBox_Click);
@@ -358,9 +362,13 @@
             // 
             // FromComboBox
             // 
+            this.FromComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FromComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FromComboBox.FormattingEnabled = true;
             this.FromComboBox.Items.AddRange(new object[] {
+            "auto,自動",
             "ja,日本語",
             "en,英語",
             "zh-CN,中国語",
@@ -469,13 +477,16 @@
             "lt,リトアニア語",
             "ro,ルーマニア語",
             "lb,ルクセンブルク語"});
-            this.FromComboBox.Location = new System.Drawing.Point(30, 147);
+            this.FromComboBox.Location = new System.Drawing.Point(3, 3);
             this.FromComboBox.Name = "FromComboBox";
-            this.FromComboBox.Size = new System.Drawing.Size(251, 32);
+            this.FromComboBox.Size = new System.Drawing.Size(501, 32);
             this.FromComboBox.TabIndex = 17;
             // 
             // ToComboBox
             // 
+            this.ToComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ToComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ToComboBox.FormattingEnabled = true;
             this.ToComboBox.Items.AddRange(new object[] {
@@ -587,16 +598,19 @@
             "lt,リトアニア語",
             "ro,ルーマニア語",
             "lb,ルクセンブルク語"});
-            this.ToComboBox.Location = new System.Drawing.Point(368, 147);
+            this.ToComboBox.Location = new System.Drawing.Point(622, 3);
             this.ToComboBox.Name = "ToComboBox";
-            this.ToComboBox.Size = new System.Drawing.Size(239, 32);
+            this.ToComboBox.Size = new System.Drawing.Size(502, 32);
             this.ToComboBox.TabIndex = 18;
             // 
             // LangSwapBtn
             // 
-            this.LangSwapBtn.Location = new System.Drawing.Point(287, 139);
+            this.LangSwapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LangSwapBtn.Location = new System.Drawing.Point(510, 3);
             this.LangSwapBtn.Name = "LangSwapBtn";
-            this.LangSwapBtn.Size = new System.Drawing.Size(75, 47);
+            this.LangSwapBtn.Size = new System.Drawing.Size(106, 54);
             this.LangSwapBtn.TabIndex = 19;
             this.LangSwapBtn.Text = "⇔";
             this.LangSwapBtn.UseVisualStyleBackColor = true;
@@ -607,9 +621,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 972);
-            this.Controls.Add(this.LangSwapBtn);
-            this.Controls.Add(this.ToComboBox);
-            this.Controls.Add(this.FromComboBox);
             this.Controls.Add(this.FixationBtn);
             this.Controls.Add(this.PColorBtn);
             this.Controls.Add(this.PlusBtn);
