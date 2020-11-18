@@ -121,6 +121,21 @@ namespace LineFormatter
             .Replace("? ", "?\r\n") // ?
             .Replace("?\n", "?\r\n")
             .Replace("?\t", "?\r\n")
+            .Replace("。", "。\r\n") // 。(全角)
+            .Replace("。\n", "。\r\n")
+            .Replace("。\t", "。\r\n")
+            .Replace("：", "：\r\n") // ：(全角)
+            .Replace("：\n", "：\r\n")
+            .Replace("：\t", "：\r\n")
+            .Replace("；", "；\r\n") // ；(全角)
+            .Replace("；\n", "；\r\n")
+            .Replace("；\t", "；\r\n")
+            .Replace("！", "！\r\n") // ！(全角)
+            .Replace("！\n", "！\r\n")
+            .Replace("！\t", "！\r\n")
+            .Replace("？", "？\r\n") // ？(全角)
+            .Replace("？\n", "？\r\n")
+            .Replace("？\t", "？\r\n")
             .Replace("Fig.\r\n", "Fig. ") // 図
             .Replace("etc.\r\n", "etc. ") // 等
             .Replace("e.g.\r\n", "e.g. ") // 例
