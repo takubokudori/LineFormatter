@@ -484,8 +484,13 @@ namespace LineFormatter
         private void LangSwapBtn_Click(object sender, EventArgs e)
         {
             var t = FromComboBox.SelectedIndex;
-            FromComboBox.SelectedIndex = ToComboBox.SelectedIndex;
-            ToComboBox.SelectedIndex = t;
+            if (t == 0)
+            {
+                // 翻訳元がautoの場合は何もしない
+                return;
+            }
+            FromComboBox.SelectedIndex = ToComboBox.SelectedIndex + 1;
+            ToComboBox.SelectedIndex = t - 1;
         }
 
         private void FromComboBox_SelectedIndexChanged(object sender, EventArgs e)
