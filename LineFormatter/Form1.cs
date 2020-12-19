@@ -380,18 +380,22 @@ namespace LineFormatter
 
         private void AfterBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((ModifierKeys & Keys.Control) != Keys.Control || e.KeyCode != Keys.G) return;
-            // Ctrl+Gで検索
-            searchWithGoogleToolStripMenuItem_Click(sender, e);
-            e.SuppressKeyPress = true;
+            if (((ModifierKeys & Keys.Control) != 0 || (ModifierKeys & Keys.Alt) != 0) && e.KeyCode == Keys.G)
+            {
+                // Alt+GまたはCtrl+Gで検索
+                searchWithGoogleToolStripMenuItem_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void BeforeBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((ModifierKeys & Keys.Control) != Keys.Control || e.KeyCode != Keys.G) return;
-            // Ctrl+Gで検索
-            searchWithGoogleToolStripMenuItem1_Click(sender, e);
-            e.SuppressKeyPress = true;
+            if (((ModifierKeys & Keys.Control) != 0 || (ModifierKeys & Keys.Alt) != 0) && e.KeyCode == Keys.G)
+            {
+                // Alt+GまたはCtrl+Gで検索
+                searchWithGoogleToolStripMenuItem1_Click(sender, e);
+                e.SuppressKeyPress = true;
+            }
         }
 
         /// <summary>
