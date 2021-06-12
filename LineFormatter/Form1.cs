@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2020 takubokudori
+Copyright 2021 takubokudori
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ using System.Windows.Forms;
 
 namespace LineFormatter
 {
-
     public partial class Form1 : Form
     {
         class Rep
@@ -230,6 +229,13 @@ namespace LineFormatter
             };
             var fromLang = ((string)FromComboBox.SelectedItem).Split(',')[0];
             var toLang = ((string)ToComboBox.SelectedItem).Split(',')[0];
+
+            StopDrawingFunc(AfterBox, afb =>
+            {
+                ClearSelectionBackColor(afb, _afterBoxDefaultColor, false);
+                afb.ScrollToCaret();
+                return true;
+            });
             _trans.Translate(OrigText, fromLang, toLang);
         }
 

@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2020 takubokudori
+Copyright 2021 takubokudori
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,9 +21,6 @@ namespace LineFormatter
 {
     static class Program
     {
-        /// <summary>
-        /// アプリケーションのメイン エントリ ポイントです。
-        /// </summary>
         [STAThread]
         static void Main()
         {
